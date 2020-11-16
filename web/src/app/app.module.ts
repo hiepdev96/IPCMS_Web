@@ -11,6 +11,7 @@ import { DashboardComponent } from './main/dashboard/dashboard.component';
 import { E404Component } from './pages/e404/e404.component';
 import { E500Component } from './pages/e500/e500.component';
 import { LoginComponent } from './pages/login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const APP_COMPONENT = [
   MainComponent,
@@ -31,6 +32,7 @@ const APP_COMPONENT = [
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

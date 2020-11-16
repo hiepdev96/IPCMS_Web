@@ -1,6 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 
 .line-height-40 {
-    line-height: 40px;
+  line-height: 40px;
 }
+
 @import 'assets/css/adminlte.css';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-tab-label-content {
+  color: black;
+}
+
+.mat-tab-body-content {
+  padding-top: 15px;
+}
