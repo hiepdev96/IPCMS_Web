@@ -23,7 +23,6 @@ const APP_COMPONENT = [
   E500Component,
   LoginComponent
 ];
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +32,7 @@ const APP_COMPONENT = [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

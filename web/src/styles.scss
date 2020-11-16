@@ -18,8 +18,16 @@ body {
 
 .mat-tab-label-content {
   color: black;
+  text-transform: uppercase;
 }
 
 .mat-tab-body-content {
   padding-top: 15px;
+}
+
+label {
+  font-weight: normal !important;
+}
+.full-width{
+    width: 100%;
 }

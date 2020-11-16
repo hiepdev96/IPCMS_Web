@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-form-tao-ho-so',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-tao-ho-so.component.scss']
 })
 export class FormTaoHoSoComponent implements OnInit {
-
+  myForm = new FormGroup({
+    nameCtrl: new FormControl(),
+    birthdayCtrl: new FormControl()
+  });
+  ctrls = this.myForm.controls;
   constructor() { }
 
   ngOnInit(): void {
+    this.myForm.controls.nameCtrl.valueChanges.subscribe(x => console.log(x));
   }
 
 }
