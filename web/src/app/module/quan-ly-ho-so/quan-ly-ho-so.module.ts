@@ -14,6 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 const MATERIAL_MODULE = [
   MatFormFieldModule,
@@ -21,7 +23,9 @@ const MATERIAL_MODULE = [
   MatInputModule,
   MatIconModule,
   MatButtonModule,
-  MatDatepickerModule
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatMomentDateModule
 ];
 
 @NgModule({

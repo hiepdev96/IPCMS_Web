@@ -9,13 +9,14 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class FormTaoHoSoComponent implements OnInit {
   myForm = new FormGroup({
     nameCtrl: new FormControl(),
-    birthdayCtrl: new FormControl()
+    birthdayCtrl: new FormControl(),
+    abcCtrl: new FormControl()
   });
   ctrls = this.myForm.controls;
   constructor() { }
 
   ngOnInit(): void {
-    this.myForm.controls.nameCtrl.valueChanges.subscribe(x => console.log(x));
+    this.myForm.controls.abcCtrl.valueChanges.subscribe(x => console.log(x));
   }
 
 }

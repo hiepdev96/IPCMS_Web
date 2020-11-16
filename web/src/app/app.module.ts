@@ -12,7 +12,8 @@ import { E404Component } from './pages/e404/e404.component';
 import { E500Component } from './pages/e500/e500.component';
 import { LoginComponent } from './pages/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 const APP_COMPONENT = [
   MainComponent,
   HeaderComponent,
@@ -23,6 +24,17 @@ const APP_COMPONENT = [
   E500Component,
   LoginComponent
 ];
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MM YYYY',
+    dateA11yLabel: 'DD/MM/YYYY',
+    monthYearA11yLabel: 'MM YYYY',
+  },
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,9 +44,15 @@ const APP_COMPONENT = [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    
+
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    { provide: MAT_DATE_LOCALE, useValue: 'vi' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
