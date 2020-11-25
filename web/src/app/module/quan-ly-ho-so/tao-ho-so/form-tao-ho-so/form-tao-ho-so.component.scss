@@ -1,0 +1,25 @@
+.avatar {
+  max-width: 100%;
+  margin: auto;
+  display: block;
+  cursor: pointer;
+}
+
+.label-avatar {
+  text-align: center;
+  margin: 5px;
+  display: block;
+  color: green;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.label-type {
+  color: red;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.title-type {
+  margin-bottom :15px;
+}

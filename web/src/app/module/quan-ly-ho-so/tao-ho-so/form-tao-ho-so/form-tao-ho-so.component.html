@@ -1,55 +1,194 @@
 <form [formGroup]="myForm">
-    <div></div>
+    <div class="title-type"><span class="label-type">* Thông tin định danh và nhận diện khách hàng</span></div>
     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%">
-        <div fxFlex="49%">
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="abcCtrl">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker touchUi #picker></mat-datepicker>
-            </mat-form-field>
-        </div>
-        <div fxFlex="49%">
-            <mat-form-field class="full-width">
-                <mat-label>Họ và Tên</mat-label>
-                <input matInput placeholder="Nhập họ và tên" formControlName="nameCtrl">
-                <button mat-icon-button matSuffix type="button"
-                    (click)="ctrls.nameCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
-                    <mat-icon>close</mat-icon>
-                </button>
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <mat-label>Ngày sinh</mat-label>
-                <input matInput placeholder="Chọn ngày sinh" formControlName="birthdayCtrl">
-                <button mat-icon-button matSuffix type="button"
-                    (click)="ctrls.birthdayCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
-                    <mat-icon>close</mat-icon>
-                </button>
-            </mat-form-field>
-        </div>
-    </div>
-    <!-- <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputFile">File input</label>
-        <div class="input-group">
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="exampleInputFile">
-                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-            </div>
-            <div class="input-group-append">
-                <span class="input-group-text" id="">Upload</span>
+        <div fxFlex="25%">
+            <img class="avatar" src="../../../../../assets//img//no-image.jpg" (click)="inputAvatar.click()">
+            <input type="file" style="display:none;" name="inputAvatar" #inputAvatar (change)="onAvatarChange($event)"
+                accept=".png,.jpg">
+            <div>
+                <span class="label-avatar" (click)="inputAvatar.click()">Ảnh chân dung</span>
             </div>
         </div>
+        <div fxFlex="75%">
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+                <mat-form-field fxFlex="49%">
+                    <mat-label>Họ và Tên</mat-label>
+                    <input matInput placeholder="Nhập họ và tên" formControlName="nameCtrl">
+                    <button mat-icon-button matSuffix type="button" *ngIf="ctrls.nameCtrl.value"
+                        (click)="ctrls.nameCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+                <mat-form-field fxFlex="49%">
+                    <mat-label>Ngày sinh</mat-label>
+                    <input matInput placeholder="Chọn ngày sinh" formControlName="birthdayCtrl"
+                        (click)="birthdayPicker.open()" [matDatepicker]="birthdayPicker" readonly>
+                    <button mat-icon-button matSuffix type="button" *ngIf="ctrls.birthdayCtrl.value"
+                        (click)="ctrls.birthdayCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-datepicker-toggle matSuffix [for]="birthdayPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #birthdayPicker></mat-datepicker>
+
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+
+                <mat-form-field fxFlex="15%">
+                    <mat-label>Giới tính</mat-label>
+                    <mat-select formControlName="gioiTinhCtrl">
+                        <ng-container *ngFor="let gioiTinh of lstGioiTinh">
+                            <mat-option [value]="gioiTinh">{{gioiTinh}}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="83%">
+                    <mat-label>Hộ khẩu thường trú</mat-label>
+                    <input matInput placeholder="Nhập hộ khẩu thường trú" formControlName="hoKhauThuongTruCtrl">
+                    <button mat-icon-button matSuffix type="button" *ngIf="ctrls.hoKhauThuongTruCtrl.value"
+                        (click)="ctrls.hoKhauThuongTruCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+
+            </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+                <mat-form-field fxFlex="49%">
+                    <mat-label>Loại giấy tờ định dang</mat-label>
+                    <mat-select formControlName="loaiGiayToDinhDanhCtrl">
+                        <ng-container *ngFor="let loaiGiayTo of lstLoaiGiayToDinhDanh">
+                            <mat-option [value]="loaiGiayTo">{{loaiGiayTo}}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field fxFlex="49%">
+                    <mat-label>Số định danh</mat-label>
+                    <input matInput placeholder="Nhập số định danh" formControlName="soDinhDanhCtrl">
+                    <button mat-icon-button matSuffix type="button" *ngIf="ctrls.soDinhDanhCtrl.value"
+                        (click)="ctrls.soDinhDanhCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+                <mat-form-field fxFlex="49%">
+                    <mat-label>Ngày cấp</mat-label>
+                    <input matInput placeholder="Chọn ngày sinh" formControlName="ngayCapCtrl"
+                        (click)="ngayCapPicker.open()" [matDatepicker]="ngayCapPicker" readonly>
+                    <button mat-icon-button matSuffix type="button" *ngIf="ctrls.ngayCapCtrl.value"
+                        (click)="ctrls.ngayCapCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-datepicker-toggle matSuffix [for]="ngayCapPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #ngayCapPicker></mat-datepicker>
+
+                </mat-form-field>
+
+
+                <mat-form-field fxFlex="49%">
+                    <mat-label>Nơi cấp</mat-label>
+                    <input matInput placeholder="Nhập nơi cấp" formControlName="noiCapCtrl">
+                    <button mat-icon-button matSuffix type="button" *ngIf="ctrls.noiCapCtrl.value"
+                        (click)="ctrls.noiCapCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+                <mat-form-field fxFlex="49%">
+                    <mat-label>Hiệu lực đến</mat-label>
+                    <input matInput placeholder="Nhập hiệu lực tới ngày" formControlName="hieuLucCtrl"
+                        (click)="hieuLucPicker.open()" [matDatepicker]="hieuLucPicker" readonly>
+
+                    <button mat-icon-button matSuffix type="button" *ngIf="ctrls.hieuLucCtrl.value"
+                        (click)="ctrls.hieuLucCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-datepicker-toggle matSuffix [for]="hieuLucPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #hieuLucPicker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="49%">
+                    <mat-label>Quốc tịch</mat-label>
+                    <input matInput placeholder="Nhập quốc tịch" formControlName="quocTichCtrl">
+                    <button mat-icon-button matSuffix type="button" *ngIf="ctrls.quocTichCtrl.value"
+                        (click)="ctrls.quocTichCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </div>
     </div>
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div> -->
+
+    <div class="title-type"><span class="label-type">* Thông tin liên hệ</span></div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%">
+
+        <mat-form-field fxFlex="33%">
+            <mat-label>Số điện thoại</mat-label>
+            <input matInput placeholder="Nhập số điện thoại" formControlName="soDienThoaiCtrl">
+            <button mat-icon-button matSuffix type="button" *ngIf="ctrls.soDienThoaiCtrl.value"
+                (click)="ctrls.soDienThoaiCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="33%">
+            <mat-label>Số điện thoại tham chiếu</mat-label>
+            <input matInput placeholder="Nhập số điện thoại tham chiều" formControlName="soDienThoaiThamChieuCtrl">
+            <button mat-icon-button matSuffix type="button" *ngIf="ctrls.soDienThoaiThamChieuCtrl.value"
+                (click)="ctrls.soDienThoaiThamChieuCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="33%">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Nhập email" formControlName="emailCtrl">
+            <button mat-icon-button matSuffix type="button" *ngIf="ctrls.emailCtrl.value"
+                (click)="ctrls.emailCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column">
+        <mat-form-field fxFlex="100%">
+            <mat-label>Địa chỉ</mat-label>
+            <input matInput placeholder="Nhập địa chỉ" formControlName="diaChiCtrl">
+            <button mat-icon-button matSuffix type="button" *ngIf="ctrls.diaChiCtrl.value"
+                (click)="ctrls.diaChiCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <div class="title-type"><span class="label-type">* Thông tin đặc trưng</span></div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%">
+        <mat-form-field fxFlex="20%">
+            <mat-label>Thu nhập hàng tháng (triệu đồng)</mat-label>
+            <input matInput placeholder="Nhập thu nhập hàng tháng" formControlName="thuNhapHangThangCtrl">
+            <button mat-icon-button matSuffix type="button" *ngIf="ctrls.thuNhapHangThangCtrl.value"
+                (click)="ctrls.thuNhapHangThangCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        <mat-form-field fxFlex="20%">
+            <mat-label>Nhà ở</mat-label>
+            <mat-select formControlName="nhaOCtrl">
+                <ng-container *ngFor="let nhaO of lstNhaO">
+                    <mat-option [value]="nhaO">{{nhaO}}</mat-option>
+                </ng-container>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="25%">
+            <mat-label>Giới tính hiện tại</mat-label>
+            <mat-select formControlName="gioiTinhHienTaiCtrl">
+                <ng-container *ngFor="let gioiTinh of lstGioiTinh">
+                    <mat-option [value]="gioiTinh">{{gioiTinh}}</mat-option>
+                </ng-container>
+            </mat-select>
+        </mat-form-field>
+    </div>
 </form>

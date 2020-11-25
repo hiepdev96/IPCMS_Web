@@ -72,9 +72,10 @@
           </ng-container>
           <ng-template #notIsTitle>
             <li class="nav-item">
-              <a href="javascript:void(0)" [routerLink]="getRouting(item.routerLink)" class="nav-link" [ngClass]="item.active ? 'active' : ''">
+              <a href="javascript:void(0)" [routerLink]="getRouting(item.routerLink)" class="nav-link"
+                [ngClass]="item.active ? 'active' : ''">
                 <i class="nav-icon" [class]="item.icon"></i>
-                <p>
+                <p style="margin-left:5px;">
                   {{item.name}}
                   <!-- <span class="badge badge-info right">2</span> -->
                 </p>
@@ -83,12 +84,12 @@
           </ng-template>
         </ng-container>
       </ul>
-     
+
     </nav>
     <div style="height: 20px;">
     </div>
     <!-- /.sidebar-menu -->
   </div>
-  
+
   <!-- /.sidebar -->
 </aside>
