@@ -1,1 +1,86 @@
-<p>danh-sach-ho-so works!</p>
+<div class="p-b-20">
+    <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+        <input-text [fxFlex]="isShowAdvanced ? '100%' : '80%'" label="Nhập từ khóa tìm kiếm"
+            placeholder="Theo tên, số điện thoại khách hàng, địa chỉ" icon="search">
+        </input-text>
+        <ng-container *ngIf="!isShowAdvanced">
+            <div fxFlex="18%">
+                <button mat-stroked-button type="button" (click)="setShowAdvanced(true)">Tìm kiếm nâng cao</button>
+            </div>
+        </ng-container>
+    </div>
+    <ng-container *ngIf="isShowAdvanced">
+        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+            <input-select label="Trạng thái" fxFlex="23.5%"></input-select>
+            <input-select label="Điểm tín dụng" fxFlex="23.5%"></input-select>
+            <input-select label="Hạng tín dụng" fxFlex="23.5%"></input-select>
+            <input-select label="Loại khách hàng" fxFlex="23.5%"></input-select>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+            <button mat-raised-button color="primary">Tìm kiếm</button>
+            <button mat-stroked-button type="button" (click)="setShowAdvanced(false)">Ẩn tìm kiếm nâng cao</button>
+        </div>
+    </ng-container>
+</div>
+
+
+<div class="full-width p-b-20">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="postion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
+            <td mat-cell *matCellDef="let row; let i = index"> {{i + 1}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tenKhachHang">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tên khách hàng</th>
+            <td mat-cell *matCellDef="let row"> {{row.tenKhachHang}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="diemTinDung">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Điểm tín dụng</th>
+            <td mat-cell *matCellDef="let row"> {{row.diemTinDung}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="xepHangTinDung">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Xếp hạng tín dụng</th>
+            <td mat-cell *matCellDef="let row"> {{row.xepHangTinDung}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="trangThai">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Trạng thái hồ sơ</th>
+            <td mat-cell *matCellDef="let row"> {{row.trangThai}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Hành động</th>
+            <td mat-cell *matCellDef="let row">
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="showDetail(row)">
+                        <span>Chi tiết</span>
+                    </button>
+                    <!-- <button mat-menu-item disabled>
+                        <span>Check voice mail</span>
+                    </button>
+                    <button mat-menu-item>
+                        <span>Disable alerts</span>
+                    </button> -->
+                </mat-menu>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

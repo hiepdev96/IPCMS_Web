@@ -1,0 +1,14 @@
+<mat-form-field class="full-width">
+    <mat-label>{{label ? label :placeholder}}</mat-label>
+    <input matInput [placeholder]="placeholder" [formControl]="control" [required]="required" [maxlength]="length"
+        [max]="max" [readonly]="readonly" (click)="picker.open()" [matDatepicker]="picker">
+    <button mat-button *ngIf="control.value" matSuffix mat-icon-button aria-label="Clear"
+        (click)="control.setValue(null)" type="button">
+        <mat-icon>close</mat-icon>
+    </button>
+    <mat-error *ngIf="control.invalid">
+        <span *ngIf="control.errors?.required">{{label ? label : placeholder}} là bắt buộc</span>
+    </mat-error>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>

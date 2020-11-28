@@ -1,5 +1,5 @@
 <form [formGroup]="myForm">
-    <div class="title-type"><span class="label-type">* Thông tin định danh và nhận diện khách hàng</span></div>
+    <div class="title-type"><span class="label-type">* Thông tin định danh và nhận</span></div>
     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%">
         <div fxFlex="25%">
             <img class="avatar" src="../../../../../assets//img//no-image.jpg" (click)="inputAvatar.click()">
@@ -11,184 +11,143 @@
         </div>
         <div fxFlex="75%">
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                <mat-form-field fxFlex="49%">
-                    <mat-label>Họ và Tên</mat-label>
-                    <input matInput placeholder="Nhập họ và tên" formControlName="nameCtrl">
-                    <button mat-icon-button matSuffix type="button" *ngIf="ctrls.nameCtrl.value"
-                        (click)="ctrls.nameCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
-                        <mat-icon>close</mat-icon>
-                    </button>
-                </mat-form-field>
-                <mat-form-field fxFlex="49%">
-                    <mat-label>Ngày sinh</mat-label>
-                    <input matInput placeholder="Chọn ngày sinh" formControlName="birthdayCtrl"
-                        (click)="birthdayPicker.open()" [matDatepicker]="birthdayPicker" readonly>
-                    <button mat-icon-button matSuffix type="button" *ngIf="ctrls.birthdayCtrl.value"
-                        (click)="ctrls.birthdayCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
-                        <mat-icon>close</mat-icon>
-                    </button>
-                    <mat-datepicker-toggle matSuffix [for]="birthdayPicker"></mat-datepicker-toggle>
-                    <mat-datepicker #birthdayPicker></mat-datepicker>
-
-                </mat-form-field>
+                <input-text label="Họ và Tên" fxFlex="49%" formControlName="hoTenCtrl"></input-text>
+                <input-date label="Ngày sinh" fxFlex="49%" required="true" formControlName="ngaySinhCtrl"></input-date>
             </div>
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-
-                <mat-form-field fxFlex="15%">
-                    <mat-label>Giới tính</mat-label>
-                    <mat-select formControlName="gioiTinhCtrl">
-                        <ng-container *ngFor="let gioiTinh of lstGioiTinh">
-                            <mat-option [value]="gioiTinh">{{gioiTinh}}</mat-option>
-                        </ng-container>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field fxFlex="83%">
-                    <mat-label>Hộ khẩu thường trú</mat-label>
-                    <input matInput placeholder="Nhập hộ khẩu thường trú" formControlName="hoKhauThuongTruCtrl">
-                    <button mat-icon-button matSuffix type="button" *ngIf="ctrls.hoKhauThuongTruCtrl.value"
-                        (click)="ctrls.hoKhauThuongTruCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
-                        <mat-icon>close</mat-icon>
-                    </button>
-                </mat-form-field>
-
+                <input-select label="Giới tính" fxFlex="15%" formControlName="gioiTinhCtrl" [items]="lstGioiTinh">
+                </input-select>
+                <input-text label="Hộ khẩu thường trú" fxFlex="83%" formControlName="hoKhauThuongTruCtrl"></input-text>
             </div>
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                <mat-form-field fxFlex="49%">
-                    <mat-label>Loại giấy tờ định dang</mat-label>
-                    <mat-select formControlName="loaiGiayToDinhDanhCtrl">
-                        <ng-container *ngFor="let loaiGiayTo of lstLoaiGiayToDinhDanh">
-                            <mat-option [value]="loaiGiayTo">{{loaiGiayTo}}</mat-option>
-                        </ng-container>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field fxFlex="49%">
-                    <mat-label>Số định danh</mat-label>
-                    <input matInput placeholder="Nhập số định danh" formControlName="soDinhDanhCtrl">
-                    <button mat-icon-button matSuffix type="button" *ngIf="ctrls.soDinhDanhCtrl.value"
-                        (click)="ctrls.soDinhDanhCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
-                        <mat-icon>close</mat-icon>
-                    </button>
-                </mat-form-field>
+                <input-select label="Loại giấy tờ định danh" fxFlex="49%" formControlName="loaiGiayToDinhDanhCtrl"
+                    [items]="lstLoaiGiayToDinhDanh"></input-select>
+                <input-text label="Số định danh" fxFlex="49%" formControlName="soDinhDanhCtrl"></input-text>
+            </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+                <input-date label="Ngày cấp" fxFlex="49%" formControlName="ngayCapCtrl"></input-date>
+                <input-text label="Nơi cấp" fxFlex="49%" formControlName="noiCapCtrl"></input-text>
             </div>
 
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                <mat-form-field fxFlex="49%">
-                    <mat-label>Ngày cấp</mat-label>
-                    <input matInput placeholder="Chọn ngày sinh" formControlName="ngayCapCtrl"
-                        (click)="ngayCapPicker.open()" [matDatepicker]="ngayCapPicker" readonly>
-                    <button mat-icon-button matSuffix type="button" *ngIf="ctrls.ngayCapCtrl.value"
-                        (click)="ctrls.ngayCapCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
-                        <mat-icon>close</mat-icon>
-                    </button>
-                    <mat-datepicker-toggle matSuffix [for]="ngayCapPicker"></mat-datepicker-toggle>
-                    <mat-datepicker #ngayCapPicker></mat-datepicker>
-
-                </mat-form-field>
-
-
-                <mat-form-field fxFlex="49%">
-                    <mat-label>Nơi cấp</mat-label>
-                    <input matInput placeholder="Nhập nơi cấp" formControlName="noiCapCtrl">
-                    <button mat-icon-button matSuffix type="button" *ngIf="ctrls.noiCapCtrl.value"
-                        (click)="ctrls.noiCapCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
-                        <mat-icon>close</mat-icon>
-                    </button>
-                </mat-form-field>
-
-            </div>
-
-            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                <mat-form-field fxFlex="49%">
-                    <mat-label>Hiệu lực đến</mat-label>
-                    <input matInput placeholder="Nhập hiệu lực tới ngày" formControlName="hieuLucCtrl"
-                        (click)="hieuLucPicker.open()" [matDatepicker]="hieuLucPicker" readonly>
-
-                    <button mat-icon-button matSuffix type="button" *ngIf="ctrls.hieuLucCtrl.value"
-                        (click)="ctrls.hieuLucCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
-                        <mat-icon>close</mat-icon>
-                    </button>
-                    <mat-datepicker-toggle matSuffix [for]="hieuLucPicker"></mat-datepicker-toggle>
-                    <mat-datepicker #hieuLucPicker></mat-datepicker>
-                </mat-form-field>
-
-                <mat-form-field fxFlex="49%">
-                    <mat-label>Quốc tịch</mat-label>
-                    <input matInput placeholder="Nhập quốc tịch" formControlName="quocTichCtrl">
-                    <button mat-icon-button matSuffix type="button" *ngIf="ctrls.quocTichCtrl.value"
-                        (click)="ctrls.quocTichCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
-                        <mat-icon>close</mat-icon>
-                    </button>
-                </mat-form-field>
+                <input-date label="Hiệu lực đến" fxFlex="49%" formControlName="hieuLucCtrl"></input-date>
+                <input-text label="Quốc tịch" fxFlex="49%" formControlName="quocTichCtrl"></input-text>
             </div>
         </div>
     </div>
 
     <div class="title-type"><span class="label-type">* Thông tin liên hệ</span></div>
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%">
-
-        <mat-form-field fxFlex="33%">
-            <mat-label>Số điện thoại</mat-label>
-            <input matInput placeholder="Nhập số điện thoại" formControlName="soDienThoaiCtrl">
-            <button mat-icon-button matSuffix type="button" *ngIf="ctrls.soDienThoaiCtrl.value"
-                (click)="ctrls.soDienThoaiCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-
-        <mat-form-field fxFlex="33%">
-            <mat-label>Số điện thoại tham chiếu</mat-label>
-            <input matInput placeholder="Nhập số điện thoại tham chiều" formControlName="soDienThoaiThamChieuCtrl">
-            <button mat-icon-button matSuffix type="button" *ngIf="ctrls.soDienThoaiThamChieuCtrl.value"
-                (click)="ctrls.soDienThoaiThamChieuCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-
-        <mat-form-field fxFlex="33%">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="Nhập email" formControlName="emailCtrl">
-            <button mat-icon-button matSuffix type="button" *ngIf="ctrls.emailCtrl.value"
-                (click)="ctrls.emailCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+        <input-text label="Số điện thoại" isTel="true" fxFlex="32%" formControlName="soDienThoaiCtrl"></input-text>
+        <input-text label="Số điện thoại tham chiếu" isTel="true" fxFlex="32%"
+            formControlName="soDienThoaiThamChieuCtrl">
+        </input-text>
+        <input-text label="Email" isEmail="true" fxFlex="32%" formControlName="emailCtrl"></input-text>
     </div>
-    <div fxLayout="row" fxLayout.xs="column">
-        <mat-form-field fxFlex="100%">
-            <mat-label>Địa chỉ</mat-label>
-            <input matInput placeholder="Nhập địa chỉ" formControlName="diaChiCtrl">
-            <button mat-icon-button matSuffix type="button" *ngIf="ctrls.diaChiCtrl.value"
-                (click)="ctrls.diaChiCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
+    <div>
+        <input-text label="Địa chỉ" formControlName="diaChiCtrl"></input-text>
     </div>
     <div class="title-type"><span class="label-type">* Thông tin đặc trưng</span></div>
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%">
-        <mat-form-field fxFlex="20%">
-            <mat-label>Thu nhập hàng tháng (triệu đồng)</mat-label>
-            <input matInput placeholder="Nhập thu nhập hàng tháng" formControlName="thuNhapHangThangCtrl">
-            <button mat-icon-button matSuffix type="button" *ngIf="ctrls.thuNhapHangThangCtrl.value"
-                (click)="ctrls.thuNhapHangThangCtrl.setValue('');$event.stopPropagation()" clickStopPropagation>
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-        <mat-form-field fxFlex="20%">
-            <mat-label>Nhà ở</mat-label>
-            <mat-select formControlName="nhaOCtrl">
-                <ng-container *ngFor="let nhaO of lstNhaO">
-                    <mat-option [value]="nhaO">{{nhaO}}</mat-option>
-                </ng-container>
-            </mat-select>
-        </mat-form-field>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+        <input-select label="Giới tính hiện tại" fxFlex="20%" formControlName="gioiTinhHienTaiCtrl"
+            [items]="lstGioiTinh">
+        </input-select>
+        <input-select label="Độ tuổi" fxFlex="28%" formControlName="doTuoiCtrl" [items]="lstDoTuoi">
+        </input-select>
+        <input-select label="Tình trạng hôn nhân" fxFlex="28%" formControlName="tinhTrangHonNhanCtrl"
+            [items]="lstTinhTrangHonNhan">
+        </input-select>
+        <input-text label="Số người phụ thuộc" fxFlex="28%" formControlName="soNguoiPhuThuocCtrl">
+        </input-text>
 
-        <mat-form-field fxFlex="25%">
-            <mat-label>Giới tính hiện tại</mat-label>
-            <mat-select formControlName="gioiTinhHienTaiCtrl">
-                <ng-container *ngFor="let gioiTinh of lstGioiTinh">
-                    <mat-option [value]="gioiTinh">{{gioiTinh}}</mat-option>
-                </ng-container>
-            </mat-select>
-        </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+
+        <input-text label="Thu nhập hàng tháng" fxFlex="20%" hint="Đơn vị: triệu đồng" formControlName="diaChiCtrl">
+        </input-text>
+
+        <input-select label="Nhà ở" fxFlex="37%" formControlName="nhaOCtrl" [items]="lstNhaO"></input-select>
+
+        <input-select label="Trình độ học vấn" fxFlex="39%" formControlName="trinhDoHocVanCtrl"
+            [items]="lstTrinhDoHocVan">
+        </input-select>
+
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+        <input-text label="Danh hiệu" fxFlex="20%" hint="Số lượng danh hiệu đạt được" formControlName="danhHieuCtrl">
+        </input-text>
+
+        <input-select label="Loại hình đơn vị công tác hiện tại" fxFlex="37%" formControlName="loaiHinhDonViCongTacCtrl"
+            [items]="lstLoaiHinhDonViCongTac"></input-select>
+        <input-select label="Cấp quản lý" fxFlex="39%" formControlName="capQuanLyCtrl" [items]="lstCapQuanLy">
+        </input-select>
+
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+        <input-text label="Thanh toán bằng thẻ tín dụng" fxFlex="32%" hint="Số lượng thẻ tín dụng đang sử dụng"
+            formControlName="thanhToanTheTinDungCtrl">
+        </input-text>
+        <input-text label="Tổng dư nợ tín dụng hiện tại" fxFlex="32%" hint="Đơn vị: triệu đồng"
+            formControlName="tongDuNoTinDungCtrl">
+        </input-text>
+        <input-select label="Lịch sử tín dụng" fxFlex="32%" formControlName="lichSuTinDungCtrl"
+            [items]="lstLichSuTinDung"></input-select>
+
+
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+        <input-select label="Nợ xấu" fxFlex="32%" formControlName="noXauCtrl" [items]="lstNoXau">
+        </input-select>
+        <input-text label="Tổng giá trị đảm bảo" fxFlex="32%" hint="Đơn vị: triệu đồng"
+            formControlName="tongGiaTriDamBaoCtrl">
+        </input-text>
+        <input-select label="Tính thanh khoản" fxFlex="32%" formControlName="tinhThanhKhoanCtrl"
+            [items]="lstTinhThanhKhoan"></input-select>
+    </div>
+    <div class="title-type"><span class="label-type">* Thông tin khoản vay</span></div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+        <input-select label="Loại khoản vay" fxFlex="18.4%" formControlName="loaiKhoanVayCtrl"
+            [items]="lstLoaiKhoanVay"></input-select>
+        <input-text label="Tên sản phẩm cho vay" fxFlex="89.6%" formControlName="tenSanPhamChoVayCtrl">
+        </input-text>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+        <input-text label="Số tiền cho vay" fxFlex="23.5%" hint="Đơn vị: triệu đồng" formControlName="soTienChoVayCtrl">
+        </input-text>
+        <input-text label="Kỳ hạn" fxFlex="23.5%" formControlName="kyHanCtrl">
+        </input-text>
+        <input-select label="Hình thức cho vay" fxFlex="23.5%" formControlName="hinhThucChoVayCtrl"
+            [items]="lstHinhThucChoVay"></input-select>
+        <input-select label="Hình thức thanh toán" fxFlex="23.5%" formControlName="hinhThucThanhToanCtrl"
+            [items]="lstHinhThucThanhToan"></input-select>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+        <input-text label="Lãi suất" textarea="true" fxFlex="23.5%" formControlName="laiSuatCtrl">
+        </input-text>
+        <input-text label="Mục đích vay" textarea="true" fxFlex="74.5%" formControlName="mucDichVayCtrl">
+        </input-text>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+        <div fxFlex="23.5%">
+            <div class="title-type"><span class="label-type">* Thông tin phân loại</span></div>
+            <div>
+                <input-select label="Loại khách hàng" formControlName="loaiKhachHangCtrl" [items]="lstLoaiKhachHang">
+                </input-select>
+            </div>
+        </div>
+        <div fxFlex="74.5%">
+            <div class="title-type"><span class="label-type">* Thông tin đánh giá</span></div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+                <input-text label="Điểm tín dụng" fxFlex="49%" formControlName="diemTinDungCtrl">
+                </input-text>
+                <input-select label="Hạng tín dụng" fxFlex="49%" formControlName="hangTinDungCtrl"
+                    [items]="lstHangTinDung"></input-select>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+        <button mat-raised-button color="primary">Tạo hồ sơ</button>
+        <button mat-stroked-button>Nhập lại</button>
     </div>
 </form>

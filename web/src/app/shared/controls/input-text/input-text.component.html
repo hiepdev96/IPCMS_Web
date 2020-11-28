@@ -1,0 +1,28 @@
+<mat-form-field class="full-width">
+    <mat-label>{{label ? label :placeholder}}</mat-label>
+    <ng-container *ngIf="!textarea;else textareaHTML;">
+        <input matInput [placeholder]="placeholder" [formControl]="control" [required]="required" [type]="type"
+            [maxlength]="length" [max]="max">
+    </ng-container>
+    <ng-template #textareaHTML>
+        <textarea matInput [placeholder]="placeholder" [formControl]="control" [required]="required" [type]="type"
+            [maxlength]="length"></textarea>
+    </ng-template>
+    <mat-hint>{{hint}}</mat-hint>
+    <button mat-button *ngIf="control.value" matSuffix mat-icon-button aria-label="Clear"
+        (click)="control.setValue(null)" type="button">
+        <mat-icon>close</mat-icon>
+    </button>
+    <mat-icon matSuffix>{{icon}}</mat-icon>
+    <ng-container *ngIf="suffix">
+        <span matSuffix>{{suffix}}</span>
+    </ng-container>
+
+    <mat-error *ngIf="control.invalid">
+        <span *ngIf="control.errors?.required">{{label ? label : placeholder}} là bắt buộc</span>
+        <span *ngIf="control.errors?.email">Chưa đúng định dạng email</span>
+        <span *ngIf="control.errors?.mobilephone">Chưa đúng định dạng số điện thoại</span>
+        <span *ngIf="control.errors.normalCharacters">Chỉ được nhập các ký tự số (0-9)
+            và chữ (A-Z,a-z)</span>
+    </mat-error>
+</mat-form-field>

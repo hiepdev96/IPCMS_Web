@@ -30,11 +30,12 @@ const routes: Routes = [
       }
     ]
   },
+  { path: 'chi-tiet-ho-so', loadChildren: () => import('./module/chi-tiet-ho-so/chi-tiet-ho-so.module').then(m => m.ChiTietHoSoModule) },
   { path: '**', component: E404Component }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

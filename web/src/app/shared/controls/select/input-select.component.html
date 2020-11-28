@@ -1,0 +1,14 @@
+<mat-form-field class="full-width">
+    <mat-label>{{label}}</mat-label>
+    <mat-select [formControl]="control">
+        <ng-container *ngIf="!isHiddenDefault">
+            <mat-option>-- Chưa xác định -- </mat-option>
+        </ng-container>
+        <ng-container *ngFor="let item of $items">
+            <mat-option [value]="item">{{item}}</mat-option>
+        </ng-container>
+    </mat-select>
+    <mat-error *ngIf="control.invalid">
+        <span *ngIf="control.errors?.required">{{label ? label : placeholder}} là bắt buộc</span>
+    </mat-error>
+</mat-form-field>

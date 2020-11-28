@@ -73,11 +73,6 @@ const navItems: NavItem[] = [
     active: true
   },
   {
-    name: 'Import hồ sơ',
-    routerLink: '/ql-ho-so/import-ho-so',
-    icon: 'fas fa-file-upload'
-  },
-  {
     name: 'Danh sách hồ sơ',
     routerLink: '/ql-ho-so/danh-sach-ho-so',
     icon: 'fas fa-th-list'
