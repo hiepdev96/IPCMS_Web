@@ -9,13 +9,12 @@ import { InputSelectComponent } from './controls/select/input-select.component';
 import { InputDateComponent } from './controls/input-date/input-date.component';
 
 
-
 @NgModule({
   declarations: [
     InputTextComponent,
     InputNumberComponent,
     InputSelectComponent,
-    InputDateComponent
+    InputDateComponent,
   ],
   imports: [
     CommonModule,

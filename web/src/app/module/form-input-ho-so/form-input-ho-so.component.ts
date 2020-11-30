@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-form-tao-ho-so',
-  templateUrl: './form-tao-ho-so.component.html',
-  styleUrls: ['./form-tao-ho-so.component.scss']
+  selector: 'app-form-input-ho-so',
+  templateUrl: './form-input-ho-so.component.html',
+  styleUrls: ['./form-input-ho-so.component.scss']
 })
-export class FormTaoHoSoComponent implements OnInit {
+export class FormInputHoSoComponent implements OnInit {
   myForm = new FormGroup({
     hoTenCtrl: new FormControl(),
     ngaySinhCtrl: new FormControl(),

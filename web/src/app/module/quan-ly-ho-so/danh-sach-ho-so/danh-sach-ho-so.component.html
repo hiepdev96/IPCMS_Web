@@ -1,7 +1,7 @@
 <div class="p-b-20">
     <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
         <input-text [fxFlex]="isShowAdvanced ? '100%' : '80%'" label="Nhập từ khóa tìm kiếm"
-            placeholder="Theo tên, số điện thoại khách hàng, địa chỉ" icon="search">
+            placeholder="Theo tên, số định danh, số điện thoại khách hàng, tên sản phẩm cho vay" icon="search">
         </input-text>
         <ng-container *ngIf="!isShowAdvanced">
             <div fxFlex="18%">
@@ -11,10 +11,10 @@
     </div>
     <ng-container *ngIf="isShowAdvanced">
         <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-            <input-select label="Trạng thái" fxFlex="23.5%"></input-select>
-            <input-select label="Điểm tín dụng" fxFlex="23.5%"></input-select>
-            <input-select label="Hạng tín dụng" fxFlex="23.5%"></input-select>
+            <input-select label="Hình thức cho vay" fxFlex="23.5%"></input-select>
             <input-select label="Loại khách hàng" fxFlex="23.5%"></input-select>
+            <input-select label="Hạng tín dụng" fxFlex="23.5%"></input-select>
+            <input-select label="Loại khách khoản vay" fxFlex="23.5%"></input-select>
         </div>
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
             <button mat-raised-button color="primary">Tìm kiếm</button>
@@ -63,12 +63,12 @@
                     <button mat-menu-item (click)="showDetail(row)">
                         <span>Chi tiết</span>
                     </button>
-                    <!-- <button mat-menu-item disabled>
-                        <span>Check voice mail</span>
+                    <button mat-menu-item disabled>
+                        <span>Lưu trữ</span>
                     </button>
                     <button mat-menu-item>
-                        <span>Disable alerts</span>
-                    </button> -->
+                        <span>Hoàn thiện hồ sơ</span>
+                    </button>
                 </mat-menu>
             </td>
         </ng-container>

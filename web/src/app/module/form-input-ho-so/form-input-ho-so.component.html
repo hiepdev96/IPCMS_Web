@@ -2,7 +2,7 @@
     <div class="title-type"><span class="label-type">* Thông tin định danh và nhận</span></div>
     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%">
         <div fxFlex="25%">
-            <img class="avatar" src="../../../../../assets//img//no-image.jpg" (click)="inputAvatar.click()">
+            <img class="avatar" src="../../../assets//img//no-image.jpg" (click)="inputAvatar.click()">
             <input type="file" style="display:none;" name="inputAvatar" #inputAvatar (change)="onAvatarChange($event)"
                 accept=".png,.jpg">
             <div>
@@ -146,8 +146,5 @@
         </div>
     </div>
     <hr>
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
-        <button mat-raised-button color="primary">Tạo hồ sơ</button>
-        <button mat-stroked-button>Nhập lại</button>
-    </div>
+   
 </form>

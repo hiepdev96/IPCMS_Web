@@ -14,6 +14,12 @@ import { LoginComponent } from './pages/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/material-moment-adapter';
+import { FormInputHoSoModule } from './module/form-input-ho-so/form-input-ho-so.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmMessageDialogComponent } from 'src/app/shared/dialogs/confirm-message-dialog/confirm-message-dialog.component';
+import { MaterialModule } from './shared/material/material.module';
+
+
 const APP_COMPONENT = [
   MainComponent,
   HeaderComponent,
@@ -22,7 +28,8 @@ const APP_COMPONENT = [
   DashboardComponent,
   E404Component,
   E500Component,
-  LoginComponent
+  LoginComponent,
+  ConfirmMessageDialogComponent
 ];
 export const DATE_FORMATS = {
   parse: {
@@ -44,7 +51,9 @@ export const DATE_FORMATS = {
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-
+    FormInputHoSoModule,
+    MatDialogModule,
+    MaterialModule
   ],
   providers: [
     { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
@@ -55,6 +64,9 @@ export const DATE_FORMATS = {
       useClass: MomentDateAdapter,
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
     },
+  ],
+  entryComponents: [
+    ConfirmMessageDialogComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -27,7 +27,12 @@ const routes: Routes = [
       {
         path: 'ql-ho-so',
         loadChildren: () => import('./module/quan-ly-ho-so/quan-ly-ho-so.module').then(m => m.QuanLyHoSoModule)
-      }
+      },
+      {
+        path: 'quan-tri-nguoi-dung',
+        loadChildren: () => import('./module/quan-tri-nguoi-dung/quan-tri-nguoi-dung.module').then(m => m.QuanTriNguoiDungModule)
+      },
+
     ]
   },
   { path: 'chi-tiet-ho-so', loadChildren: () => import('./module/chi-tiet-ho-so/chi-tiet-ho-so.module').then(m => m.ChiTietHoSoModule) },

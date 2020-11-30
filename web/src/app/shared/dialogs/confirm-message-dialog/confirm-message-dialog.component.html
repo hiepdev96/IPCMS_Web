@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>{{data.title}}</h2>
+<mat-dialog-content class="mat-typography">
+  <div>
+    {{data.message}}
+  </div>
+  <div style="margin-top:20px;">
+    <mat-form-field class="full-width">
+      <textarea matInput placeholder="Lý do" #ghiChu></textarea>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Bỏ qua</button>
+  <button mat-button (click)="confirm()" cdkFocusInitial [disabled]="data.required && !ghiChu.value">Thực hiện</button>
+</mat-dialog-actions>

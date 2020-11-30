@@ -46,14 +46,20 @@ export class NavComponent implements OnInit {
 
   }
   highlightActive(): void {
-    const path = location.pathname;
-    console.log(path);
+    let path = location.hash;
+    if (path) {
+      path = path.replace('#', '');
+    }
+    let isActived = false;
     this.navItems.forEach(menu => {
       menu.active = false;
       if (menu.routerLink && path === menu.routerLink) {
-        menu.active = true;
-        this.titleService.setTitle(`Phần mềm quản lý hồ sơ khách hàng - ${menu.name}`);
-        this.titleNav$.emit(menu.name);
+        if (!isActived) {
+          menu.active = true;
+          this.titleService.setTitle(`Phần mềm quản lý hồ sơ khách hàng - ${menu.name}`);
+          this.titleNav$.emit(menu.name);
+          isActived = true;
+        }
       }
     });
   }
@@ -77,26 +83,26 @@ const navItems: NavItem[] = [
     routerLink: '/ql-ho-so/danh-sach-ho-so',
     icon: 'fas fa-th-list'
   },
-  {
-    name: 'QUẢN TRỊ HỆ THỐNG',
-    isTitle: true
-  }, {
-    name: 'Tùy chỉnh hệ thống',
-    routerLink: '/tao-ho-so',
-    icon: 'fas fa-cogs'
-  },
-  {
-    name: 'Lịch sử sao lưu',
-    routerLink: '/base',
-    icon: 'fas fa-history'
-  },
+  // {
+  //   name: 'QUẢN TRỊ HỆ THỐNG',
+  //   isTitle: true
+  // }, {
+  //   name: 'Tùy chỉnh hệ thống',
+  //   routerLink: '/tao-ho-so',
+  //   icon: 'fas fa-cogs'
+  // },
+  // {
+  //   name: 'Lịch sử sao lưu',
+  //   routerLink: '/base',
+  //   icon: 'fas fa-history'
+  // },
   {
     name: 'QUẢN TRỊ NGƯỜI DÙNG',
     isTitle: true,
   },
   {
     name: 'Tạo người dùng',
-    routerLink: '/base',
+    routerLink: '/quan-tri-nguoi-dung/tao-nguoi-dung',
     icon: 'fas fa-user-plus'
   },
   {
