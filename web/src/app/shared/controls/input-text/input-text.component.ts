@@ -27,7 +27,7 @@ export class InputTextComponent implements OnInit, OnDestroy {
 
   @Input() placeholder: string;
   @Input() label: string;
-
+  @Input() value: string;
   @Input() required: boolean;
   @Input() isNormalCharacters: boolean;
   @Input() isEmail: boolean;
@@ -66,6 +66,9 @@ export class InputTextComponent implements OnInit, OnDestroy {
     }
     if (lstValidate.length > 0) {
       this.control.setValidators(lstValidate);
+    }
+    if (this.value) {
+      this.control.setValue(this.value);
     }
     this.control.valueChanges.pipe(takeUntil(this.onDestroy$)).subscribe(() => this.outputValue());
   }

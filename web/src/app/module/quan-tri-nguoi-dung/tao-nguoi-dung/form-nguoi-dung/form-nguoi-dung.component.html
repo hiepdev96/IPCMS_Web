@@ -1,1 +1,47 @@
-<p>form-nguoi-dung works!</p>
+<div class="p-20">
+    <form [formGroup]="myForm">
+        <div class="title-type"><span class="label-type">* Thông tin người dùng</span></div>
+        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+            <input-text label="Tên người dùng" fxFlex="23.5%" formControlName="nameCtrl"></input-text>
+            <input-text label="Số điện thoại" fxFlex="23.5%" formControlName="phoneCtrl"></input-text>
+            <input-text label="Email" fxFlex="23.5%" formControlName="emailCtrl"></input-text>
+            <input-select label="Vai trò người dùng" fxFlex="23.5%" formControlName="roleCtrl"></input-select>
+            <!-- <input-text label="Vị trí" fxFlex="23.5%" formControlName="positionCtrl"></input-text> -->
+        </div>
+        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+            <input-text label="Cơ quan" fxFlex="23.5%" formControlName="organizationCtrl"></input-text>
+            <input-text label="Vị trí" fxFlex="23.5%" formControlName="positionCtrl"></input-text>
+            <input-text label="Địa chỉ" fxFlex="%" formControlName="addressCtrl"></input-text>
+        </div>
+    </form>
+    <div class="title-type"><span class="label-type">* Phạm vi người dùng theo chức năng</span></div>
+    <div>
+        <div fxFlex.gt-lg="0 1 calc(50% - 32px)" fxFlex.gt-md="0 1 calc(50% - 32px)" fxFlex.gt-sm="100%"
+            fxFlex.lt-md="100%" fxFlex.lt-sm="100%">
+            <ng-container *ngFor="let item of lstFunction">
+                <div>
+                    <mat-checkbox>{{item}}</mat-checkbox>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div class="title-type"><span class="label-type">* Phạm vi người dùng theo địa lý</span></div>
+    <ng-container *ngFor="let item of lstScope">
+        <div class="m-b-20">
+            <mat-card class="full-width">
+                <mat-card-content>
+                    <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+                        <input-text label="Phạm vi" fxFlex="49%" value="/"></input-text>
+                        <input-date label="Hiệu lực từ ngày" fxFlex="23.5%"></input-date>
+                        <input-date label="Hiệu lực đến ngày" fxFlex="23.5%"></input-date>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </ng-container>
+    <div>
+        <button mat-button class="full-width" style="font-size: 20px;color: blue;" title="Thêm phạm vi"
+            (click)="addScope()">+</button>
+    </div>
+</div>
+<hr>

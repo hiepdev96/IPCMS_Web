@@ -13,7 +13,7 @@
         (click)="control.setValue(null)" type="button">
         <mat-icon>close</mat-icon>
     </button>
-    <mat-icon matSuffix>{{icon}}</mat-icon>
+    <mat-icon *ngIf="icon" matSuffix>{{icon}}</mat-icon>
     <ng-container *ngIf="suffix">
         <span matSuffix>{{suffix}}</span>
     </ng-container>
