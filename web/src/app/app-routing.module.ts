@@ -36,6 +36,7 @@ const routes: Routes = [
     ]
   },
   { path: 'chi-tiet-ho-so', loadChildren: () => import('./module/chi-tiet-ho-so/chi-tiet-ho-so.module').then(m => m.ChiTietHoSoModule) },
+  { path: 'report', loadChildren: () => import('./module/report/report.module').then(m => m.ReportModule) },
   { path: '**', component: E404Component }
 ];
 
