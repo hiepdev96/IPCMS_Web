@@ -12,25 +12,29 @@ export class FormNguoiDungComponent implements OnInit {
     phoneCtrl: new FormControl(),
     emailCtrl: new FormControl(),
     roleCtrl: new FormControl(),
+    matKhauCtrl: new FormControl(),
     organizationCtrl: new FormControl(),
     positionCtrl: new FormControl(),
     addressCtrl: new FormControl(),
+    moTaCtrl: new FormControl(),
   });
-  lstScope: number[] = [1];
-  lstFunction = lstFunction;
+  lstScope: number[] = [];
+  step = 0;
   constructor() { }
 
   ngOnInit(): void {
   }
   addScope(): void {
     this.lstScope.push(1);
+    this.step = this.lstScope.length - 1;
+  }
+  removeScope(): void {
+    this.lstScope.splice(0, 1);
+  }
+  setStep(idx: number): void {
+    this.step = idx;
+  }
+  closed(): void {
+    this.step = null;
   }
 }
-export const lstFunction = [
-  'F11 Tạo hồ sơ qua API',
-  'F12 Tạo hồ sơ theo danh sách khách hàng tiềm năng ',
-  'F13 Tạo hồ sơ sử dụng mobile app (Android, iOS)',
-  'F14 Chốt hồ sơ qua telesale',
-  'F15 Lọc hồ sơ ',
-  'F16 Xem chi tiết hồ sơ '
-]

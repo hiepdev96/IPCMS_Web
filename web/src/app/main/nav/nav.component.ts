@@ -107,7 +107,7 @@ const navItems: NavItem[] = [
   },
   {
     name: 'Danh sách người dùng',
-    routerLink: '/base',
+    routerLink: '/quan-tri-nguoi-dung/danh-sach-nguoi-dung',
     icon: 'fas fa-user-friends'
   },
   {

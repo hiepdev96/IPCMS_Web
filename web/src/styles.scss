@@ -46,9 +46,11 @@ label {
 .p-b-20 {
   padding-bottom: 20px;
 }
-.m-b-20{
+
+.m-b-20 {
   margin-bottom: 20px;
 }
+
 .mat-paginator-page-size-label {
   display: none !important;
 }
@@ -102,4 +104,17 @@ table {
   .mat-form-field-underline {
     background-color: rgba(255, 255, 255, 0.7);
   }
+}
+
+.cdk-overlay-container {
+  z-index: 1050;
+}
+
+.mat-dialog-title {
+  border-bottom: 1px solid gray;
+  color: blue;
+}
+
+.mat-dialog-actions {
+  border-top: 1px solid gray;
 }

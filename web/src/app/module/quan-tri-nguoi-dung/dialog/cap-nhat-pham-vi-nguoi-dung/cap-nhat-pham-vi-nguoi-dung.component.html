@@ -1,0 +1,60 @@
+<div mat-dialog-title>Cập nhật phạm vi của người dùng: Tạ Đức Hiệp</div>
+<div mat-dialog-content>
+    <!-- <ng-container *ngFor="let item of lstScope">
+        <div class="m-b-20">
+            <mat-card class="full-width">
+                <mat-card-content>
+                    <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+                        <input-text label="Phạm vi" fxFlex="49%" value="/"></input-text>
+                        <input-date label="Hiệu lực từ ngày" fxFlex="23.5%"></input-date>
+                        <input-date label="Hiệu lực đến ngày" fxFlex="23.5%"></input-date>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                    <button mat-button (click)="removeScope()">Đóng</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </ng-container> -->
+
+
+
+    <mat-accordion class="example-headers-align">
+        <ng-container *ngFor="let item of lstScope; let idx = index">
+            <mat-expansion-panel hideToggle [expanded]="step === idx" (opened)="setStep(idx)">
+
+                <mat-expansion-panel-header>
+                    <ng-container *ngIf="step !== idx">
+                        <mat-panel-title>
+                            /Hà Nội/Hai Bà Trưng/Đồng Tâm
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <span></span> <span><label>Thời gian hiệu lực: </label> 20/10/2020 - 20/1/2021</span>
+                        </mat-panel-description>
+                    </ng-container>
+
+
+                </mat-expansion-panel-header>
+                <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+                    <input-text label="Phạm vi" fxFlex="49%" value="/"></input-text>
+                    <input-date label="Hiệu lực từ ngày" fxFlex="23.5%"></input-date>
+                    <input-date label="Hiệu lực đến ngày" fxFlex="23.5%"></input-date>
+                </div>
+                <mat-action-row>
+                    <button mat-button color="warn" (click)="prevStep()">Xóa</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+        </ng-container>
+    </mat-accordion>
+
+
+
+    <div>
+        <button mat-button class="full-width" style="font-size: 20px;color: blue;" title="Thêm phạm vi"
+            (click)="addScope()">+</button>
+    </div>
+</div>
+<mat-dialog-actions fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+    <button mat-button mat-flat-button color="primary" cdkFocusInitial>Cập nhật</button>
+    <button mat-button mat-dialog-close>Bỏ qua</button>
+</mat-dialog-actions>
