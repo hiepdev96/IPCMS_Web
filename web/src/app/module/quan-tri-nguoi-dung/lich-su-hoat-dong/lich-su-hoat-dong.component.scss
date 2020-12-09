@@ -1,0 +1,30 @@
+#scroll {
+    display: block;
+    overflow: auto;
+    max-height: 400px;
+  }
+  .detail-cm{
+    padding: 10px;
+    border-bottom: 1px solid gray;
+    border-left: 1px solid gray;
+}
+.item-code{
+    color: #a64100;
+    font-weight: bold;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.name{
+  color: #009999;
+  font-weight: bold;
+  margin-right: 10px;
+}
+.address{
+  color: #1047a9;
+  font-weight: bold;
+}
+.time{
+  color: #052F6D;
+  font-weight: bold;
+  margin-right: 10px;
+}

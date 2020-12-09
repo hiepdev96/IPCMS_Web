@@ -112,7 +112,7 @@ const navItems: NavItem[] = [
   },
   {
     name: 'Lịch sử hoạt động',
-    routerLink: '/base',
+    routerLink: '/quan-tri-nguoi-dung/lich-su-hoat-dong',
     icon: 'fas fa-history'
   },
   {

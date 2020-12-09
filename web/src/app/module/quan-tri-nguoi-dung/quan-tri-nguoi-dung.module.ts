@@ -9,6 +9,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { DanhSachNguoiDungComponent } from './danh-sach-nguoi-dung/danh-sach-nguoi-dung.component';
 import { ChiTietNguoiDungComponent } from './chi-tiet-nguoi-dung/chi-tiet-nguoi-dung.component';
 import { CapNhatPhamViNguoiDungComponent } from './dialog/cap-nhat-pham-vi-nguoi-dung/cap-nhat-pham-vi-nguoi-dung.component';
+import { LichSuHoatDongComponent } from './lich-su-hoat-dong/lich-su-hoat-dong.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -18,10 +20,12 @@ import { CapNhatPhamViNguoiDungComponent } from './dialog/cap-nhat-pham-vi-nguoi
     FormNguoiDungComponent,
     DanhSachNguoiDungComponent,
     ChiTietNguoiDungComponent,
-    CapNhatPhamViNguoiDungComponent],
+    CapNhatPhamViNguoiDungComponent,
+    LichSuHoatDongComponent],
   imports: [
     CommonModule,
     QuanTriNguoiDungRoutingModule,
+    InfiniteScrollModule,
     SharedModule
   ],
   entryComponents: [

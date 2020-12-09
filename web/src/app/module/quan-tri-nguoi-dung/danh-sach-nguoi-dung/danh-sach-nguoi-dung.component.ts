@@ -19,7 +19,7 @@ export class DanhSachNguoiDungComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   isShowAdvanced: boolean;
-  isShowDetail: boolean;
+  isShowDetail: boolean = true;
 
   constructor(
 
@@ -30,7 +30,7 @@ export class DanhSachNguoiDungComponent implements OnInit, AfterViewInit {
     this.dataSource = new MatTableDataSource(datas);
   }
   ngOnInit(): void {
-    this.openDialogUpdateScope();
+    // this.openDialogUpdateScope();
   }
 
   ngAfterViewInit(): void {
