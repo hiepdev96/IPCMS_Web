@@ -50,6 +50,9 @@ label {
 .m-b-20 {
   margin-bottom: 20px;
 }
+.m-t-20 {
+  margin-top: 20px;
+}
 
 .mat-paginator-page-size-label {
   display: none !important;
@@ -135,3 +138,11 @@ table {
 //     text-align: center !important;
 //   }
 // }
+.md-drppicker {
+  width: 600px !important;
+}
+@media only screen and (max-width: 1300px){
+  .md-drppicker{
+    width: 500px !important;
+  }
+} 

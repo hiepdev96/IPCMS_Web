@@ -1,0 +1,42 @@
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}
+.date-picker {
+  border: none;
+  border-bottom: 1px solid lightslategray;
+  margin: 17px 0;
+  background-image: url("../../../../assets/img/date-picker.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  // padding:6.125px;
+}
+.mat-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    background-color: #428bca;
+    color: #ffff;
+    text-align: center !important;
+    .mat-sort-header-content {
+      margin: auto !important;
+    }
+  }
+  td {
+    background-color: white;
+    color: black !important;
+  }
+  td,
+  th,
+  tr {
+    border: 1px solid orange;
+    text-align: center !important;
+  }
+}
+
+.md-drppicker{
+  width: 595px !important;
+  right: 0 !important;
+  left: auto !important;
+}

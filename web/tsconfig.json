@@ -6,8 +6,7 @@
 */
 {
   "files": [],
-  "references": [
-    {
+  "references": [{
       "path": "./tsconfig.app.json"
     },
     {
@@ -16,5 +15,10 @@
     {
       "path": "./e2e/tsconfig.json"
     }
-]
+  ],
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "target": "es2015",
+    "moduleResolution": "node"
+  }
 }

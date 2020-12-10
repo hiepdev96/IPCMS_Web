@@ -19,7 +19,7 @@ export class DanhSachNguoiDungComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   isShowAdvanced: boolean;
-  isShowDetail: boolean = true;
+  isShowDetail: boolean;
 
   constructor(
 

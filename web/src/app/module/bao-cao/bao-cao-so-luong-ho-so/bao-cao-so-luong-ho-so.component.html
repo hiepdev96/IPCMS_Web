@@ -1,0 +1,64 @@
+<div class="p-b-20">
+  <form [formGroup]="myForm">
+    <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+      <input-select
+        label="Loại báo cáo"
+        fxFlex="40%"
+        formControlName="loaiBaoCaoCtrl"
+        [items]="lstLoaiBaoCao"
+      >
+      </input-select>
+      <mat-form-field fxFlex="32%">
+        <input
+          matInput
+          placeholder="Ngày thống kê"
+          ngxDaterangepickerMd
+          formControlName="datePickerCtrl"
+          startKey="fromDate"
+          endKey="toDate"
+          [ranges]="ranges"
+          [locale]="locale"
+          alwaysShowCalendars="true"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-button mat-flat-button color="primary">Thống kê</button>
+    </div>
+  </form>
+  <div class="full-width p-b-20 m-t-20">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="postion">
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Trạng thái</th>
+        <td mat-cell *matCellDef="let row">{{ row.status }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="count">
+        <th mat-header-cell *matHeaderCellDef>Số lượng hồ sơ</th>
+        <td mat-cell *matCellDef="let row">{{ row.count }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="totalName">
+        <td mat-footer-cell *matFooterCellDef colspan="2">
+          <b>Tổng số lượng hồ sơ</b>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="total">
+        <td mat-footer-cell *matFooterCellDef colspan="1">
+          <span class="money">1520</span>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <tr mat-footer-row *matFooterRowDef="['totalName','total']"></tr>
+           
+    </table>
+  </div>
+</div>

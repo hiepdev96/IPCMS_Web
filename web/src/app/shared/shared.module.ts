@@ -7,6 +7,7 @@ import { InputTextComponent } from './controls/input-text/input-text.component';
 import { InputNumberComponent } from './controls/input-number/input-number.component';
 import { InputSelectComponent } from './controls/select/input-select.component';
 import { InputDateComponent } from './controls/input-date/input-date.component';
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 
 @NgModule({
@@ -21,7 +22,9 @@ import { InputDateComponent } from './controls/input-date/input-date.component';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    NgxDaterangepickerMd.forRoot(),
+
   ],
   exports: [
     FlexLayoutModule,
@@ -31,7 +34,8 @@ import { InputDateComponent } from './controls/input-date/input-date.component';
     InputTextComponent,
     InputNumberComponent,
     InputSelectComponent,
-    InputDateComponent
+    InputDateComponent,
+    NgxDaterangepickerMd
   ]
 })
 export class SharedModule { }

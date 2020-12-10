@@ -32,11 +32,13 @@ const routes: Routes = [
         path: 'quan-tri-nguoi-dung',
         loadChildren: () => import('./module/quan-tri-nguoi-dung/quan-tri-nguoi-dung.module').then(m => m.QuanTriNguoiDungModule)
       },
+      {
+        path: 'bao-cao',
+        loadChildren: () => import('./module/bao-cao/bao-cao.module').then(m => m.BaoCaoModule)
+      },
 
     ]
   },
-  { path: 'chi-tiet-ho-so', loadChildren: () => import('./module/chi-tiet-ho-so/chi-tiet-ho-so.module').then(m => m.ChiTietHoSoModule) },
-  { path: 'report', loadChildren: () => import('./module/report/report.module').then(m => m.ReportModule) },
   { path: '**', component: E404Component }
 ];
 

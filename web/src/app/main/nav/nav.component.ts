@@ -141,8 +141,13 @@ const navItems: NavItem[] = [
   },
   {
     name: 'Số lượng hồ sơ',
-    routerLink: '/base/backtest',
+    routerLink: '/bao-cao/so-luong-ho-so',
     icon: 'fas fa-chart-bar'
+  },
+  {
+    name: 'Phân bố theo thời gian',
+    routerLink: '/bao-cao/phan-bo-theo-thoi-gian',
+    icon: 'fas fa-clock'
   },
   {
     name: 'Trạng thái xử lý hồ sơ',
@@ -153,11 +158,6 @@ const navItems: NavItem[] = [
     name: 'Hồ sơ theo khu vực địa lý',
     routerLink: '/base/backtest',
     icon: 'fas fa-map'
-  },
-  {
-    name: 'Hồ sơ theo thời gian',
-    routerLink: '/base/backtest',
-    icon: 'fas fa-clock'
   },
   {
     name: 'Số lượng người dùng',
