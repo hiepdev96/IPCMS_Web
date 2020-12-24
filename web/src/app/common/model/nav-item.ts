@@ -1,6 +1,7 @@
 export class NavItem {
     public isTitle?: boolean;
     public name?: string;
+    public title?: string;
     public icon?: string;
     public routerLink?: string;
     public roles?: number[];
@@ -14,6 +15,7 @@ export class NavItem {
         this.roles = data?.roles;
         this.children = data?.children;
         this.active = data?.active;
+        this.title = data?.title;
     }
 }
 export interface INavItem {
@@ -24,4 +26,5 @@ export interface INavItem {
     roles?: number[];
     active?: boolean;
     children?: NavItem[];
+    title?: string;
 }

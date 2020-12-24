@@ -12,13 +12,13 @@ export class FormNguoiDungComponent implements OnInit {
     phoneCtrl: new FormControl(),
     emailCtrl: new FormControl(),
     roleCtrl: new FormControl(),
-    matKhauCtrl: new FormControl(),
+    idCtrl: new FormControl(),
     organizationCtrl: new FormControl(),
     positionCtrl: new FormControl(),
     addressCtrl: new FormControl(),
     moTaCtrl: new FormControl(),
   });
-  lstScope: number[] = [];
+  lstScope: number[] = [1, 2, 3];
   step = 0;
   constructor() { }
 

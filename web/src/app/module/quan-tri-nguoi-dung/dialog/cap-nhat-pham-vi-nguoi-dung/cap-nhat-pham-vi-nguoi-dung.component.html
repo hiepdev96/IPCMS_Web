@@ -1,21 +1,5 @@
-<div mat-dialog-title>Cập nhật phạm vi của người dùng: Tạ Đức Hiệp</div>
+<!-- <div mat-dialog-title>Cập nhật phạm vi của người dùng: Tạ Đức Hiệp</div>
 <div mat-dialog-content>
-    <!-- <ng-container *ngFor="let item of lstScope">
-        <div class="m-b-20">
-            <mat-card class="full-width">
-                <mat-card-content>
-                    <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                        <input-text label="Phạm vi" fxFlex="49%" value="/"></input-text>
-                        <input-date label="Hiệu lực từ ngày" fxFlex="23.5%"></input-date>
-                        <input-date label="Hiệu lực đến ngày" fxFlex="23.5%"></input-date>
-                    </div>
-                </mat-card-content>
-                <mat-card-actions align="end">
-                    <button mat-button (click)="removeScope()">Đóng</button>
-                </mat-card-actions>
-            </mat-card>
-        </div>
-    </ng-container> -->
 
 
 
@@ -57,4 +41,68 @@
 <mat-dialog-actions fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
     <button mat-button mat-flat-button color="primary" cdkFocusInitial>Cập nhật</button>
     <button mat-button mat-dialog-close>Bỏ qua</button>
-</mat-dialog-actions>
+</mat-dialog-actions> -->
+
+<div class="modal-content">
+  <div mat-dialog-title>
+    <div class="modal-header" style="background-color: #f1f1f1">
+      <span class="modal-title"
+        >Cập nhật phạm vi của người dùng: Tạ Đức Hiệp</span
+      >
+      <span type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </span>
+    </div>
+  </div>
+  <div mat-dialog-content>
+    <div class="modal-body">
+      <ng-container *ngFor="let item of lstScope; let idx = index">
+        <div class="pt-20">
+          <div class="card card-default">
+            <div class="card-header">
+              <span class="card-title" style="color: blue"
+                >Phạm vi {{ idx + 1 }}</span
+              >
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool">
+                  <i class="fa fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+                <input-text label="Phạm vi" fxFlex="49%" value="/"></input-text>
+                <input-date
+                  label="Hiệu lực từ ngày"
+                  fxFlex="23.5%"
+                ></input-date>
+                <input-date
+                  label="Hiệu lực đến ngày"
+                  fxFlex="23.5%"
+                ></input-date>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div>
+        <button
+          mat-button
+          class="full-width"
+          style="font-size: 20px; color: blue"
+          title="Thêm phạm vi"
+          (click)="addScope()"
+        >
+          +
+        </button>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-flat-button color="primary" cdkFocusInitial>
+      Cập nhật
+    </button>
+    <button mat-button mat-dialog-close>Bỏ qua</button>
+  </div>
+</div>

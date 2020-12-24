@@ -1,0 +1,16 @@
+<div class="p-b-20">
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+    <input-text label="ID người dùng" fxFlex="32%"></input-text>
+    <input-from-to-date
+    label="Ngày thống kê"
+      fxFlex="32%"
+    ></input-from-to-date>
+    <input-select label="Hành động" fxFlex="32%" [items]="lstAction"></input-select>
+  </div>
+  <div>
+  <input-text label="Phạm vi" value="/"></input-text>
+  </div>
+  <div>
+    <button type="button" class="btn btn-primary">Thống kê</button>
+  </div>
+</div>

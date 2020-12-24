@@ -1,22 +1,15 @@
 <div class="p-b-20">
   <form [formGroup]="myForm">
-    <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-      <mat-form-field fxFlex="50%">
-        <input
-          matInput
-          placeholder="Ngày thống kê"
-          ngxDaterangepickerMd
-          formControlName="datePickerCtrl"
-          startKey="fromDate"
-          endKey="toDate"
-          [ranges]="ranges"
-          [locale]="locale"
-          alwaysShowCalendars="true"
-        />
-      </mat-form-field>
-    </div>
-    <div>
-      <button mat-button mat-flat-button color="primary">Thống kê</button>
+    <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column" style="border-bottom: 1px solid gray;">
+      <input-from-to-date fxFlex="50%" label="Ngày thống kê"> </input-from-to-date>
+      <div>
+        <div style="height: 28px;">
+        </div>
+        <button mat-button mat-flat-button color="primary" (click)="thongKe()">Thống kê</button>
+      </div>
     </div>
   </form>
+  <div>
+    <div [chart]="chart"></div>
+  </div>
 </div>

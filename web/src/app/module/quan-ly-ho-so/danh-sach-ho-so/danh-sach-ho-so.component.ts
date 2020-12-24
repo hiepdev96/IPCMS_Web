@@ -10,7 +10,15 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class DanhSachHoSoComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['postion', 'tenKhachHang', 'diemTinDung', 'xepHangTinDung', 'trangThai', 'action'];
+  displayedColumns: string[] = [
+    'postion',
+    'tenKhachHang',
+    'soDienThoai',
+    'loaiKhoanVay',
+    // 'diemTinDung',
+    // 'xepHangTinDung',
+    'trangThai',
+    'action'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -47,53 +55,71 @@ export const datas = [
     tenKhachHang: 'Tạ Đức Hiệp',
     xepHangTinDung: 'A',
     diemTinDung: '99',
-    trangThai: 'Mới'
+    trangThai: 'Mới',
+    soDienThoai: '0975290896',
+    loaiKhoanVay: 'Tiền mặt'
   },
   {
     tenKhachHang: 'Nguyễn Văn A',
     xepHangTinDung: 'AAA',
     diemTinDung: '66',
-    trangThai: 'Đã chốt'
+    trangThai: 'Đã chốt',
+    soDienThoai: '0975290896',
+    loaiKhoanVay: 'Tiêu dùng/ trả góp'
   },
   {
     tenKhachHang: 'Nguyễn Văn Trung Văn',
     xepHangTinDung: 'AAA',
     diemTinDung: '66',
-    trangThai: 'ĐÃ HOÀN THIỆN'
+    trangThai: 'ĐÃ HOÀN THIỆN',
+    soDienThoai: '0975290896',
+    loaiKhoanVay: 'Thẻ tín dụng'
   }, {
     tenKhachHang: 'Tạ Đức Hiệp',
     xepHangTinDung: 'A',
     diemTinDung: '99',
-    trangThai: 'Mới'
+    trangThai: 'Mới',
+    soDienThoai: '0975290896',
+    loaiKhoanVay: 'Thấu chi'
   },
   {
     tenKhachHang: 'Nguyễn Văn A',
     xepHangTinDung: 'AAA',
     diemTinDung: '66',
-    trangThai: 'Đã chốt'
+    trangThai: 'Đã chốt',
+    soDienThoai: '0975290896',
+    loaiKhoanVay: 'Thấu chi'
   },
   {
     tenKhachHang: 'Nguyễn Văn Trung Văn',
     xepHangTinDung: 'AAA',
     diemTinDung: '66',
-    trangThai: 'ĐÃ HOÀN THIỆN'
+    trangThai: 'ĐÃ HOÀN THIỆN',
+    soDienThoai: '0975290896',
+    loaiKhoanVay: 'Tiền mặt'
   }, {
     tenKhachHang: 'Tạ Đức Hiệp',
     xepHangTinDung: 'A',
     diemTinDung: '99',
-    trangThai: 'Mới'
+    trangThai: 'Mới',
+    soDienThoai: '0975290896',
+    loaiKhoanVay: 'Thẻ tín dụng'
   },
   {
     tenKhachHang: 'Nguyễn Văn A',
     xepHangTinDung: 'AAA',
     diemTinDung: '66',
-    trangThai: 'Đã chốt'
+    trangThai: 'Đã chốt',
+    soDienThoai: '0975290896',
+    loaiKhoanVay: 'Tiền mặt'
   },
   {
     tenKhachHang: 'Nguyễn Văn Trung Văn',
     xepHangTinDung: 'AAA',
     diemTinDung: '66',
-    trangThai: 'ĐÃ HOÀN THIỆN'
+    trangThai: 'ĐÃ HOÀN THIỆN',
+    soDienThoai: '0975290896',
+    loaiKhoanVay: 'Tiêu dùng/ trả góp'
   }
 ];
 

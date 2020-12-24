@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validators } from '@angular/forms';
+import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { validateMobilephone, validateNormalCharacters } from '../../../common/validators';
 import { takeUntil } from 'rxjs/operators';
@@ -23,7 +23,7 @@ import { forwardRef } from '@angular/core';
     }
   ]
 })
-export class InputTextComponent implements OnInit, OnDestroy {
+export class InputTextComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   @Input() placeholder: string;
   @Input() label: string;
@@ -37,6 +37,7 @@ export class InputTextComponent implements OnInit, OnDestroy {
   @Input() suffix: string;
   @Input() length: number;
   @Input() max: number;
+  @Input() min: number;
   @Input() icon: string;
   @Input() textarea: boolean;
   control = new FormControl('');

@@ -1,0 +1,33 @@
+<div class="pb-20" fxLayout="row" fxLayoutGap="2%">
+  <button class="btn btn-primary">Backtest</button>
+  <button class="btn btn-default" (click)="isShowDetail = !isShowDetail">
+    Xem chi tiết dữ liệu Backtest
+  </button>
+</div>
+<ng-container *ngIf="!isShowDetail; else detail">
+  <div class="p-b-20" fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+    <div style="overflow: auto" fxFlex="49%">
+      <table>
+        <thead>
+          <tr>
+            <th>Hạng</th>
+            <th>Chiếm tỉ lệ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of datas">
+            <tr>
+              <td>
+                <b>{{ item.name }}</b>
+              </td>
+              <td>{{ item.percent }} %</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-container>
+<ng-template #detail>
+  <app-detail-back-test></app-detail-back-test>
+</ng-template>

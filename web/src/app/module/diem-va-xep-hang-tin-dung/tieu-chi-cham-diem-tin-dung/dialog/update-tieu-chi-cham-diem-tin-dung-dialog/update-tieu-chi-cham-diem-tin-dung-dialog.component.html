@@ -1,0 +1,115 @@
+<div class="modal-content">
+  <div mat-dialog-title>
+    <div class="modal-header" style="background-color: #f1f1f1">
+      <span class="modal-title">Cập nhật tiêu chí: Thu nhập hàng tháng</span>
+      <span type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </span>
+    </div>
+  </div>
+  <div mat-dialog-content>
+    <div class="modal-body">
+      <div class="pt-20">
+        <div>
+          <div fxLayout="row" fxLayoutGap="2%" class="list-item">
+            <span class="label" fxFlex="40%">Thang điểm tín dụng</span>
+            <span class="value">1000 điểm</span>
+          </div>
+          <mat-divider></mat-divider>
+          <div fxLayout="row" fxLayoutGap="2%" class="list-item">
+            <span class="label" fxFlex="40%">Áp dụng</span>
+            <span class="value">
+              <mat-slide-toggle></mat-slide-toggle>
+            </span>
+          </div>
+          <mat-divider></mat-divider>
+          <div fxLayout="row" fxLayoutGap="2%" class="list-item">
+            <span class="label" fxFlex="40%">Trọng số</span>
+            <span class="value">
+              <input-text
+                type="number"
+                max="1"
+                min="-1"
+                [value]="data.trongSo"
+                fxFlex="70px"
+              ></input-text>
+            </span>
+          </div>
+          <mat-divider></mat-divider>
+        </div>
+        <ng-container *ngFor="let item of data.scorings; let idx = index">
+          <ng-container *ngIf="item.type_criteria === 1; else giaTri">
+            <ng-container *ngIf="data.scorings.length - 1 > idx; else lastItem">
+              <div
+                class="item"
+                fxLayout="row"
+                fxLayout.xs="column"
+                fxLayoutGap="5px"
+              >
+                <span class="text-d">Từ</span>
+                <input-text
+                  fxFlex="170px"
+                  [value]="item.from_value"
+                  [suffix]="item.description"
+                ></input-text>
+                <span class="text-d">đến dưới</span>
+                <input-text
+                  fxFlex="170px"
+                  [value]="item.to_value"
+                  [suffix]="item.description"
+                ></input-text>
+                <span class="text-d">là</span>
+                <input-text
+                  fxFlex="170px"
+                  [value]="item.scoring"
+                  suffix="điểm"
+                ></input-text>
+              </div>
+            </ng-container>
+            <ng-template #lastItem>
+              <div
+                class="item"
+                fxLayout="row"
+                fxLayout.xs="column"
+                fxLayoutGap="5px"
+              >
+                <span class="text-d">Từ</span>
+                <input-text
+                  fxFlex="170px"
+                  [value]="item.from_value"
+                  [suffix]="item.description"
+                ></input-text>
+                <span class="text-d">đến dưới trở lên</span>
+                <span class="text-d">là</span>
+                <input-text
+                  fxFlex="170px"
+                  [value]="item.scoring"
+                  suffix="điểm"
+                ></input-text>
+              </div>
+            </ng-template>
+          </ng-container>
+          <ng-template #giaTri>
+            <div
+              class="item"
+              fxLayout="row"
+              fxLayout.xs="column"
+              fxLayoutGap="5px"
+            >
+              <span class="text-d">{{item.value}} là</span>
+              <input-text
+                fxFlex="170px"
+                [value]="item.scoring"
+                suffix="điểm"
+              ></input-text>
+            </div>
+          </ng-template>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+    <button class="btn btn-primary">Cập nhật</button>
+    <button class="btn btn-default" mat-dialog-close>Bỏ qua</button>
+  </div>
+</div>

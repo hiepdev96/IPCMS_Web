@@ -8,6 +8,7 @@ import { InputNumberComponent } from './controls/input-number/input-number.compo
 import { InputSelectComponent } from './controls/select/input-select.component';
 import { InputDateComponent } from './controls/input-date/input-date.component';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import { InputFromToDateComponent } from './controls/input-from-to-date/input-from-to-date.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
     InputNumberComponent,
     InputSelectComponent,
     InputDateComponent,
+    InputFromToDateComponent,
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
     InputNumberComponent,
     InputSelectComponent,
     InputDateComponent,
-    NgxDaterangepickerMd
+    NgxDaterangepickerMd,
+    InputFromToDateComponent
   ]
 })
 export class SharedModule { }

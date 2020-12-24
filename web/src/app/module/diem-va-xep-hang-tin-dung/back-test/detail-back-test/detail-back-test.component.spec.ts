@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BaoCaoComponent } from './bao-cao.component';
+import { DetailBackTestComponent } from './detail-back-test.component';
 
-describe('BaoCaoComponent', () => {
-  let component: BaoCaoComponent;
-  let fixture: ComponentFixture<BaoCaoComponent>;
+describe('DetailBackTestComponent', () => {
+  let component: DetailBackTestComponent;
+  let fixture: ComponentFixture<DetailBackTestComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BaoCaoComponent ]
+      declarations: [ DetailBackTestComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BaoCaoComponent);
+    fixture = TestBed.createComponent(DetailBackTestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

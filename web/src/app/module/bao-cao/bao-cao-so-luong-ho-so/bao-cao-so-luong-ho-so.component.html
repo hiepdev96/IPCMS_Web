@@ -8,22 +8,10 @@
         [items]="lstLoaiBaoCao"
       >
       </input-select>
-      <mat-form-field fxFlex="32%">
-        <input
-          matInput
-          placeholder="Ngày thống kê"
-          ngxDaterangepickerMd
-          formControlName="datePickerCtrl"
-          startKey="fromDate"
-          endKey="toDate"
-          [ranges]="ranges"
-          [locale]="locale"
-          alwaysShowCalendars="true"
-        />
-      </mat-form-field>
+      <input-from-to-date fxFlex="50%" label="Ngày thống kê"> </input-from-to-date>
     </div>
     <div>
-      <button mat-button mat-flat-button color="primary">Thống kê</button>
+      <button type="button" class="btn btn-primary">Thống kê</button>
     </div>
   </form>
   <div class="full-width p-b-20 m-t-20">
@@ -57,8 +45,7 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      <tr mat-footer-row *matFooterRowDef="['totalName','total']"></tr>
-           
+      <tr mat-footer-row *matFooterRowDef="['totalName', 'total']"></tr>
     </table>
   </div>
 </div>

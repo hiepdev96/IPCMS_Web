@@ -18,9 +18,9 @@ const routes: Routes = [
         component: TaoHoSoComponent
       },
       {
-        path: 'danh-sach-ho-so',
+        path: 'loc-ho-so',
         data: {
-          title: 'Danh sách hồ sơ'
+          title: 'Lọc hồ sơ'
         },
         component: DanhSachHoSoComponent
       },

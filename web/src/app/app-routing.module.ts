@@ -36,8 +36,18 @@ const routes: Routes = [
         path: 'bao-cao',
         loadChildren: () => import('./module/bao-cao/bao-cao.module').then(m => m.BaoCaoModule)
       },
+      {
+        path: 'diem-va-xep-hang-tin-dung',
+        loadChildren: () => import('./module/diem-va-xep-hang-tin-dung/diem-va-xep-hang-tin-dung.module')
+          .then(m => m.DiemVaXepHangTinDungModule)
+      },
+
 
     ]
+  },
+  {
+    path: 'chi-tiet-ho-so',
+    loadChildren: () => import('./module/chi-tiet-ho-so/chi-tiet-ho-so.module').then(m => m.ChiTietHoSoModule)
   },
   { path: '**', component: E404Component }
 ];

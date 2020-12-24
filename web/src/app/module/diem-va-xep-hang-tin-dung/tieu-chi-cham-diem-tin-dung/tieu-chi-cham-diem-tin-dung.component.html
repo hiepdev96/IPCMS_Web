@@ -1,0 +1,96 @@
+<div class="pb-20">
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+    <div fxFlex="100%">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Tiêu chí</th>
+            <th>Trọng số</th>
+            <th>Trạng thái</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of datas; let index = index">
+            <tr>
+              <td>{{ index + 1 }}</td>
+              <td>
+                <a
+                  href="javascript:void(0)"
+                  (click)="item.isShowDetail = !item.isShowDetail"
+                  >{{ item.name }}</a
+                >
+              </td>
+              <td>{{ item.trongSo }}</td>
+              <td>{{ item.status }}</td>
+
+              <td>
+                <button mat-icon-button mat-button [matMenuTriggerFor]="menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="openDialogDetail(item)">
+                    <span>Chi tiết</span>
+                  </button>
+                </mat-menu>
+              </td>
+            </tr>
+            <ng-container *ngIf="item.scorings && item.isShowDetail">
+              <tr>
+                <td colspan="5">
+                  <ng-container *ngFor="let sc of item.scorings">
+                    <ng-container *ngIf="sc.type_criteria === 1; else giaTri">
+                      <ng-container *ngIf="sc.to_value; else notToValue">
+                        <!-- <div>
+                          Từ <b>{{ sc.from_value }}</b> {{ sc.description }} đến
+                          <b>{{ sc.to_value }}</b> {{ sc.description }} :
+                          <b>{{ sc.scoring }}</b> điểm
+                        </div> -->
+                        <div fxLayout="row" fxLayoutGap="2%" class="list-item">
+                          <span class="label" fxFlex="60%">
+                            Từ <b>{{ sc.from_value }}</b>
+                            {{ sc.description }} đến <b>{{ sc.to_value }}</b>
+                            {{ sc.description }}
+                          </span>
+                          <span class="value"
+                            ><b>{{ sc.scoring }}</b> điểm</span
+                          >
+                        </div>
+                        <mat-divider></mat-divider>
+                      </ng-container>
+                      <ng-template #notToValue>
+                        <div fxLayout="row" fxLayoutGap="2%" class="list-item">
+                          <span class="label" fxFlex="60%">
+                            Từ <b>{{ sc.from_value }}</b>
+                            {{ sc.description }} trở lên
+                          </span>
+                          <span class="value"
+                            ><b>{{ sc.scoring }}</b> điểm</span
+                          >
+                        </div>
+                      </ng-template>
+                    </ng-container>
+
+                    <ng-template #giaTri>
+                      <div fxLayout="row" fxLayoutGap="2%" class="list-item">
+                        <span class="label" fxFlex="60%">
+                          {{ sc.value }}
+                        </span>
+                        <span class="value"
+                          ><b>{{ sc.scoring }}</b> điểm</span
+                        >
+                      </div>
+                      <mat-divider></mat-divider>
+                    </ng-template>
+                  </ng-container>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+    <!-- <div fxFlex="38%">abc</div> -->
+  </div>
+</div>

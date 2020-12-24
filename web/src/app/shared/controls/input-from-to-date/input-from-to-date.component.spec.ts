@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormInputHoSoComponent } from './form-input-ho-so.component';
+import { InputFromToDateComponent } from './input-from-to-date.component';
 
-describe('FormInputHoSoComponent', () => {
-  let component: FormInputHoSoComponent;
-  let fixture: ComponentFixture<FormInputHoSoComponent>;
+describe('InputFromToDateComponent', () => {
+  let component: InputFromToDateComponent;
+  let fixture: ComponentFixture<InputFromToDateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormInputHoSoComponent ]
+      declarations: [ InputFromToDateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormInputHoSoComponent);
+    fixture = TestBed.createComponent(InputFromToDateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

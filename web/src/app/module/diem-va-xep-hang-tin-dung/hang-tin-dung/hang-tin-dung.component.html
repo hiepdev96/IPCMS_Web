@@ -1,0 +1,33 @@
+<div class="p-b-20" fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+  <div fxFlex="60%">
+    <table>
+      <thead>
+        <tr>
+          <th>Hạng</th>
+          <th>Từ</th>
+          <th>Đến</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let item of datas">
+          <tr>
+            <td><b>{{ item.name }}</b></td>
+            <td>
+              <input-text
+                [value]="item.from_value"
+                suffix="điểm"
+              >
+              </input-text>
+            </td>
+            <td>
+              <input-text [value]="item.to_value" suffix="điểm"> </input-text>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="p-b-20">
+    <button class="btn btn-primary">Cập nhật</button>
+</div>
