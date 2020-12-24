@@ -1,4 +1,10 @@
 <div class="pb-20">
+  <div class="pb-20" fxLayout="row" fxLayoutGap="2%">
+    <button class="btn btn-primary">Backtest</button>
+    <button class="btn btn-default" (click)="isShowDetail = !isShowDetail">
+      Xem chi tiết dữ liệu Backtest
+    </button>
+  </div>
   <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
     <div fxFlex="100%">
       <table>
@@ -16,11 +22,7 @@
             <tr>
               <td>{{ index + 1 }}</td>
               <td>
-                <a
-                  href="javascript:void(0)"
-                  (click)="item.isShowDetail = !item.isShowDetail"
-                  >{{ item.name }}</a
-                >
+                <a href="javascript:void(0)" (click)="item.isShowDetail = !item.isShowDetail">{{ item.name }}</a>
               </td>
               <td>{{ item.trongSo }}</td>
               <td>{{ item.status }}</td>
@@ -53,9 +55,7 @@
                             {{ sc.description }} đến <b>{{ sc.to_value }}</b>
                             {{ sc.description }}
                           </span>
-                          <span class="value"
-                            ><b>{{ sc.scoring }}</b> điểm</span
-                          >
+                          <span class="value"><b>{{ sc.scoring }}</b> điểm</span>
                         </div>
                         <mat-divider></mat-divider>
                       </ng-container>
@@ -65,9 +65,7 @@
                             Từ <b>{{ sc.from_value }}</b>
                             {{ sc.description }} trở lên
                           </span>
-                          <span class="value"
-                            ><b>{{ sc.scoring }}</b> điểm</span
-                          >
+                          <span class="value"><b>{{ sc.scoring }}</b> điểm</span>
                         </div>
                       </ng-template>
                     </ng-container>
@@ -77,9 +75,7 @@
                         <span class="label" fxFlex="60%">
                           {{ sc.value }}
                         </span>
-                        <span class="value"
-                          ><b>{{ sc.scoring }}</b> điểm</span
-                        >
+                        <span class="value"><b>{{ sc.scoring }}</b> điểm</span>
                       </div>
                       <mat-divider></mat-divider>
                     </ng-template>

@@ -120,7 +120,7 @@ body {
   border-top: 1px solid gray;
 }
 
-.mat-table, table {
+.mat-table {
   width: 100%;
   border-collapse: collapse;
 
@@ -184,13 +184,17 @@ body {
 .pb-20 {
   padding-bottom: 20px;
 }
-
-.pt-20{
+.mt-20 {
+  margin-top: 20px;
+}
+.pt-20 {
   padding-top: 20px;
 }
-.card-tools{
-  i{
+.card-tools {
+  i {
     color: #424242;
   }
-  
+}
+.pt-28{
+  padding-top: 28px;
 }

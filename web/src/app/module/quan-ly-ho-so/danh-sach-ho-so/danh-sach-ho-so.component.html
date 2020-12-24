@@ -1,26 +1,27 @@
 <div class="p-b-20">
   <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-    <input-text
-      [fxFlex]="isShowAdvanced ? '100%' : '80%'"
-      label="Từ khóa tìm kiếm"
-      placeholder="Theo tên, số định danh, số điện thoại khách hàng, tên sản phẩm cho vay"
-      icon="search"
-    >
+    <input-text [fxFlex]="isShowAdvanced ? '100%' : '80%'" label="Từ khóa tìm kiếm" placeholder="Tên sản phẩm vay"
+      icon="search">
     </input-text>
     <ng-container *ngIf="!isShowAdvanced">
       <div fxFlex="18%">
         <div style="height: 28px"></div>
-        <button
-          class="btn btn-block btn-default"
-          type="button"
-          (click)="setShowAdvanced(true)"
-        >
+        <button class="btn btn-block btn-default" type="button" (click)="setShowAdvanced(true)">
           Tìm kiếm nâng cao
         </button>
       </div>
     </ng-container>
   </div>
   <ng-container *ngIf="isShowAdvanced">
+    <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+      <input-from-to-date label="Ngày tạo hồ sơ" fxFlex="23.5%"></input-from-to-date>
+      <input-text fxFlex="25.5%" label="Họ tên khách hàng">
+      </input-text>
+      <input-text fxFlex="25.5%" label="Số điện thoại">
+      </input-text>
+      <input-select label="Hình thức thanh toán" fxFlex="23.5%"></input-select>
+
+    </div>
     <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
       <input-select label="Hình thức cho vay" fxFlex="23.5%"></input-select>
       <input-select label="Loại khách hàng" fxFlex="23.5%"></input-select>
@@ -34,11 +35,7 @@
         </button>
       </div>
       <div>
-        <button
-          class="btn btn-block btn-default"
-          type="button"
-          (click)="setShowAdvanced(false)"
-        >
+        <button class="btn btn-block btn-default" type="button" (click)="setShowAdvanced(false)">
           Ẩn tìm kiếm nâng cao
         </button>
       </div>
@@ -49,7 +46,7 @@
 <div class="full-width p-b-20">
   <table mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="postion">
-      <th mat-header-cell *matHeaderCellDef >#</th>
+      <th mat-header-cell *matHeaderCellDef>#</th>
       <td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}</td>
     </ng-container>
 
@@ -74,36 +71,36 @@
     </ng-container>
 
     <ng-container matColumnDef="soDienThoai">
-        <th mat-header-cell *matHeaderCellDef>Số điện thoại</th>
-        <td mat-cell *matCellDef="let row">{{ row.soDienThoai }}</td>
-      </ng-container>
+      <th mat-header-cell *matHeaderCellDef>Số điện thoại</th>
+      <td mat-cell *matCellDef="let row">{{ row.soDienThoai }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="loaiKhoanVay">
-        <th mat-header-cell *matHeaderCellDef >Loại khoản vay</th>
-        <td mat-cell *matCellDef="let row">{{ row.loaiKhoanVay }}</td>
-      </ng-container>
+    <ng-container matColumnDef="loaiKhoanVay">
+      <th mat-header-cell *matHeaderCellDef>Loại khoản vay</th>
+      <td mat-cell *matCellDef="let row">{{ row.loaiKhoanVay }}</td>
+    </ng-container>
 
     <ng-container matColumnDef="diemTinDung">
-      <th mat-header-cell *matHeaderCellDef >Điểm tín dụng</th>
+      <th mat-header-cell *matHeaderCellDef>Điểm tín dụng</th>
       <td mat-cell *matCellDef="let row">{{ row.diemTinDung }}</td>
     </ng-container>
 
     <ng-container matColumnDef="xepHangTinDung">
-      <th mat-header-cell *matHeaderCellDef >
+      <th mat-header-cell *matHeaderCellDef>
         Xếp hạng tín dụng
       </th>
       <td mat-cell *matCellDef="let row">{{ row.xepHangTinDung }}</td>
     </ng-container>
 
     <ng-container matColumnDef="trangThai">
-      <th mat-header-cell *matHeaderCellDef >
+      <th mat-header-cell *matHeaderCellDef>
         Trạng thái hồ sơ
       </th>
       <td mat-cell *matCellDef="let row">{{ row.trangThai }}</td>
     </ng-container>
 
     <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef >Hành động</th>
+      <th mat-header-cell *matHeaderCellDef>Hành động</th>
       <td mat-cell *matCellDef="let row">
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
