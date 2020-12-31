@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ChiTietDuLieuBackTestDialogComponent } from './dialog/chi-tiet-du-lieu-back-test-dialog/chi-tiet-du-lieu-back-test-dialog.component';
 import { ChiTietTieuChiChamDiemTinDungDialogComponent } from './dialog/chi-tiet-tieu-chi-cham-diem-tin-dung-dialog/chi-tiet-tieu-chi-cham-diem-tin-dung-dialog.component';
 import { UpdateTieuChiChamDiemTinDungDialogComponent } from './dialog/update-tieu-chi-cham-diem-tin-dung-dialog/update-tieu-chi-cham-diem-tin-dung-dialog.component';
 
@@ -9,7 +10,7 @@ import { UpdateTieuChiChamDiemTinDungDialogComponent } from './dialog/update-tie
   styleUrls: ['./tieu-chi-cham-diem-tin-dung.component.scss']
 })
 export class TieuChiChamDiemTinDungComponent implements OnInit {
-
+  isShowDetail: boolean;
   constructor(
     private dialog: MatDialog,
   ) { }
@@ -22,6 +23,13 @@ export class TieuChiChamDiemTinDungComponent implements OnInit {
       {
         panelClass: 'custom-dialog',
         data: item,
+        minWidth: '620px'
+      });
+  }
+  onBacktest(): void {
+    this.dialog.open(ChiTietDuLieuBackTestDialogComponent,
+      {
+        panelClass: 'custom-dialog',
         minWidth: '620px'
       });
   }

@@ -1,16 +1,41 @@
 <div class="p-b-20">
-  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
-    <input-text label="ID người dùng" fxFlex="32%"></input-text>
-    <input-from-to-date
-    label="Ngày thống kê"
-      fxFlex="32%"
-    ></input-from-to-date>
-    <input-select label="Hành động" fxFlex="32%" [items]="lstAction"></input-select>
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%">
+    <input-text label="ID người dùng" fxFlex="33%"></input-text>
+    <input-from-to-date label="Ngày thống kê" fxFlex="33%"></input-from-to-date>
+    <input-select label="Hành động" fxFlex="33%" [items]="lstAction"></input-select>
   </div>
-  <div>
-  <input-text label="Phạm vi" value="/"></input-text>
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%">
+    <input-text label="Phạm vi" placeholder="Tỉnh thành" fxFlex="33%"></input-text>
+    <input-text class="pt-28" placeholder="Quận huyện" fxFlex="33%"></input-text>
+    <input-text class="pt-28" placeholder="Phường xã" fxFlex="33%"></input-text>
   </div>
   <div>
     <button type="button" class="btn btn-primary">Thống kê</button>
   </div>
+</div>
+
+<div class="mt-20">
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="postion">
+      <th mat-header-cell *matHeaderCellDef>#</th>
+      <td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="ngayBaoCao">
+      <th mat-header-cell *matHeaderCellDef>Ngày báo cáo</th>
+      <td mat-cell *matCellDef="let row">{{ row.ngayBaoCao }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="user_id">
+      <th mat-header-cell *matHeaderCellDef>ID người dùng</th>
+      <td mat-cell *matCellDef="let row">{{ row.user_id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="value">
+      <th mat-header-cell *matHeaderCellDef>Giá trị</th>
+      <td mat-cell *matCellDef="let row">{{ row.value }}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
 </div>

@@ -4,6 +4,15 @@
             <span class="card-title">Lịch sử hoạt động</span>
         </div>
         <div class="card-body">
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+            <input-text fxFlex="25%" label="ID người dùng" ></input-text>
+            <input-from-to-date fxFlex="25%" label="Từ ngày đến ngày"></input-from-to-date>
+            <div>
+                <div style="height: 28px;">
+                </div>
+                <button class="btn btn-primary">Xem lịch sử</button>
+            </div>
+            </div>
             <div id="scroll" infinite-scroll #scroll [infiniteScrollDistance]="scrollDistance"
                 [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle" [scrollWindow]="false"
                 (scrolled)="onScrollDown()">

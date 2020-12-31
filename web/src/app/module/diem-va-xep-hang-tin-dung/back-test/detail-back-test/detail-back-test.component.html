@@ -1,129 +1,117 @@
-<div style="padding-bottom: 1px">
-  <div class="card card-success">
-    <div class="card-header">
-      <span class="card-title">
-        <span>
-        </span>Dữ liệu Backtest</span
-      >
-    </div>
-    <div class="card-body">
-        <div class="example-container mat-elevation-z8">
-            <table mat-table [dataSource]="dataSource">
-          
-              <!-- Position Column -->
-              <ng-container matColumnDef="stt">
-                <th mat-header-cell *matHeaderCellDef>#</th>
-                <td mat-cell *matCellDef="let element"> {{element.stt}} </td>
-              </ng-container>
-          
-              <!-- Name Column -->
-              <ng-container matColumnDef="thu_nhap_thang">
-                <th mat-header-cell *matHeaderCellDef>Thu nhập hàng tháng</th>
-                <td mat-cell *matCellDef="let element"> {{element.thu_nhap_thang}} </td>
-              </ng-container>
-          
-              <!-- Weight Column -->
-              <ng-container matColumnDef="nha_o">
-                <th mat-header-cell *matHeaderCellDef>Nhà ở </th>
-                <td mat-cell *matCellDef="let element"> {{element.nha_o}} </td>
-              </ng-container>
-          
-              <!-- Symbol Column -->
-              <ng-container matColumnDef="hop_dong_bao_hiem">
-                <th mat-header-cell *matHeaderCellDef> Hợp đồng bảo hiểm </th>
-                <td mat-cell *matCellDef="let element"> {{element.hop_dong_bao_hiem}} </td>
-              </ng-container>
-               <!-- Symbol Column -->
-               <ng-container matColumnDef="so_nguoi_phu_thuoc">
-                <th mat-header-cell *matHeaderCellDef>Số người phụ thuộc</th>
-                <td mat-cell *matCellDef="let element"> {{element.so_nguoi_phu_thuoc}} </td>
-              </ng-container>
+  <div class="example-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
 
-              <ng-container matColumnDef="tinh_trang_hon_nhan">
-                <th mat-header-cell *matHeaderCellDef>Tình trạng hôn nhân</th>
-                <td mat-cell *matCellDef="let element"> {{element.tinh_trang_hon_nhan}} </td>
-              </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="stt">
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let element"> {{element.stt}} </td>
+      </ng-container>
 
-              <ng-container matColumnDef="tuoi">
-                <th mat-header-cell *matHeaderCellDef>Tuổi</th>
-                <td mat-cell *matCellDef="let element"> {{element.tuoi}} </td>
-              </ng-container>
-              
-              <ng-container matColumnDef="gioi_tinh_hien_tai">
-                <th mat-header-cell *matHeaderCellDef>Giới tính hiện tại</th>
-                <td mat-cell *matCellDef="let element"> {{element.gioi_tinh_hien_tai}} </td>
-              </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="thu_nhap_thang">
+        <th mat-header-cell *matHeaderCellDef>Thu nhập hàng tháng</th>
+        <td mat-cell *matCellDef="let element"> {{element.thu_nhap_thang}} </td>
+      </ng-container>
 
-              <ng-container matColumnDef="trinh_do_hoc_van">
-                <th mat-header-cell *matHeaderCellDef>Trình độ học vấn</th>
-                <td mat-cell *matCellDef="let element"> {{element.trinh_do_hoc_van}} </td>
-              </ng-container>
+      <!-- Weight Column -->
+      <ng-container matColumnDef="nha_o">
+        <th mat-header-cell *matHeaderCellDef>Nhà ở </th>
+        <td mat-cell *matCellDef="let element"> {{element.nha_o}} </td>
+      </ng-container>
 
-              <ng-container matColumnDef="danh_hieu">
-                <th mat-header-cell *matHeaderCellDef>Danh hiệu</th>
-                <td mat-cell *matCellDef="let element"> {{element.danh_hieu}} </td>
-              </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="hop_dong_bao_hiem">
+        <th mat-header-cell *matHeaderCellDef> Hợp đồng bảo hiểm </th>
+        <td mat-cell *matCellDef="let element"> {{element.hop_dong_bao_hiem}} </td>
+      </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="so_nguoi_phu_thuoc">
+        <th mat-header-cell *matHeaderCellDef>Số người phụ thuộc</th>
+        <td mat-cell *matCellDef="let element"> {{element.so_nguoi_phu_thuoc}} </td>
+      </ng-container>
 
-              <ng-container matColumnDef="loai_don_vi_cong_tac">
-                <th mat-header-cell *matHeaderCellDef>Loại đơn vị công tác</th>
-                <td mat-cell *matCellDef="let element"> {{element.loai_don_vi_cong_tac}} </td>
-              </ng-container>
+      <ng-container matColumnDef="tinh_trang_hon_nhan">
+        <th mat-header-cell *matHeaderCellDef>Tình trạng hôn nhân</th>
+        <td mat-cell *matCellDef="let element"> {{element.tinh_trang_hon_nhan}} </td>
+      </ng-container>
 
-              <ng-container matColumnDef="so_the_tin_dung">
-                <th mat-header-cell *matHeaderCellDef>Số thẻ tín dụng</th>
-                <td mat-cell *matCellDef="let element"> {{element.so_the_tin_dung}} </td>
-              </ng-container>
+      <ng-container matColumnDef="tuoi">
+        <th mat-header-cell *matHeaderCellDef>Tuổi</th>
+        <td mat-cell *matCellDef="let element"> {{element.tuoi}} </td>
+      </ng-container>
 
-              <ng-container matColumnDef="cap_quan_ly">
-                <th mat-header-cell *matHeaderCellDef>Cấp quảng lý</th>
-                <td mat-cell *matCellDef="let element"> {{element.cap_quan_ly}} </td>
-              </ng-container>
+      <ng-container matColumnDef="gioi_tinh_hien_tai">
+        <th mat-header-cell *matHeaderCellDef>Giới tính hiện tại</th>
+        <td mat-cell *matCellDef="let element"> {{element.gioi_tinh_hien_tai}} </td>
+      </ng-container>
 
-              <ng-container matColumnDef="tong_du_no_tin_dung">
-                <th mat-header-cell *matHeaderCellDef>Tổng dư nợ tín dụng</th>
-                <td mat-cell *matCellDef="let element"> {{element.tong_du_no_tin_dung}} </td>
-              </ng-container>
+      <ng-container matColumnDef="trinh_do_hoc_van">
+        <th mat-header-cell *matHeaderCellDef>Trình độ học vấn</th>
+        <td mat-cell *matCellDef="let element"> {{element.trinh_do_hoc_van}} </td>
+      </ng-container>
 
-              <ng-container matColumnDef="no_xau">
-                <th mat-header-cell *matHeaderCellDef>Nợ xấu</th>
-                <td mat-cell *matCellDef="let element"> {{element.no_xau}} </td>
-              </ng-container>
+      <ng-container matColumnDef="danh_hieu">
+        <th mat-header-cell *matHeaderCellDef>Danh hiệu</th>
+        <td mat-cell *matCellDef="let element"> {{element.danh_hieu}} </td>
+      </ng-container>
 
-              <ng-container matColumnDef="tong_gia_tri_tai_san_dam_bao">
-                <th mat-header-cell *matHeaderCellDef>Tổng giá trị đảm bảo</th>
-                <td mat-cell *matCellDef="let element"> {{element.tong_gia_tri_tai_san_dam_bao}} </td>
-              </ng-container>
+      <ng-container matColumnDef="loai_don_vi_cong_tac">
+        <th mat-header-cell *matHeaderCellDef>Loại đơn vị công tác</th>
+        <td mat-cell *matCellDef="let element"> {{element.loai_don_vi_cong_tac}} </td>
+      </ng-container>
 
-              <ng-container matColumnDef="tinh_thanh_khoan">
-                <th mat-header-cell *matHeaderCellDef>Tính thanh khoản</th>
-                <td mat-cell *matCellDef="let element"> {{element.tinh_thanh_khoan}} </td>
-              </ng-container>
+      <ng-container matColumnDef="so_the_tin_dung">
+        <th mat-header-cell *matHeaderCellDef>Số thẻ tín dụng</th>
+        <td mat-cell *matCellDef="let element"> {{element.so_the_tin_dung}} </td>
+      </ng-container>
 
-              <ng-container matColumnDef="loai_khach_hang">
-                <th mat-header-cell *matHeaderCellDef>Loại khách hàng</th>
-                <td mat-cell *matCellDef="let element"> {{element.loai_khach_hang}} </td>
-              </ng-container>
+      <ng-container matColumnDef="cap_quan_ly">
+        <th mat-header-cell *matHeaderCellDef>Cấp quảng lý</th>
+        <td mat-cell *matCellDef="let element"> {{element.cap_quan_ly}} </td>
+      </ng-container>
 
-              <ng-container matColumnDef="diem_tin_dung">
-                <th mat-header-cell *matHeaderCellDef>Điểm tín dụng</th>
-                <td mat-cell *matCellDef="let element"> {{element.diem_tin_dung}} </td>
-              </ng-container>
+      <ng-container matColumnDef="tong_du_no_tin_dung">
+        <th mat-header-cell *matHeaderCellDef>Tổng dư nợ tín dụng</th>
+        <td mat-cell *matCellDef="let element"> {{element.tong_du_no_tin_dung}} </td>
+      </ng-container>
 
-              <ng-container matColumnDef="hang_tin_dung">
-                <th mat-header-cell *matHeaderCellDef>Hạng tín dụng</th>
-                <td mat-cell *matCellDef="let element"> {{element.hang_tin_dung}} </td>
-              </ng-container>
+      <ng-container matColumnDef="no_xau">
+        <th mat-header-cell *matHeaderCellDef>Nợ xấu</th>
+        <td mat-cell *matCellDef="let element"> {{element.no_xau}} </td>
+      </ng-container>
 
-              <ng-container matColumnDef="nhan">
-                <th mat-header-cell *matHeaderCellDef>Nhãn</th>
-                <td mat-cell *matCellDef="let element"> {{element.nhan}} </td>
-              </ng-container>
-          
-              <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-          </div>
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-    </div>
+      <ng-container matColumnDef="tong_gia_tri_tai_san_dam_bao">
+        <th mat-header-cell *matHeaderCellDef>Tổng giá trị đảm bảo</th>
+        <td mat-cell *matCellDef="let element"> {{element.tong_gia_tri_tai_san_dam_bao}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="tinh_thanh_khoan">
+        <th mat-header-cell *matHeaderCellDef>Tính thanh khoản</th>
+        <td mat-cell *matCellDef="let element"> {{element.tinh_thanh_khoan}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="loai_khach_hang">
+        <th mat-header-cell *matHeaderCellDef>Loại khách hàng</th>
+        <td mat-cell *matCellDef="let element"> {{element.loai_khach_hang}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="diem_tin_dung">
+        <th mat-header-cell *matHeaderCellDef>Điểm tín dụng</th>
+        <td mat-cell *matCellDef="let element"> {{element.diem_tin_dung}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="hang_tin_dung">
+        <th mat-header-cell *matHeaderCellDef>Hạng tín dụng</th>
+        <td mat-cell *matCellDef="let element"> {{element.hang_tin_dung}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nhan">
+        <th mat-header-cell *matHeaderCellDef>Nhãn</th>
+        <td mat-cell *matCellDef="let element"> {{element.nhan}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
   </div>
-</div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

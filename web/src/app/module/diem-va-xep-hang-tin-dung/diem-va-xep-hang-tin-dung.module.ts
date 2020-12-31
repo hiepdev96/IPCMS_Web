@@ -9,6 +9,7 @@ import { UpdateTieuChiChamDiemTinDungDialogComponent } from './tieu-chi-cham-die
 import { HangTinDungComponent } from './hang-tin-dung/hang-tin-dung.component';
 import { BackTestComponent } from './back-test/back-test.component';
 import { DetailBackTestComponent } from './back-test/detail-back-test/detail-back-test.component';
+import { ChiTietDuLieuBackTestDialogComponent } from './tieu-chi-cham-diem-tin-dung/dialog/chi-tiet-du-lieu-back-test-dialog/chi-tiet-du-lieu-back-test-dialog.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { DetailBackTestComponent } from './back-test/detail-back-test/detail-bac
     HangTinDungComponent,
     BackTestComponent,
     DetailBackTestComponent,
+    ChiTietDuLieuBackTestDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { DetailBackTestComponent } from './back-test/detail-back-test/detail-bac
   ],
   entryComponents: [
     ChiTietTieuChiChamDiemTinDungDialogComponent,
-    UpdateTieuChiChamDiemTinDungDialogComponent
+    UpdateTieuChiChamDiemTinDungDialogComponent,
+    ChiTietDuLieuBackTestDialogComponent
   ]
 })
 export class DiemVaXepHangTinDungModule { }
