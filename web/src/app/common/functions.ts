@@ -1,8 +1,3 @@
-import {
-    FacebookLoginProvider,
-    SocialAuthServiceConfig
-} from 'angularx-social-login';
-
 
 
 export function change_alias(alias: string | undefined): string {
