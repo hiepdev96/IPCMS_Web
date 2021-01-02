@@ -1,0 +1,44 @@
+<div class="modal-content">
+    <div mat-dialog-title>
+        <div class="modal-header" style="background-color: #f1f1f1">
+            <span class="modal-title">Dữ liệu Backtest</span>
+            <span type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </span>
+        </div>
+    </div>
+    <div mat-dialog-content>
+        <div class="modal-body">
+            <ng-container *ngIf="!isShowDetail; else detail">
+                <div class="p-b-20">
+                  <div style="overflow: auto">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Hạng</th>
+                          <th>Chiếm tỉ lệ</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <ng-container *ngFor="let item of datas">
+                          <tr>
+                            <td>
+                              <b>{{ item.name }}</b>
+                            </td>
+                            <td>{{ item.percent }} %</td>
+                          </tr>
+                        </ng-container>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-template #detail>
+                <app-detail-back-test></app-detail-back-test>
+              </ng-template>
+        </div>
+    </div>
+    <div mat-dialog-actions fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+        <button class="btn btn-primary" (click)="isShowDetail = !isShowDetail">{{(isShowDetail ? 'Ẩn': 'Hiển thị')+ ' xem chi tiết dữ liệu backtest'}}</button>
+      </div>
+</div>

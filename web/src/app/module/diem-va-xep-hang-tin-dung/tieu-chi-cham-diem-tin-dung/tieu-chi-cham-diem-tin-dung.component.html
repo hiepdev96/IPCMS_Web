@@ -1,9 +1,6 @@
 <div class="pb-20">
   <div class="pb-20" fxLayout="row" fxLayoutGap="2%">
-    <button class="btn btn-primary">Backtest</button>
-    <button class="btn btn-default" (click)="isShowDetail = !isShowDetail">
-      Xem chi tiết dữ liệu Backtest
-    </button>
+    <button class="btn btn-primary" (click)="onBacktest()">Backtest</button>
   </div>
   <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
     <div fxFlex="100%">
