@@ -1,5 +1,5 @@
-
-
+import { sha256, sha224 } from 'js-sha256';
+import * as moment from 'moment';
 export function change_alias(alias: string | undefined): string {
     if (alias === null || alias === undefined) {
         return '';
@@ -33,4 +33,25 @@ export function sleep(ms): Promise<any> {
 export function toNumber(value: any): number {
     const vS = String(value);
     return Number(vS.replace(/,/g, ''));
+}
+
+export function SHA256(...params: string[]): string {
+    let token = '\\u0000';
+    params.forEach(element => {
+        token += element + '\\u0000';
+    });
+    return sha256(token);
+}
+export function formatDateTimeZone(time: Date): Date {
+    if (!time) {
+        return null;
+    }
+    const timezone = new Date().getTimezoneOffset();
+    return moment(time).add(-timezone, 'm').toDate();
+}
+export function dateToString(time: Date): string {
+    if (!time) {
+        return null;
+    }
+    return moment(formatDateTimeZone(time)).format('YYYY-MM-DD');
 }

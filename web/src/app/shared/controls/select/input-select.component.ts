@@ -34,10 +34,11 @@ export class InputSelectComponent implements OnInit, OnDestroy {
   @Input() length: number;
   @Input() max: number;
   $items: any;
-  keyDisplay: any;
+  @Input() keyDisplay: any;
   @Input() set items(value: any) {
     this.$items = value;
   }
+  defaultValue = null;
   control = new FormControl('');
   @Output() valid = new EventEmitter<boolean>();
 
@@ -45,6 +46,7 @@ export class InputSelectComponent implements OnInit, OnDestroy {
   private onDestroy$: Subject<void> = new Subject<void>();
 
   constructor() {
+    console.log(this.keyDisplay);
   }
 
 

@@ -22,10 +22,10 @@
   </ng-container>
   <select class="form-control" [formControl]="control">
     <ng-container *ngIf="!isHiddenDefault">
-      <option>-- Chưa xác định --</option>
+      <option [value]="defaultValue">-- Chưa xác định --</option>
     </ng-container>
     <ng-container *ngFor="let item of $items">
-      <option [value]="item">{{ item }}</option>
+      <option [ngValue]="item">{{ getDisplayName(item) }}</option>
     </ng-container>
   </select>
 </div>

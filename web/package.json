@@ -27,11 +27,11 @@
     "@types/highcharts": "^7.0.0",
     "admin-lte": "^3.0.4",
     "angular-highcharts": "^10.0.1",
+    "js-sha256": "^0.9.0",
     "moment": "^2.24.0",
     "ngx-daterangepicker-material": "^2.4.1",
     "ngx-infinite-scroll": "^10.0.1",
     "rxjs": "~6.5.5",
-    "sha256": "^0.2.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },

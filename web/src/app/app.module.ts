@@ -19,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmMessageDialogComponent } from 'src/app/shared/dialogs/confirm-message-dialog/confirm-message-dialog.component';
 import { MaterialModule } from './shared/material/material.module';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const APP_COMPONENT = [
@@ -55,6 +56,7 @@ export const DATE_FORMATS = {
     FormInputHoSoModule,
     MatDialogModule,
     MaterialModule,
+    HttpClientModule
   ],
   providers: [
     { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },

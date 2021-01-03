@@ -2,18 +2,8 @@
   <ng-container *ngIf="label">
     <label>{{ label ? label : placeholder }}</label>
   </ng-container>
-  <div class="input-group">
-      <input
-        class="form-control"
-        [placeholder]="placeholder ? placeholder : ''"
-        value="/"
-        [formControl]="control"
-        [required]="required"
-        ngxDaterangepickerMd
-        startKey="fromDate"
-        endKey="toDate"
-        [ranges]="ranges"
-        [locale]="locale"
-        alwaysShowCalendars="true"
-      />
-</div>
+  <div class="input-group" [ngClass]="isRight ? 'right': ''">
+    <input class="form-control" [placeholder]="placeholder ? placeholder : ''" value="/" [formControl]="control"
+      [required]="required" [readonly]="readonly" ngxDaterangepickerMd startKey="fromDate" endKey="toDate"
+      [ranges]="ranges" [locale]="locale" alwaysShowCalendars="true" />
+  </div>

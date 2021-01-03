@@ -72,101 +72,95 @@ const navItems: NavItem[] = [
     isTitle: true,
     name: 'QUẢN LÝ HỒ SƠ'
   },
-  {
-    name: 'Tạo hồ sơ',
-    title: 'Tạo hồ sơ',
-    routerLink: '/ql-ho-so/tao-ho-so',
-    icon: 'fas fa-file',
-    active: true
-  },
+  // {
+  //   name: 'Tạo hồ sơ',
+  //   title: 'Tạo hồ sơ',
+  //   routerLink: '/ql-ho-so/tao-ho-so',
+  //   icon: 'fas fa-file',
+  //   active: true
+  // },
   {
     name: 'Lọc hồ sơ',
     title: 'Lọc hồ sơ',
     routerLink: '/ql-ho-so/loc-ho-so',
     icon: 'fas fa-th-list'
   },
-  {
-    name: 'QUẢN TRỊ NGƯỜI DÙNG',
-    isTitle: true,
-  },
-  {
-    name: 'Tạo người dùng',
-    title: 'Tạo người dùng',
-    routerLink: '/quan-tri-nguoi-dung/tao-nguoi-dung',
-    icon: 'fas fa-user-plus'
-  },
-  {
-    name: 'Danh sách người dùng',
-    title: 'Danh sách người dùng',
-    routerLink: '/quan-tri-nguoi-dung/danh-sach-nguoi-dung',
-    icon: 'fas fa-user-friends'
-  },
-  {
-    name: 'Lịch sử hoạt động',
-    title: 'Lịch sử hoạt động',
-    routerLink: '/quan-tri-nguoi-dung/lich-su-hoat-dong',
-    icon: 'fas fa-history'
-  },
-  {
-    name: 'ĐIỂM VÀ XẾP HẠNG TÍN DỤNG',
-    icon: 'icon-trophy',
-    isTitle: true,
-  },
-  {
-    name: 'Tiêu chí chấm điểm tín dụng',
-    routerLink: '/diem-va-xep-hang-tin-dung/tieu-chi-cham-diem-tin-dung',
-    icon: 'fas fa-balance-scale'
-  },
-  {
-    name: 'Hạng tín dụng',
-    routerLink: '/diem-va-xep-hang-tin-dung/hang-tin-dung',
-    icon: 'fas fa-award'
-  },
-  {
-    name: 'Backtest',
-    routerLink: '/diem-va-xep-hang-tin-dung/back-test',
-    icon: 'fas fa-cash-register'
-  },
-  {
-    name: 'BÁO CÁO THỐNG KÊ',
-    isTitle: true,
-  },
-  {
-    name: 'Số lượng hồ sơ',
-    title: 'Báo cáo số lượng hồ sơ',
-    routerLink: '/bao-cao/so-luong-ho-so',
-    icon: 'fas fa-chart-bar'
-  }, {
-    name: 'SL hồ sơ theo khu vực địa lý',
-    title: 'Báo cáo SL hồ sơ theo theo khu vực địa lý',
-    routerLink: '/bao-cao/khu-vuc-dia-ly',
-    icon: 'fas fa-map'
-  },
-  {
-    name: 'Số lượng hồ sơ theo thời gian',
-    title: 'Báo cáo số lượng hồ sơ theo thời gian',
-    routerLink: '/bao-cao/phan-bo-theo-thoi-gian',
-    icon: 'fas fa-clock'
-  },
   // {
-  //   name: 'Trạng thái xử lý hồ sơ',
-  //   routerLink: '/base/backtest',
-  //   icon: 'fas fa-chart-pie'
+  //   name: 'QUẢN TRỊ NGƯỜI DÙNG',
+  //   isTitle: true,
   // },
-
-  {
-    name: 'Người dùng theo trạng thái',
-    routerLink: '/bao-cao/nguoi-dung-theo-trang-thai',
-    icon: 'fas fa-chart-bar'
-  },
-  {
-    name: 'Người dùng theo khu vực địa lý',
-    routerLink: '/bao-cao/nguoi-dung-theo-khu-vuc-dia-ly',
-    icon: 'fas fa-map'
-  },
-  {
-    name: 'Lịch sử hoạt động người dùng',
-    routerLink: '/bao-cao/lich-su-nguoi-dung',
-    icon: 'fas fa-history'
-  }
+  // {
+  //   name: 'Tạo người dùng',
+  //   title: 'Tạo người dùng',
+  //   routerLink: '/quan-tri-nguoi-dung/tao-nguoi-dung',
+  //   icon: 'fas fa-user-plus'
+  // },
+  // {
+  //   name: 'Danh sách người dùng',
+  //   title: 'Danh sách người dùng',
+  //   routerLink: '/quan-tri-nguoi-dung/danh-sach-nguoi-dung',
+  //   icon: 'fas fa-user-friends'
+  // },
+  // {
+  //   name: 'Lịch sử hoạt động',
+  //   title: 'Lịch sử hoạt động',
+  //   routerLink: '/quan-tri-nguoi-dung/lich-su-hoat-dong',
+  //   icon: 'fas fa-history'
+  // },
+  // {
+  //   name: 'ĐIỂM VÀ XẾP HẠNG TÍN DỤNG',
+  //   icon: 'icon-trophy',
+  //   isTitle: true,
+  // },
+  // {
+  //   name: 'Tiêu chí chấm điểm tín dụng',
+  //   routerLink: '/diem-va-xep-hang-tin-dung/tieu-chi-cham-diem-tin-dung',
+  //   icon: 'fas fa-balance-scale'
+  // },
+  // {
+  //   name: 'Hạng tín dụng',
+  //   routerLink: '/diem-va-xep-hang-tin-dung/hang-tin-dung',
+  //   icon: 'fas fa-award'
+  // },
+  // {
+  //   name: 'Backtest',
+  //   routerLink: '/diem-va-xep-hang-tin-dung/back-test',
+  //   icon: 'fas fa-cash-register'
+  // },
+  // {
+  //   name: 'BÁO CÁO THỐNG KÊ',
+  //   isTitle: true,
+  // },
+  // {
+  //   name: 'Số lượng hồ sơ',
+  //   title: 'Báo cáo số lượng hồ sơ',
+  //   routerLink: '/bao-cao/so-luong-ho-so',
+  //   icon: 'fas fa-chart-bar'
+  // }, {
+  //   name: 'SL hồ sơ theo khu vực địa lý',
+  //   title: 'Báo cáo SL hồ sơ theo theo khu vực địa lý',
+  //   routerLink: '/bao-cao/khu-vuc-dia-ly',
+  //   icon: 'fas fa-map'
+  // },
+  // {
+  //   name: 'Số lượng hồ sơ theo thời gian',
+  //   title: 'Báo cáo số lượng hồ sơ theo thời gian',
+  //   routerLink: '/bao-cao/phan-bo-theo-thoi-gian',
+  //   icon: 'fas fa-clock'
+  // },
+  // {
+  //   name: 'Người dùng theo trạng thái',
+  //   routerLink: '/bao-cao/nguoi-dung-theo-trang-thai',
+  //   icon: 'fas fa-chart-bar'
+  // },
+  // {
+  //   name: 'Người dùng theo khu vực địa lý',
+  //   routerLink: '/bao-cao/nguoi-dung-theo-khu-vuc-dia-ly',
+  //   icon: 'fas fa-map'
+  // },
+  // {
+  //   name: 'Lịch sử hoạt động người dùng',
+  //   routerLink: '/bao-cao/lich-su-nguoi-dung',
+  //   icon: 'fas fa-history'
+  // }
 ];

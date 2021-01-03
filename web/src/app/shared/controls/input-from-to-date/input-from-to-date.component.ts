@@ -1,4 +1,4 @@
-import { Component, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { Subject } from 'rxjs';
@@ -9,6 +9,7 @@ import { takeUntil } from 'rxjs/operators';
   selector: 'input-from-to-date',
   templateUrl: './input-from-to-date.component.html',
   styleUrls: ['./input-from-to-date.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -33,9 +34,10 @@ export class InputFromToDateComponent implements OnInit, OnDestroy, ControlValue
   @Input() hint: string;
   @Input() suffix: string;
   @Input() length: number;
+  @Input() readonly: number;
   @Input() max: number;
   @Input() icon: string;
-  @Input() textarea: boolean;
+  @Input() isRight: boolean;
   control = new FormControl('');
   @Output() valid = new EventEmitter<boolean>();
 
