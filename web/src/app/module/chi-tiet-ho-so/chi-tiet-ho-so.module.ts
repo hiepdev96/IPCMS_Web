@@ -14,6 +14,8 @@ import { FormInputHoSoModule } from '../form-input-ho-so/form-input-ho-so.module
     ChiTietHoSoRoutingModule,
     SharedModule,
     FormInputHoSoModule
+  ], exports: [
+    ChiTietHoSoComponent
   ]
 })
 export class ChiTietHoSoModule { }

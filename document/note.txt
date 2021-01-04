@@ -1,0 +1,35 @@
+BM1/C5C631CF945CCAA931C6F03F0F800B37
+TELESALE1/C5C631CF945CCAA931C6F03F0F800B37
+SALE/C5C631CF945CCAA931C6F03F0F800B47
+
+
+- Chia nhỏ nữa thông tin hồ sơ thành các block. Xem api tạo hồ sơ để biết thêm.
+- Mỗi block thông tin sẽ có một tập danh sách các file đính kèm. 
+- Màn hình chi tiết hồ sơ đối với user telesale cho phép edit thông tin.
+- Màn hình Lọc hồ sơ tách các tham số filter: tên, số định danh… thành các tham số riêng biệt. Xem api Lọc hồ sơ để biết thêm cần những tham số gì.
+- Gộp 2 màn hình xác minh hồ sơ và thẩm định hồ sơ thành một màn hình thẩm định hồ sơ. Khi user click check box của thông tin hoặc block thông tin sẽ là xác minh thông tin hoặc block thông tin đó. 
+- Trên màn hình thẩm định hồ sơ, ở phần thông tin đánh giá có thêm nút “Chấm điểm tín dụng”. 
+- Trên màn hình thẩm định hồ sơ, ở phần thông tin phân loại có thêm nút phân loại, khi click nút này hiển thị popup filter để thẩm định viên tìm kiếm hồ sơ liên quan đến người vay, những tham số filter thẩm định giống như các tham số khi filter bình thường, chỉ khác ở tham số classify_cutomer = Y.
+- Bỏ màn hình tạo hồ sơ. mình chỉ support 3 cách tạo hồ sơ là import từ file, tạo từ app, tạo qua partner.
+
+
+
+- Phần phạm vi ở màn hình tạo người dùng tách ra thành các dropbox tỉnh/thành, quận/huyện, xã/phường. Anh sẽ bổ sung thêm api để get ra những thông tin này.
+- Khi tạo người dùng thành công thì hiển thị secret_key của người dùng mới để cho admin copy secret_key của người dùng mới. 
+- Màn danh sách người dùng cũng tách các tham số filter ra thành các tham số riêng biệt. Xem api  danh sách người dùng để biết thêm các tham số input, output.
+- Trên màn hình chi tiết người dùng đối với role admin cho phép edit các trường thông tin của người dùng, các role khác chỉ đc phép thay đổi thông tin của mình, ko được thay đổi thông tin của ng khác.
+- Màn hình chi tiết người dùng phần phạm vi, với mỗi phạm vi thêm nút xoá cho phép remove phạm vi của người dùng. Thêm nút thêm phạm vi. Role admin mới có quyền thêm bớt phạm vi của người dùng.
+- Khi thêm phạm vi chỉ cho phép thêm một phạm vi.
+- Màn hình chi tiết thông tin người dùng thêm trường thông tin secret_key. 
+- Màn hình lịch sử hoạt động người dùng thêm chức năng filter và phân trang. Xem app “Xem lịch sử hoạt động người dùng” để biết thêm phần input và output của chức năng này.
+
+- Chuyển nút backtest sang màn hình tiêu chí chấm điểm tín dụng. Khi click nút backtest sẽ call api backtest và show lên popup để hiển thị kết quả backtest.
+- Sửa màn hình backtest thành màn hình dữ liệu backtest. Khi user vào màn hình này sẽ call api xem dữ liệu backtest. Input, output thì em mở api lên xem nhé
+
+
+\u0000SALE\u0000C5C631CF945CCAA931C6F03F0F800B47\u0000
+
+\u0000SALE\u0000C5C631CF945CCAA931C6F03F0F800B47\u000044\u0000
+
+\u0000SALE\u0000C5C631CF945CCAA931C6F03F0F800B47\u0000452\u0000
+

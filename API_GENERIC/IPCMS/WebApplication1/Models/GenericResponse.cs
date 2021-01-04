@@ -9,5 +9,7 @@ namespace WebApplication1.Models
     {
         public string errorCode { set; get; }
         public string errorMessage { set; get; }
+        public string role { set; get; }
+
     }
 }

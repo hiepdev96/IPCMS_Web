@@ -66,3 +66,93 @@ export const ListTypeOfLoan = [
         value: 2,
     }),
 ];
+export const ListStatusProfile: SelectionInput[] = [
+    new SelectionInput({
+        name: 'Mới',
+        value: '0',
+    }),
+    new SelectionInput({
+        name: 'Đang Telesale',
+        value: '1',
+    }),
+    new SelectionInput({
+        name: 'Chốt',
+        value: '2',
+    }),
+    new SelectionInput({
+        name: 'Khách hàng từ chối',
+        value: '3',
+    }),
+    new SelectionInput({
+        name: 'Hủy',
+        value: '4',
+    }),
+    new SelectionInput({
+        name: 'Đang hoàn thiện',
+        value: '5',
+    }),
+    new SelectionInput({
+        name: 'Đã hoàn thiện',
+        value: '6',
+    }),
+    new SelectionInput({
+        name: 'Lưu trữ',
+        value: '7',
+    }),
+    new SelectionInput({
+        name: 'Đã phê duyệt hoàn thiện',
+        value: '8',
+    }),
+    new SelectionInput({
+        name: 'Đang thẩm định',
+        value: '9',
+    }),
+    new SelectionInput({
+        name: 'Đã thẩm định đạt',
+        value: '10',
+    }),
+    new SelectionInput({
+        name: 'Thẩm định không đạt',
+        value: '11',
+    }),
+    new SelectionInput({
+        name: 'Đã phê duyệt',
+        value: '12',
+    }),
+    new SelectionInput({
+        name: 'Không được phê duyệt',
+        value: '13',
+    }),
+    new SelectionInput({
+        name: 'Đã giải ngân',
+        value: '14',
+    }),
+    new SelectionInput({
+        name: 'Không giải ngân',
+        value: '15',
+    }),
+    new SelectionInput({
+        name: 'Đã tất toán',
+        value: '16',
+    }),
+    new SelectionInput({
+        name: 'Nhóm nợ 1',
+        value: '17',
+    }),
+    new SelectionInput({
+        name: 'Nhóm nợ 2',
+        value: '18',
+    }),
+    new SelectionInput({
+        name: 'Nhóm nợ 3',
+        value: '19',
+    }),
+    new SelectionInput({
+        name: 'Nhóm nợ 4',
+        value: '20',
+    }),
+    new SelectionInput({
+        name: 'Nhóm nợ 5',
+        value: '21',
+    }),
+];

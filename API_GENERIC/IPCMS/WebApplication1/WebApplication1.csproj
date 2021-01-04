@@ -161,11 +161,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BlockField.cs" />
+    <Compile Include="Models\CommunceResponse.cs" />
+    <Compile Include="Models\DistrictResponse.cs" />
+    <Compile Include="Models\Field.cs" />
+    <Compile Include="Models\FileDinhKem.cs" />
     <Compile Include="Models\FilterProfileRequest.cs" />
     <Compile Include="Models\FilterProfileResponse.cs" />
     <Compile Include="Models\GenericModel.cs" />
     <Compile Include="Models\GenericResponse.cs" />
     <Compile Include="Models\Profile.cs" />
+    <Compile Include="Models\ProfileViewDetailRequest.cs" />
+    <Compile Include="Models\ProfileViewDetailResponse.cs" />
+    <Compile Include="Models\ProvincialResponse.cs" />
+    <Compile Include="Models\ViewDocRequest.cs" />
+    <Compile Include="Models\ViewDocResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

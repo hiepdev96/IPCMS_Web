@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DanhSachHoSoComponent } from './danh-sach-ho-so/danh-sach-ho-so.component';
+import { QuanLyHoSoComponent } from './quan-ly-ho-so.component';
 import { TaoHoSoComponent } from './tao-ho-so/tao-ho-so.component';
 
 const routes: Routes = [
@@ -22,7 +23,7 @@ const routes: Routes = [
         data: {
           title: 'Lọc hồ sơ'
         },
-        component: DanhSachHoSoComponent
+        component: QuanLyHoSoComponent
       },
     ]
   }

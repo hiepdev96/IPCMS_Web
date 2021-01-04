@@ -11,6 +11,5 @@ namespace WebApplication1.Models
         public List<Profile> list_new_profile { set; get; }
         public List<Profile> list_old_profile { set; get; }
         public int current_page { set; get; }
-        public int role { set; get; }
     }
 }
