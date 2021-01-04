@@ -114,7 +114,6 @@ export class DanhSachHoSoComponent implements OnInit, AfterViewInit {
             && (!x.list_old_profile || !x.list_old_profile.length)) {
             this.isShowLoadMore = false;
           }
-          console.log(this.lstResult);
         }
       });
   }
