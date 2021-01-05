@@ -8,10 +8,10 @@ export class AuthService {
   constructor() { }
 
   getUserId(): string{
-    return 'SALE';
+    return 'TELESALE1';
   }
 
   getSecretKey(): string{
-    return 'C5C631CF945CCAA931C6F03F0F800B47';
+    return 'C5C631CF945CCAA931C6F03F0F800B37';
   }
 }

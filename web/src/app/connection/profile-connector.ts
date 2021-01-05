@@ -66,7 +66,7 @@ export class ProfileClient {
         ];
         for (const key of keyParams) {
             const v = request[key] ?? '';
-            if (v) {
+            if (v !== '') {
                 url_ += `${key}=` + encodeURIComponent("" + v) + "&";
 
             } else {
@@ -113,7 +113,7 @@ export class ProfileClient {
         ];
         for (const key of keyParams) {
             const v = request[key] ?? '';
-            if (v) {
+            if (v !== '') {
                 url_ += `${key}=` + encodeURIComponent("" + v) + "&";
 
             } else {

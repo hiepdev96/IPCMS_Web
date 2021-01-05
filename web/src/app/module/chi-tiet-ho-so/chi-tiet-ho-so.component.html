@@ -2,7 +2,7 @@
     <div class="p-20">
         <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
             <div fxFlex="30%">
-                <mat-card class="example-card m-b-20">
+                <!-- <mat-card class="example-card m-b-20">
 
                     <mat-card-content>
                         <mat-card-header class="border-bottom m-b-20">
@@ -36,7 +36,7 @@
                         </div>
 
                     </mat-card-content>
-                </mat-card>
+                </mat-card> -->
 
                 <mat-card class="example-card m-b-20">
                     <!-- <mat-card-header>
@@ -67,7 +67,7 @@
                                 </label>
                             </div>
                             <div fxFlex="63%">
-                                <span>Tạ Đức Hiệp</span>
+                                <span>{{getFieldName('HO_TEN')}}</span>
                             </div>
                         </div>
 
@@ -84,7 +84,7 @@
                                 </label>
                             </div>
                             <div fxFlex="63%">
-                                <span>29/08/1996</span>
+                                <span>{{convertToDate(getFieldName('NGAY_SINH')) | date: 'dd/MM/yyyy'}}</span>
                             </div>
                         </div>
 
@@ -101,7 +101,7 @@
                                 </label>
                             </div>
                             <div fxFlex="63%">
-                                <span>Nam</span>
+                                <span>{{getGioiTinh(getFieldName('GIOI_TINH'))}}</span>
                             </div>
                         </div>
 
@@ -118,7 +118,7 @@
                                 </label>
                             </div>
                             <div fxFlex="63%">
-                                <span>Kim Tháp - Nguyệt Đức - Thuận Thành - Bắc Ninh</span>
+                                <span>{{getFieldName('HO_KHAU_THUONG_TRU')}}</span>
                             </div>
                         </div>
 
@@ -135,7 +135,7 @@
                                 </label>
                             </div>
                             <div fxFlex="63%">
-                                <span>Chứng minh nhân dân (9 số)</span>
+                                <span>{{getLoaiDinhDanh(getFieldName('LOAI_DINH_DANH'))}}</span>
                             </div>
                         </div>
 
@@ -153,7 +153,7 @@
                                 </label>
                             </div>
                             <div fxFlex="63%">
-                                <span>125631768</span>
+                                <span>{{getFieldName('SO_DINH_DANH')}}</span>
                             </div>
                         </div>
 
@@ -170,7 +170,7 @@
                                 </label>
                             </div>
                             <div fxFlex="63%">
-                                <span>22/10/2016</span>
+                                <span>{{convertToDate(getFieldName('NGAY_CAP')) | date: 'dd/MM/yyyy'}}</span>
                             </div>
                         </div>
 
@@ -187,7 +187,7 @@
                                 </label>
                             </div>
                             <div fxFlex="63%">
-                                <span>CA Bắc Ninh</span>
+                                <span>{{getFieldName('NOI_CAP')}}</span>
                             </div>
                         </div>
 
@@ -204,7 +204,7 @@
                                 </label>
                             </div>
                             <div fxFlex="63%">
-                                <span>22/12/2222</span>
+                                <span>{{convertToDate(getFieldName('HIEU_LUC_DEN')) | date: 'dd/MM/yyyy'}}</span>
                             </div>
                         </div>
 
@@ -221,7 +221,7 @@
                                 </label>
                             </div>
                             <div fxFlex="63%">
-                                <span>VIỆT NAM</span>
+                                <span>{{getFieldName('QUOC_TICH')}}</span>
                             </div>
                         </div>
 
@@ -229,7 +229,7 @@
                     </mat-card-content>
                 </mat-card>
 
-                <mat-card class="example-card  m-b-20">
+                <!-- <mat-card class="example-card  m-b-20">
                     <mat-card-header class="border-bottom m-b-20">
                         <div class="label-type">Thông tin phân loại</div>
                     </mat-card-header>
@@ -243,9 +243,9 @@
                             </div>
                         </div>
                     </mat-card-content>
-                </mat-card>
+                </mat-card> -->
 
-                <mat-card class="example-card  m-b-20">
+                <!-- <mat-card class="example-card  m-b-20">
                     <mat-card-header class="border-bottom m-b-20">
                         <div class="label-type">Thông tin đánh giá</div>
                     </mat-card-header>
@@ -267,7 +267,7 @@
                             </div>
                         </div>
                     </mat-card-content>
-                </mat-card>
+                </mat-card> -->
             </div>
             <div fxFlex="68%">
                 <mat-card class="example-card  m-b-20">
@@ -296,7 +296,7 @@
                                 </label>
                             </div>
                             <div fxFlex="73%">
-                                <span>0975290896</span>
+                                <span>{{getFieldName('SO_DIEN_THOAI')}}</span>
                             </div>
                         </div>
 
@@ -309,11 +309,28 @@
                                     <ng-container *ngIf="isShowChecked">
                                         <mat-icon class="ic-checked">check_circle_outline</mat-icon>
                                     </ng-container>
-                                    Số điện thoại tham chiếu
+                                    Số điện thoại tham chiếu 1
                                 </label>
                             </div>
                             <div fxFlex="73%">
-                                <span>0975290896</span>
+                                <span>{{getFieldName('SDT_THAM_CHIEU_1')}}</span>
+                            </div>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+                            <div fxFlex="25%">
+                                <label>
+                                    <ng-container *ngIf="isShowCheckbox">
+                                        <mat-checkbox value="true"></mat-checkbox>
+                                    </ng-container>
+                                    <ng-container *ngIf="isShowChecked">
+                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                                    </ng-container>
+                                    Số điện thoại tham chiếu 2
+                                </label>
+                            </div>
+                            <div fxFlex="73%">
+                                <span>{{getFieldName('SDT_THAM_CHIEU_2')}}</span>
                             </div>
                         </div>
 
@@ -322,7 +339,7 @@
                                 <label>Email</label>
                             </div>
                             <div fxFlex="73%">
-                                <span>hiepdev96@gmail.com</span>
+                                <span>{{getFieldName('EMAIL')}}</span>
                             </div>
                         </div>
 
@@ -339,9 +356,7 @@
                                 </label>
                             </div>
                             <div fxFlex="73%">
-                                <span>Số 22 Ngõ 322/95/25 Đường Mỹ Đình, Phường Mỹ Đình 1, Quận Nam Từ Liêm, Thành Phố
-                                    Hà
-                                    Nội</span>
+                                <span>{{getFieldName('dia_chi')}}</span>
                             </div>
                         </div>
                     </mat-card-content>
@@ -373,7 +388,7 @@
                                 </label>
                             </div>
                             <div fxFlex="73%">
-                                <span>Nam</span>
+                                <span>{{getFieldName('GIOI_TINH_HIEN_TAI')}}</span>
                             </div>
                         </div>
 
@@ -386,11 +401,11 @@
                                     <ng-container *ngIf="isShowChecked">
                                         <mat-icon class="ic-checked">check_circle_outline</mat-icon>
                                     </ng-container>
-                                    Độ tuổi
+                                    Tuổi
                                 </label>
                             </div>
                             <div fxFlex="73%">
-                                <span>Thanh niên</span>
+                                <span>{{getFieldName('TUOI')}}</span>
                             </div>
                         </div>
 
@@ -407,7 +422,7 @@
                                 </label>
                             </div>
                             <div fxFlex="73%">
-                                <span>Đã kết hôn</span>
+                                <span>{{getTinhTrangHonNhan(getFieldName('TINH_TRANG_HON_NHAN'))}}</span>
                             </div>
                         </div>
 
@@ -424,7 +439,7 @@
                                 </label>
                             </div>
                             <div fxFlex="73%">
-                                <span>0 người</span>
+                                <span>{{getFieldName('SO_NGUOI_PHU_THUOC')}} người</span>
                             </div>
                         </div>
 
@@ -441,7 +456,7 @@
                                 </label>
                             </div>
                             <div fxFlex="73%">
-                                <span>1 triệu đồng</span>
+                                <span>{{getFieldName('THU_NHAP_THANG')}} triệu đồng</span>
                             </div>
                         </div>
 
@@ -458,7 +473,7 @@
                                 </label>
                             </div>
                             <div fxFlex="73%">
-                                <span>Nhà thuê</span>
+                                <span>{{getNhaO(getFieldName('NHA_O'))}}</span>
                             </div>
                         </div>
 
@@ -476,7 +491,7 @@
                                 </label>
                             </div>
                             <div fxFlex="73%">
-                                <span>Cao đẳng/ Đại học</span>
+                                <span>{{getTrinhDoHocVan(getFieldName('TRINH_DO_HOC_VAN'))}}</span>
                             </div>
                         </div>
 
@@ -489,11 +504,11 @@
                                     <ng-container *ngIf="isShowChecked">
                                         <mat-icon class="ic-checked">check_circle_outline</mat-icon>
                                     </ng-container>
-                                    Danh hiệu
+                                   Số danh hiệu đạt được
                                 </label>
                             </div>
                             <div fxFlex="73%">
-                                <span>Không</span>
+                                <span>{{getFieldName('DANH_HIEU')}}</span>
                             </div>
                         </div>
 
@@ -510,7 +525,7 @@
                                 </label>
                             </div>
                             <div fxFlex="73%">
-                                <span>Doanh nghiệp tư nhân</span>
+                                <span>{{getLoaiDonViCongTac(getFieldName('LOAI_DON_VI_CONG_TAC'))}}</span>
                             </div>
                         </div>
 
@@ -519,7 +534,7 @@
                                 <label>Cấp quản lý</label>
                             </div>
                             <div fxFlex="73%">
-                                <span>Doanh nghiệp tư nhân</span>
+                                <span>{{getCapQuanLy(getFieldName('CAP_QUAN_LY'))}}</span>
                             </div>
                         </div>
 
@@ -536,16 +551,16 @@
                                 </label>
                             </div>
                             <div fxFlex="73%">
-                                <span>0 thẻ</span>
+                                <span>{{getFieldName('SO_THE_TIN_DUNG')}} thẻ</span>
                             </div>
                         </div>
 
                         <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
                             <div fxFlex="25%">
-                                <label>Tổn dư nợ tín dụng</label>
+                                <label>Tổng dư nợ tín dụng</label>
                             </div>
                             <div fxFlex="73%">
-                                <span>0 triệu đồng</span>
+                                <span>{{getFieldName('TONG_DU_NO_TIN_DUNG')}} triệu đồng</span>
                             </div>
                         </div>
 
@@ -554,7 +569,7 @@
                                 <label>Lịch sử tín dụng</label>
                             </div>
                             <div fxFlex="73%">
-                                <span>Tốt</span>
+                                <span>{{getLichSuTinDung(getFieldName('LICH_SU_TIN_DUNG'))}}</span>
                             </div>
                         </div>
 
@@ -563,16 +578,16 @@
                                 <label>Nợ xấu</label>
                             </div>
                             <div fxFlex="73%">
-                                <span>Không</span>
+                                <span>{{getNoXau(getFieldName('NO_XAU'))}}</span>
                             </div>
                         </div>
 
                         <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
                             <div fxFlex="25%">
-                                <label>Tổng giá trị đảm bảo</label>
+                                <label>Tổng giá trị tài sản đảm bảo</label>
                             </div>
                             <div fxFlex="73%">
-                                <span>100 triệu đồng</span>
+                                <span>{{getFieldName('TONG_GIA_TRI_TAI_SAN_DAM_BAO')}} triệu đồng</span>
                             </div>
                         </div>
 
@@ -581,7 +596,7 @@
                                 <label>Tính thanh khoản</label>
                             </div>
                             <div fxFlex="73%">
-                                <span>Tốt</span>
+                                <span>{{getTinhThanhKhoan(getFieldName('TINH_THANH_KHOAN'))}}</span>
                             </div>
                         </div>
                     </mat-card-content>
@@ -597,16 +612,16 @@
                                 <label>Loại khoản vay</label>
                             </div>
                             <div fxFlex="73%">
-                                <span>Tiền mặt</span>
+                                <span>{{getLoaiKhoanVay(getFieldName('LOAI_KHOAN_VAY'))}}</span>
                             </div>
                         </div>
 
                         <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
                             <div fxFlex="25%">
-                                <label>Tên sản phẩn vay</label>
+                                <label>Sản phẩn vay</label>
                             </div>
                             <div fxFlex="73%">
-                                <span>Vay để đi đánh lô đề cờ bạc</span>
+                                <span>{{getFieldName('SAN_PHAM_VAY')}}</span>
                             </div>
                         </div>
 
@@ -615,7 +630,7 @@
                                 <label>Số tiền vay</label>
                             </div>
                             <div fxFlex="73%">
-                                <span>1.000 triệu đồng</span>
+                                <span>{{getFieldName('SO_TIEN_VAY')}} triệu đồng</span>
                             </div>
                         </div>
 
@@ -624,17 +639,17 @@
                                 <label>Kỳ hạn</label>
                             </div>
                             <div fxFlex="73%">
-                                <span>1 năm</span>
+                                <span>{{getFieldName('KY_HAN')}}</span>
                             </div>
                         </div>
 
 
                         <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
                             <div fxFlex="25%">
-                                <label>Hình thức cho vay</label>
+                                <label>Hình thức vay</label>
                             </div>
                             <div fxFlex="73%">
-                                <span>Tín chấp</span>
+                                <span>{{getHinhThucVay(getFieldName('HINH_THUC_VAY'))}}</span>
                             </div>
                         </div>
 
@@ -643,7 +658,7 @@
                                 <label>Hình thức thanh toán</label>
                             </div>
                             <div fxFlex="73%">
-                                <span>Trả góp hàng tháng</span>
+                                <span>{{getHinhThucThanhToan(getFieldName('HINH_THUC_THANH_TOAN'))}}</span>
                             </div>
                         </div>
                         <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
@@ -651,7 +666,7 @@
                                 <label>Lãi suất</label>
                             </div>
                             <div fxFlex="73%">
-                                <span>8%/năm</span>
+                                <span>{{getFieldName('LAI_XUAT')}}</span>
                             </div>
                         </div>
                         <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
@@ -659,16 +674,7 @@
                                 <label>Mục đích vay</label>
                             </div>
                             <div fxFlex="73%">
-                                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tempor mi lorem, eu
-                                    convallis augue blandit et. Proin at tempus eros, eget finibus orci. Integer semper
-                                    ex
-                                    condimentum mollis semper. Maecenas ac libero sed ante sagittis convallis.
-                                    Vestibulum
-                                    ultrices ipsum in dolor eleifend luctus. Nulla ornare mi in nulla aliquet, eget
-                                    vestibulum eros tincidunt. Aenean ipsum ante, molestie non congue et, semper laoreet
-                                    nibh. Aenean porta elit non libero venenatis pretium. Donec tempus tortor et risus
-                                    porttitor accumsan. Duis quis gravida justo. Donec porttitor orci eu facilisis
-                                    elementum. Fusce dignissim mi a lacus faucibus,</span>
+                                <span>{{getFieldName('MUC_DICH_VAY')}}</span>
                             </div>
                         </div>
 

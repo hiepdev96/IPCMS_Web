@@ -1,8 +1,10 @@
-<mat-tab-group>
+<mat-tab-group [selectedIndex]="index" (selectedIndexChange)="changeSelectedIndex($event)">
     <mat-tab label="Danh sách">
-        <app-danh-sach-ho-so></app-danh-sach-ho-so>
+        <app-danh-sach-ho-so ($openDetail)="showDetail($event)"></app-danh-sach-ho-so>
     </mat-tab>
-    <mat-tab label="Chi tiết">
-        <app-chi-tiet-ho-so></app-chi-tiet-ho-so>
-    </mat-tab>
+    <ng-container *ngFor="let tab of tabs">
+        <mat-tab [label]="tab.name">
+            <app-chi-tiet-ho-so [$item]="tab.value"></app-chi-tiet-ho-so>
+        </mat-tab>
+    </ng-container>
 </mat-tab-group>

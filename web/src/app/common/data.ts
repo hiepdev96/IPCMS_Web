@@ -10,14 +10,14 @@ export const ListClassifyCustomer: SelectionInput[] = [
         value: 'N',
     })
 ];
-export const ListLoanForm: SelectionInput[] = [
+export const ListHinhThucVay: SelectionInput[] = [
     new SelectionInput({
         name: 'Tín chấp',
-        value: 0,
+        value: '0',
     }),
     new SelectionInput({
         name: 'Thế chấp',
-        value: 1,
+        value: '1',
     })
 ];
 export const ListTypeCustomer: SelectionInput[] = [
@@ -42,28 +42,32 @@ export const ListTypeCustomer: SelectionInput[] = [
         value: 4,
     }),
 ];
-export const ListFormPayment: SelectionInput[] = [
+export const ListHinhThucThanhToan: SelectionInput[] = [
     new SelectionInput({
         name: 'Trả góp hàng tháng',
-        value: 0,
+        value: '0',
     }),
     new SelectionInput({
-        name: 'Trả góp 1 lần',
-        value: 1,
+        name: 'Trả 1 lần',
+        value: '1',
     }),
 ];
-export const ListTypeOfLoan = [
+export const ListLoaiKhoanVay = [
     new SelectionInput({
         name: 'Tiền mặt',
-        value: 0,
+        value: '0',
     }),
     new SelectionInput({
         name: 'Tiêu dùng',
-        value: 1,
+        value: '1',
     }),
     new SelectionInput({
         name: 'Trả góp',
-        value: 2,
+        value: '2',
+    }),
+    new SelectionInput({
+        name: 'Thấu chi',
+        value: '3',
     }),
 ];
 export const ListStatusProfile: SelectionInput[] = [
@@ -156,3 +160,167 @@ export const ListStatusProfile: SelectionInput[] = [
         value: '21',
     }),
 ];
+export const ListLoaiDinhDanh: SelectionInput[] = [
+    new SelectionInput({
+        name: 'Chứng minh nhân dân (9 SỐ)',
+        value: '1',
+    }),
+    new SelectionInput({
+        name: 'Chứng minh nhân dân (12 SỐ)',
+        value: '2',
+    }),
+    new SelectionInput({
+        name: 'Căn cước công dân',
+        value: '3',
+    }),
+    new SelectionInput({
+        name: 'Hộ chiếu',
+        value: '4',
+    }),
+    new SelectionInput({
+        name: 'CMT (CAND)',
+        value: '5',
+    }),
+];
+export const ListTinhTrangHonNhan: SelectionInput[] = [
+    new SelectionInput({
+        name: 'Độc thân',
+        value: '0',
+    }),
+    new SelectionInput({
+        name: 'Đã lập gia đình',
+        value: '1',
+    }),
+];
+export const ListTrinhDoHocVan: SelectionInput[] = [
+    new SelectionInput({
+        name: 'Không',
+        value: '0',
+    }),
+    new SelectionInput({
+        name: 'Phổng thông trung học',
+        value: '1',
+    }),
+    new SelectionInput({
+        name: 'Đại học/Cao đẳng',
+        value: '2',
+    }),
+    new SelectionInput({
+        name: 'Cao học',
+        value: '3',
+    }),
+    new SelectionInput({
+        name: 'Trên cao học',
+        value: '4',
+    }),
+];
+export const ListLoaiDonViCongTac: SelectionInput[] = [
+
+    new SelectionInput({
+        name: 'Không',
+        value: '0',
+    }),
+    new SelectionInput({
+        name: 'Công chức/Viên chức',
+        value: '1',
+    }),
+    new SelectionInput({
+        name: 'Doanh nghiệp nhà nước',
+        value: '2',
+    }),
+    new SelectionInput({
+        name: 'Doanh nghiệp FDI',
+        value: '3',
+    }),
+    new SelectionInput({
+        name: 'Doanh nghiệp tư nhân',
+        value: '4',
+    }),
+];
+export const ListCapQuanLy: SelectionInput[] = [
+
+    new SelectionInput({
+        name: 'Không',
+        value: '0',
+    }),
+    new SelectionInput({
+        name: 'Nhân viên/Chuyên viên',
+        value: '1',
+    }),
+    new SelectionInput({
+        name: 'Trưởng nhóm',
+        value: '2',
+    }),
+    new SelectionInput({
+        name: 'Trưởng/Phó phòng/Giám đốc/Phó giám đốc trung tâm',
+        value: '3',
+    }),
+    new SelectionInput({
+        name: 'Giám đốc/Phó giám đốc công ty',
+        value: '4',
+    }),
+];
+export const ListLichSuTinDung: SelectionInput[] = [
+
+    new SelectionInput({
+        name: 'Xấu',
+        value: '0',
+    }),
+    new SelectionInput({
+        name: 'Trung bình',
+        value: '1',
+    }),
+    new SelectionInput({
+        name: 'Tốt',
+        value: '2',
+    }),
+];
+export const ListNoXau: SelectionInput[] = [
+
+    new SelectionInput({
+        name: 'Có',
+        value: '0',
+    }),
+    new SelectionInput({
+        name: 'Không',
+        value: '1',
+    }),
+];
+export const ListTinhThanhKhoan: SelectionInput[] = [
+
+    new SelectionInput({
+        name: 'Kém',
+        value: '1',
+    }),
+    new SelectionInput({
+        name: 'Trung bình',
+        value: '2',
+    }),
+    new SelectionInput({
+        name: 'Tốt',
+        value: '3',
+    }),
+];
+export const ListGioiTinh: SelectionInput[] = [
+
+    new SelectionInput({
+        name: 'Nữ',
+        value: '0',
+    }),
+    new SelectionInput({
+        name: 'Nam',
+        value: '1',
+    }),
+];
+export const ListNhaO: SelectionInput[] = [
+
+    new SelectionInput({
+        name: 'Nhà riêng',
+        value: '0',
+    }),
+    new SelectionInput({
+        name: 'Nhà thuê',
+        value: '1',
+    }),
+];
+

@@ -1,15 +1,16 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ListClassifyCustomer, ListFormPayment, ListLoanForm, ListStatusProfile, ListTypeCustomer, ListTypeOfLoan } from './../../../common/data';
+import { ListClassifyCustomer, ListHinhThucThanhToan, ListHinhThucVay, ListStatusProfile, ListTypeCustomer, ListLoaiKhoanVay } from './../../../common/data';
 import * as moment from 'moment';
 import { ProfileClient } from './../../../connection/profile-connector';
 import { AlertService } from 'src/app/services/alert.service';
 import { dateToString } from 'src/app/common/functions';
 import { merge } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
+import { Tab } from '../../../common/model/tab';
 import { FilterProfileRequest, FilterProfileResponse, Profile, ProfileViewDetailRequest, ProfileViewDetailResponse } from 'src/app/common/model/generic-model';
 @Component({
   selector: 'app-danh-sach-ho-so',
@@ -18,10 +19,10 @@ import { FilterProfileRequest, FilterProfileResponse, Profile, ProfileViewDetail
 })
 export class DanhSachHoSoComponent implements OnInit, AfterViewInit {
   listClassifyCustomer = ListClassifyCustomer;
-  listLoanForm = ListLoanForm;
+  listLoanForm = ListHinhThucVay;
   listTypeCustomer = ListTypeCustomer;
-  listFormPayment = ListFormPayment;
-  listTypeOfLoan = ListTypeOfLoan;
+  listFormPayment = ListHinhThucThanhToan;
+  listTypeOfLoan = ListLoaiKhoanVay;
   myForm = new FormGroup({
     productLoanCtrl: new FormControl(),
     createFromToCtrl: new FormControl({
@@ -37,8 +38,6 @@ export class DanhSachHoSoComponent implements OnInit, AfterViewInit {
     typeOfLoanCtrl: new FormControl(),
     classifyCutomerCtrl: new FormControl(null)
   });
-
-
   displayedColumns: string[] = [
     'postion',
     'id_number',
@@ -53,6 +52,7 @@ export class DanhSachHoSoComponent implements OnInit, AfterViewInit {
   lstResult: Profile[] = [];
   isShowLoadMore = true;
   isShowProgress = true;
+  @Output() $openDetail = new EventEmitter();
   constructor(
     private profileClient: ProfileClient,
     private alertService: AlertService
@@ -137,19 +137,14 @@ export class DanhSachHoSoComponent implements OnInit, AfterViewInit {
     if (this.isShowAdvanced) {
       request.classify_cutomer = this.ctrls.classifyCutomerCtrl.value?.value;
     }
-    this.profileClient.viewDetail(request)
-      .pipe(
-        map(x => ProfileViewDetailResponse.fromJS(x)),
-        finalize(() => this.isShowProgress = false)
-      ).subscribe(x => {
-        if (x.errorCode !== 'OK') {
-          return this.alertService.error(x.errorMessage, 'Lỗi lọc hồ sơ');
-        } else {
-          console.log(x);
-        }
-      });
-    // const features =
+
+    this.$openDetail.emit({
+      request,
+      name: `${item.id_number} - ${item.fullname}`
+    });
+      // const features =
     //   'toolbar=no,location=no,directories=no,menubar=no,scrollbars=yes,resizable=yes,status=yes,left=0,top=0';
     // const page = window.open('./#/chi-tiet-ho-so', '_blank', features);
   }
+
 }
