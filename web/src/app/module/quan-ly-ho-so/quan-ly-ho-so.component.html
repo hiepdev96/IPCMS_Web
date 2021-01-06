@@ -4,7 +4,7 @@
     </mat-tab>
     <ng-container *ngFor="let tab of tabs">
         <mat-tab [label]="tab.name">
-            <app-chi-tiet-ho-so [$item]="tab.value"></app-chi-tiet-ho-so>
+            <app-chi-tiet-ho-so [$item]="tab.value" [$status]="tab.status"></app-chi-tiet-ho-so>
         </mat-tab>
     </ng-container>
 </mat-tab-group>

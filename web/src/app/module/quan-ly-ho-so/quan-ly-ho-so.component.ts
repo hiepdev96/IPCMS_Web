@@ -23,7 +23,8 @@ export class QuanLyHoSoComponent implements OnInit {
     this.openDetail(new Tab({
       id: '123',
       value: null,
-      name: 'TEST'
+      name: 'TEST',
+      status: '5'
     }));
   }
   showDetail(value: any): void {
@@ -42,7 +43,8 @@ export class QuanLyHoSoComponent implements OnInit {
             this.openDetail(new Tab({
               id: value.request.id_profile,
               value: x,
-              name: value.name
+              name: value.name,
+              status: value.status
             }));
           }
         });

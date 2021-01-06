@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import {
   ListCapQuanLy,
   ListGioiTinh,
@@ -10,14 +11,16 @@ import {
   ListLoaiKhoanVay,
   ListNhaO,
   ListNoXau,
+  ListStatusProfile,
   ListTinhThanhKhoan,
   ListTinhTrangHonNhan,
   ListTrinhDoHocVan
 } from 'src/app/common/data';
-import { Field, ProfileViewDetailResponse } from 'src/app/common/model/generic-model';
+import { Field, FileDinhKem, ProfileViewDetailResponse } from 'src/app/common/model/generic-model';
 import { SelectionInput } from 'src/app/common/model/selection-input';
-import { lstNoXau } from '../form-input-ho-so/form-input-ho-so.component';
+import { ListWithTitle } from '../../common/model/lst-with-title';
 import { AlertService } from './../../services/alert.service';
+import { FileDinhKemDialogComponent } from './dialog/file-dinh-kem-dialog/file-dinh-kem-dialog.component';
 
 @Component({
   selector: 'app-chi-tiet-ho-so',
@@ -25,34 +28,52 @@ import { AlertService } from './../../services/alert.service';
   styleUrls: ['./chi-tiet-ho-so.component.scss']
 })
 export class ChiTietHoSoComponent implements OnInit {
-  isShowUpdate: any;
+  isShowUpdate = false;
   isShowCheckbox = false;
   isShowChecked = false;
 
   @Input() $item: ProfileViewDetailResponse;
+  @Input() $status: string;
   lstField: Field[] = [];
+  lstDoc: ListWithTitle<FileDinhKem>[] = [];
   constructor(
-    private alertService: AlertService
+    private alertService: AlertService,
+    private dialog: MatDialog
   ) {
   }
 
   ngOnInit(): void {
     this.$item = ProfileViewDetailResponse.fromJS(a);
-    console.log(a);
     this.$item.profile.forEach(x => {
       this.lstField = this.lstField.concat(x.listFields);
+      if (x.listDoc && x.listDoc.length > 0) {
+        this.lstDoc.push(new ListWithTitle({
+          values: x.listDoc,
+          title: x.block_name
+        }));
+      }
     });
-    let z = this.lstField.map(x => x.name).sort();
-    console.log(z);
+    console.log(this.lstDoc);
   }
-  close(): void {
-    close();
+
+  openDialogFileDinhKem(): void {
+    if (!this.lstDoc || this.lstDoc.length === 0) {
+      this.alertService.info('Không tồn tại tệp đính kèm', 'Xem tệp đính kèm');
+    }
+    this.dialog.open(FileDinhKemDialogComponent, {
+      data: this.lstDoc,
+      panelClass: 'custom-dialog',
+      width: '88%'
+    });
   }
   showUpdate(isShow: boolean): void {
     this.isShowUpdate = isShow;
   }
   openDialogConfirm(): void {
     this.alertService.confirmMessage('Xác nhận bỏ qua hồ sơ', 'Bạn có chắc chắn muốn bỏ hồ sơ không?');
+  }
+  checkShowButtonFileDinhKem(): boolean {
+    return this.$status >= '5';
   }
   getFieldName(name: string): string {
     const res = this.lstField.find(x => x.name === name)?.value;
@@ -62,11 +83,7 @@ export class ChiTietHoSoComponent implements OnInit {
     return res;
   }
   getLoaiDinhDanh(value: string): string {
-    const res = ListLoaiDinhDanh.find(x => x.value === value)?.name;
-    if (!res) {
-      return '';
-    }
-    return res;
+    return this.getValueSelectionInput(value, ListLoaiDinhDanh);
   }
   getTinhTrangHonNhan(value: string): string {
     return this.getValueSelectionInput(value, ListTinhTrangHonNhan);
@@ -113,7 +130,6 @@ export class ChiTietHoSoComponent implements OnInit {
   }
   convertToDate(value: string): Date {
     const res = new Date(value + 'Z');
-    console.log(res);
     if (res.toString() !== 'Invalid Date') {
       return res;
     }

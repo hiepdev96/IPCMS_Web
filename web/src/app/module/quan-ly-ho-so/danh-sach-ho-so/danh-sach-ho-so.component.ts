@@ -140,6 +140,7 @@ export class DanhSachHoSoComponent implements OnInit, AfterViewInit {
 
     this.$openDetail.emit({
       request,
+      status: item.status,
       name: `${item.id_number} - ${item.fullname}`
     });
       // const features =

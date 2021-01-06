@@ -229,6 +229,28 @@
                     </mat-card-content>
                 </mat-card>
 
+
+                <!-- <mat-card class="example-card  m-b-20">
+                    <mat-card-header class="border-bottom m-b-20">
+                        <div class="label-type">Thông tin các tệp đính kèm</div>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <ng-container *ngFor="let doc of lstDoc">
+                            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+                                <div fxFlex="35%">
+                                    <label>
+                                        {{doc.title}}
+                                    </label>
+                                </div>
+                            </div>
+                            <ng-container *ngFor="let value of doc.values">
+                                <div style="margin-left:20px"> <a href="javascript:void(0)">{{value.dinh_danh_ho_so}} -
+                                        {{value.ten_file}}</a></div>
+                            </ng-container>
+                        </ng-container>
+                    </mat-card-content>
+                </mat-card> -->
+
                 <!-- <mat-card class="example-card  m-b-20">
                     <mat-card-header class="border-bottom m-b-20">
                         <div class="label-type">Thông tin phân loại</div>
@@ -388,7 +410,7 @@
                                 </label>
                             </div>
                             <div fxFlex="73%">
-                                <span>{{getFieldName('GIOI_TINH_HIEN_TAI')}}</span>
+                                <span>{{getGioiTinh(getFieldName('GIOI_TINH_HIEN_TAI'))}}</span>
                             </div>
                         </div>
 
@@ -504,7 +526,7 @@
                                     <ng-container *ngIf="isShowChecked">
                                         <mat-icon class="ic-checked">check_circle_outline</mat-icon>
                                     </ng-container>
-                                   Số danh hiệu đạt được
+                                    Số danh hiệu đạt được
                                 </label>
                             </div>
                             <div fxFlex="73%">
@@ -681,28 +703,6 @@
                     </mat-card-content>
                 </mat-card>
 
-                <mat-card class="example-card  m-b-20">
-                    <mat-card-header class="border-bottom m-b-20">
-                        <div class="label-type">Thông tin các tệp đính kèm</div>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <div>
-                            <a href="#">Tệp đính kèm 1.pdf</a>
-                        </div>
-                        <div>
-                            <a href="#">Tệp đính kèm 2.pdf</a>
-                        </div>
-                        <div>
-                            <a href="#">Tệp đính kèm 3.pdf</a>
-                        </div>
-                        <div>
-                            <a href="#">Tệp đính kèm 4.pdf</a>
-                        </div>
-                        <div>
-                            <a href="#">Tệp đính kèm 5.pdf</a>
-                        </div>
-                    </mat-card-content>
-                </mat-card>
 
 
 
@@ -718,15 +718,15 @@
             <button mat-raised-button type="button" (click)="openDialogConfirm()">Bỏ qua hồ sơ</button>
             <button mat-stroked-button color="warn" type="button" (click)="close()">Đóng</button>
         </div> -->
-        <ng-container *ngIf="isShowCheckbox">
+        <ng-container>
             <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
-                <button mat-raised-button color="primary">Xác minh hồ sơ</button>
-                <button mat-raised-button color="warn" type="button">Hủy</button>
-                <button mat-raised-button type="button" (click)="openDialogConfirm()">Bỏ qua hồ sơ</button>
-                <button mat-stroked-button color="warn" type="button" (click)="close()">Đóng</button>
+                <button class="btn btn-primary" (click)="showUpdate(true)">Xử lý hồ sơ</button>
+                <ng-container *ngIf="checkShowButtonFileDinhKem()">
+                    <button class="btn btn-secondary" (click)="openDialogFileDinhKem()">Xem tệp đính kèm</button>
+                </ng-container>
             </div>
         </ng-container>
-        <ng-container *ngIf="isShowChecked">
+        <!-- <ng-container *ngIf="isShowChecked">
             <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
                 <button mat-raised-button color="primary">Thẩm định đạt</button>
                 <button mat-raised-button color="warn" type="button">Thẩm định không đạt</button>
@@ -735,16 +735,20 @@
                 <button mat-raised-button type="button" (click)="openDialogConfirm()">Nhả hồ sơ</button>
                 <button mat-stroked-button color="warn" type="button" (click)="close()">Đóng</button>
             </div>
-        </ng-container>
+        </ng-container> -->
     </div>
 </ng-container>
 <ng-template #updateForm>
-    <div class="p-20">
-        <app-form-input-ho-so></app-form-input-ho-so>
-        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
-            <button mat-raised-button color="primary">Cập nhật hồ sơ</button>
-            <button mat-stroked-button>Nhập lại</button>
-            <button mat-stroked-button type="button" (click)="showUpdate(false)">Bỏ qua cập nhật</button>
-        </div>
+    <app-form-input-ho-so [$role]="$item.role"></app-form-input-ho-so>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%">
+        <ng-container *ngIf="$item.role === 'TELESALE'">
+            <button class="btn btn-success">Đã chốt</button>
+            <button class="btn btn-info">Khách hàng từ chối</button>
+            <button class="btn btn-danger">Hủy hồ sơ</button>
+        </ng-container>
+        <ng-container *ngIf="checkShowButtonFileDinhKem()">
+            <button class="btn btn-secondary" (click)="openDialogFileDinhKem()">Xem tệp đính kèm</button>
+        </ng-container>
+        <button mat-stroked-button type="button" (click)="showUpdate(false)">Bỏ qua</button>
     </div>
 </ng-template>

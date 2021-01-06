@@ -144,6 +144,79 @@ export class ProfileClient {
             }));
     }
 
+    public viewDoc(id_profile: string, doc_id: string, fid: string = 'F16') {
+        let params: string[] = [];
+        let url_ = this.baseUrl + "/ipcms/icp/view_doc/{doc_id}?";
+        url_ = url_.replace("{doc_id}", encodeURIComponent("" + doc_id));
+        const userId = this.authService.getUserId();
+        url_ += "user_id=" + encodeURIComponent("" + userId) + "&";
+        params.push(userId);
+        params.push(this.authService.getSecretKey());
+        url_ += "fid=" + encodeURIComponent("" + fid) + "&";
+        params.push(fid);
+        url_ += "id_profile=" + encodeURIComponent("" + id_profile) + "&";
+        params.push(id_profile);
+        url_ += "doc_id=" + encodeURIComponent("" + doc_id) + "&";
+        params.push(doc_id);
+        url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params));
+
+        url_ = url_.replace(/[?&]$/, "");
+        let options_: any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+        return this.http.request('get', url_, options_)
+            .pipe(_observableMergeMap((response$: any) => {
+                return this.processResponse(response$);
+            })).pipe(_observableCatch((response$: any) => {
+                if (response$ instanceof HttpResponseBase) {
+                    try {
+                        return this.processResponse(<any>response$);
+                    } catch (e) {
+                        return <Observable<any | null>><any>_observableThrow(e);
+                    }
+                } else
+                    return <Observable<any | null>><any>_observableThrow(response$);
+            }));
+    }
+
+    public imagePortait(id_profile: string, fid: string = 'F16') {
+        let params: string[] = [];
+        let url_ = this.baseUrl + "/ipcms/icp/view_detail/image_portrait?";
+        const userId = this.authService.getUserId();
+        url_ += "user_id=" + encodeURIComponent("" + userId) + "&";
+        params.push(userId);
+        params.push(this.authService.getSecretKey());
+        url_ += "fid=" + encodeURIComponent("" + fid) + "&";
+        params.push(fid);
+        url_ += "id_profile=" + encodeURIComponent("" + id_profile) + "&";
+        params.push(id_profile);
+        url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params));
+
+        url_ = url_.replace(/[?&]$/, "");
+        let options_: any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+        return this.http.request('get', url_, options_)
+        .pipe(_observableMergeMap((response$: any) => {
+            return this.processResponse(response$);
+        })).pipe(_observableCatch((response$: any) => {
+            if (response$ instanceof HttpResponseBase) {
+                try {
+                    return this.processResponse(<any>response$);
+                } catch (e) {
+                    return <Observable<any | null>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<any | null>><any>_observableThrow(response$);
+        }));
+    }
+
     public getProvincial() {
         let params: string[] = [];
         let url_ = this.baseUrl + "/ipcms/icp/provincial?";

@@ -4,73 +4,42 @@
       <span class="card-title">Thông tin định danh và nhận diện</span>
     </div>
     <div class="card-body">
-      <div fxFlex="100%">
+     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+      <div fxFlex="32%">
+        <img class="avatar" src="../../../../../assets//img//no-image.jpg" (click)="inputAvatar.click()">
+        <input type="file" style="display:none;" name="inputAvatar" #inputAvatar (change)="onAvatarChange($event)"
+          accept=".png,.jpg">
+        <div>
+          <span class="label-avatar" (click)="inputAvatar.click()">Ảnh chân dung</span>
+        </div>
+      </div>
+
+      <div fxFlex="73%">
         <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-          <input-text
-            label="Họ và Tên"
-            fxFlex="49%"
-            formControlName="hoTenCtrl"
-          ></input-text>
-          <input-date
-            label="Ngày sinh"
-            fxFlex="49%"
-            required="true"
-            formControlName="ngaySinhCtrl"
-          ></input-date>
+          <input-text label="Họ và Tên" fxFlex="49%" formControlName="hoTenCtrl"></input-text>
+          <input-date label="Ngày sinh" fxFlex="49%" required="true" formControlName="ngaySinhCtrl"></input-date>
         </div>
         <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-          <input-select
-            label="Giới tính"
-            fxFlex="20%"
-            formControlName="gioiTinhCtrl"
-            [items]="lstGioiTinh"
-          >
+          <input-select label="Giới tính" fxFlex="20%" formControlName="gioiTinhCtrl" [items]="lstGioiTinh">
           </input-select>
-          <input-text
-            label="Hộ khẩu thường trú"
-            fxFlex="78%"
-            formControlName="hoKhauThuongTruCtrl"
-          ></input-text>
+          <input-text label="Hộ khẩu thường trú" fxFlex="78%" formControlName="hoKhauThuongTruCtrl"></input-text>
         </div>
         <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-          <input-select
-            label="Loại giấy tờ định danh"
-            fxFlex="49%"
-            formControlName="loaiGiayToDinhDanhCtrl"
-            [items]="lstLoaiGiayToDinhDanh"
-          ></input-select>
-          <input-text
-            label="Số định danh"
-            fxFlex="49%"
-            formControlName="soDinhDanhCtrl"
-          ></input-text>
+          <input-select label="Loại giấy tờ định danh" fxFlex="49%" formControlName="loaiGiayToDinhDanhCtrl"
+            [items]="lstLoaiGiayToDinhDanh"></input-select>
+          <input-text label="Số định danh" fxFlex="49%" formControlName="soDinhDanhCtrl"></input-text>
         </div>
         <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-          <input-date
-            label="Ngày cấp"
-            fxFlex="49%"
-            formControlName="ngayCapCtrl"
-          ></input-date>
-          <input-text
-            label="Nơi cấp"
-            fxFlex="49%"
-            formControlName="noiCapCtrl"
-          ></input-text>
+          <input-date label="Ngày cấp" fxFlex="49%" formControlName="ngayCapCtrl"></input-date>
+          <input-text label="Nơi cấp" fxFlex="49%" formControlName="noiCapCtrl"></input-text>
         </div>
 
         <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-          <input-date
-            label="Hiệu lực đến"
-            fxFlex="49%"
-            formControlName="hieuLucCtrl"
-          ></input-date>
-          <input-text
-            label="Quốc tịch"
-            fxFlex="49%"
-            formControlName="quocTichCtrl"
-          ></input-text>
+          <input-date label="Hiệu lực đến" fxFlex="49%" formControlName="hieuLucCtrl"></input-date>
+          <input-text label="Quốc tịch" fxFlex="49%" formControlName="quocTichCtrl"></input-text>
         </div>
       </div>
+     </div>
     </div>
   </div>
   <div class="card card-info">
@@ -79,39 +48,17 @@
     </div>
     <div class="card-body">
       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
-        <input-text
-          label="Số điện thoại"
-          isTel="true"
-          fxFlex="32%"
-          formControlName="soDienThoaiCtrl"
-        ></input-text>
-        <input-text
-          label="Số điện thoại tham chiếu 1"
-          isTel="true"
-          fxFlex="32%"
-          formControlName="soDienThoaiThamChieu1Ctrl"
-        >
+        <input-text label="Số điện thoại" isTel="true" fxFlex="32%" formControlName="soDienThoaiCtrl"></input-text>
+        <input-text label="Số điện thoại tham chiếu 1" isTel="true" fxFlex="32%"
+          formControlName="soDienThoaiThamChieu1Ctrl">
         </input-text>
-        <input-text
-          label="Số điện thoại tham chiếu 2"
-          isTel="true"
-          fxFlex="32%"
-          formControlName="soDienThoaiThamChieu2Ctrl"
-        >
+        <input-text label="Số điện thoại tham chiếu 2" isTel="true" fxFlex="32%"
+          formControlName="soDienThoaiThamChieu2Ctrl">
         </input-text>
       </div>
       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
-        <input-text
-          label="Email"
-          isEmail="true"
-          fxFlex="32%"
-          formControlName="emailCtrl"
-        ></input-text>
-        <input-text
-          fxFlex="66%"
-          label="Địa chỉ"
-          formControlName="diaChiCtrl"
-        ></input-text>
+        <input-text label="Email" isEmail="true" fxFlex="32%" formControlName="emailCtrl"></input-text>
+        <input-text fxFlex="66%" label="Địa chỉ" formControlName="diaChiCtrl"></input-text>
       </div>
     </div>
   </div>
@@ -122,130 +69,56 @@
     </div>
     <div class="card-body">
       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
-        <input-select
-          label="Giới tính hiện tại"
-          fxFlex="23.5%"
-          formControlName="gioiTinhHienTaiCtrl"
-          [items]="lstGioiTinh"
-        >
+        <input-select label="Giới tính hiện tại" fxFlex="23.5%" formControlName="gioiTinhHienTaiCtrl"
+          [items]="lstGioiTinh">
         </input-select>
-        <input-select
-          label="Độ tuổi"
-          fxFlex="23.5%"
-          formControlName="doTuoiCtrl"
-          [items]="lstDoTuoi"
-        >
+        <input-select label="Độ tuổi" fxFlex="23.5%" formControlName="doTuoiCtrl" [items]="lstDoTuoi">
         </input-select>
-        <input-select
-          label="Tình trạng hôn nhân"
-          fxFlex="23.5%"
-          formControlName="tinhTrangHonNhanCtrl"
-          [items]="lstTinhTrangHonNhan"
-        >
+        <input-select label="Tình trạng hôn nhân" fxFlex="23.5%" formControlName="tinhTrangHonNhanCtrl"
+          [items]="lstTinhTrangHonNhan">
         </input-select>
-        <input-text
-          label="Số người phụ thuộc"
-          fxFlex="23.5%"
-          formControlName="soNguoiPhuThuocCtrl"
-        >
+        <input-text label="Số người phụ thuộc" fxFlex="23.5%" formControlName="soNguoiPhuThuocCtrl">
         </input-text>
       </div>
       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
-        <input-text
-          label="Thu nhập hàng tháng"
-          fxFlex="23.5%"
-          suffix=",000,000 đ"
-          formControlName="diaChiCtrl"
-        >
+        <input-text label="Thu nhập hàng tháng" fxFlex="23.5%" suffix=",000,000 đ" formControlName="diaChiCtrl">
         </input-text>
 
-        <input-select
-          label="Nhà ở"
-          fxFlex="23.5%"
-          formControlName="nhaOCtrl"
-          [items]="lstNhaO"
-        ></input-select>
+        <input-select label="Nhà ở" fxFlex="23.5%" formControlName="nhaOCtrl" [items]="lstNhaO"></input-select>
 
-        <input-select
-          label="Trình độ học vấn"
-          fxFlex="49%"
-          formControlName="trinhDoHocVanCtrl"
-          [items]="lstTrinhDoHocVan"
-        >
+        <input-select label="Trình độ học vấn" fxFlex="49%" formControlName="trinhDoHocVanCtrl"
+          [items]="lstTrinhDoHocVan">
         </input-select>
       </div>
       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
-        <input-text
-          label="Danh hiệu"
-          fxFlex="23.5%"
-          hint="Số lượng danh hiệu đạt được"
-          formControlName="danhHieuCtrl"
-        >
+        <input-text label="Danh hiệu" fxFlex="23.5%" hint="Số lượng danh hiệu đạt được" formControlName="danhHieuCtrl">
         </input-text>
 
-        <input-select
-          label="Loại hình đơn vị công tác hiện tại"
-          fxFlex="23.5%"
-          formControlName="loaiHinhDonViCongTacCtrl"
-          [items]="lstLoaiHinhDonViCongTac"
-        ></input-select>
-        <input-select
-          label="Cấp quản lý"
-          fxFlex="49%"
-          formControlName="capQuanLyCtrl"
-          [items]="lstCapQuanLy"
-        >
+        <input-select label="Loại hình đơn vị công tác hiện tại" fxFlex="23.5%"
+          formControlName="loaiHinhDonViCongTacCtrl" [items]="lstLoaiHinhDonViCongTac"></input-select>
+        <input-select label="Cấp quản lý" fxFlex="49%" formControlName="capQuanLyCtrl" [items]="lstCapQuanLy">
         </input-select>
       </div>
       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
-        <input-text
-          label="Số hợp đồng bảo hiểm"
-          fxFlex="23.5%"
-          formControlName="soHopDongBaoHiemCtrl"
-        >
+        <input-text label="Số hợp đồng bảo hiểm" fxFlex="23.5%" formControlName="soHopDongBaoHiemCtrl">
         </input-text>
 
-        <input-text
-          label="Số thẻ tín dụng"
-          fxFlex="23.5%"
-          hint="Số lượng thẻ tín dụng đang sử dụng"
-          formControlName="soTheTinDungCtrl"
-        >
+        <input-text label="Số thẻ tín dụng" fxFlex="23.5%" hint="Số lượng thẻ tín dụng đang sử dụng"
+          formControlName="soTheTinDungCtrl">
         </input-text>
-        <input-select
-          label="Nợ xấu"
-          fxFlex="23.5%"
-          formControlName="noXauCtrl"
-          [items]="lstNoXau"
-        >
+        <input-select label="Nợ xấu" fxFlex="23.5%" formControlName="noXauCtrl" [items]="lstNoXau">
         </input-select>
-        <input-select
-          label="Lịch sử tín dụng"
-          fxFlex="23.5%"
-          formControlName="lichSuTinDungCtrl"
-          [items]="lstLichSuTinDung"
-        ></input-select>
+        <input-select label="Lịch sử tín dụng" fxFlex="23.5%" formControlName="lichSuTinDungCtrl"
+          [items]="lstLichSuTinDung"></input-select>
       </div>
       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
-        <input-select
-          label="Tính thanh khoản"
-          fxFlex="23.5%"
-          formControlName="tinhThanhKhoanCtrl"
-          [items]="lstTinhThanhKhoan"
-        ></input-select>
-        <input-text
-          label="Tổng dư nợ tín dụng hiện tại"
-          fxFlex="23.5%"
-          suffix=",000,000 đ"
-          formControlName="tongDuNoTinDungCtrl"
-        >
+        <input-select label="Tính thanh khoản" fxFlex="23.5%" formControlName="tinhThanhKhoanCtrl"
+          [items]="lstTinhThanhKhoan"></input-select>
+        <input-text label="Tổng dư nợ tín dụng hiện tại" fxFlex="23.5%" suffix=",000,000 đ"
+          formControlName="tongDuNoTinDungCtrl">
         </input-text>
-        <input-text
-          label="Tổng giá trị đảm bảo"
-          fxFlex="23.5%"
-          suffix=",000,000 đ"
-          formControlName="tongGiaTriDamBaoCtrl"
-        >
+        <input-text label="Tổng giá trị đảm bảo" fxFlex="23.5%" suffix=",000,000 đ"
+          formControlName="tongGiaTriDamBaoCtrl">
         </input-text>
       </div>
     </div>
@@ -257,56 +130,25 @@
     </div>
     <div class="card-body">
       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
-        <input-select
-          label="Loại khoản vay"
-          fxFlex="23.5%"
-          formControlName="loaiKhoanVayCtrl"
-          [items]="lstLoaiKhoanVay"
-        ></input-select>
-        <input-text
-          label="Tên sản phẩm cho vay"
-          fxFlex="74.5%"
-          formControlName="tenSanPhamChoVayCtrl"
-        >
+        <input-select label="Loại khoản vay" fxFlex="23.5%" formControlName="loaiKhoanVayCtrl"
+          [items]="lstLoaiKhoanVay"></input-select>
+        <input-text label="Tên sản phẩm cho vay" fxFlex="74.5%" formControlName="tenSanPhamChoVayCtrl">
         </input-text>
       </div>
       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
-        <input-text
-          label="Số tiền cho vay"
-          fxFlex="23.5%"
-          hint="Đơn vị: triệu đồng"
-          formControlName="soTienChoVayCtrl"
-        >
+        <input-text label="Số tiền cho vay" fxFlex="23.5%" hint="Đơn vị: triệu đồng" formControlName="soTienChoVayCtrl">
         </input-text>
         <input-text label="Kỳ hạn" fxFlex="23.5%" formControlName="kyHanCtrl">
         </input-text>
-        <input-select
-          label="Hình thức cho vay"
-          fxFlex="23.5%"
-          formControlName="hinhThucChoVayCtrl"
-          [items]="lstHinhThucChoVay"
-        ></input-select>
-        <input-select
-          label="Hình thức thanh toán"
-          fxFlex="23.5%"
-          formControlName="hinhThucThanhToanCtrl"
-          [items]="lstHinhThucThanhToan"
-        ></input-select>
+        <input-select label="Hình thức cho vay" fxFlex="23.5%" formControlName="hinhThucChoVayCtrl"
+          [items]="lstHinhThucChoVay"></input-select>
+        <input-select label="Hình thức thanh toán" fxFlex="23.5%" formControlName="hinhThucThanhToanCtrl"
+          [items]="lstHinhThucThanhToan"></input-select>
       </div>
       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
-        <input-text
-          label="Lãi suất"
-          textarea="true"
-          fxFlex="23.5%"
-          formControlName="laiSuatCtrl"
-        >
+        <input-text label="Lãi suất" textarea="true" fxFlex="23.5%" formControlName="laiSuatCtrl">
         </input-text>
-        <input-text
-          label="Mục đích vay"
-          textarea="true"
-          fxFlex="74.5%"
-          formControlName="mucDichVayCtrl"
-        >
+        <input-text label="Mục đích vay" textarea="true" fxFlex="74.5%" formControlName="mucDichVayCtrl">
         </input-text>
       </div>
     </div>
