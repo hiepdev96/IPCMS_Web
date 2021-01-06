@@ -9,17 +9,47 @@
     </div>
     <div mat-dialog-content>
         <div class="modal-body">
-            <ng-container>
-                <div fxLayout="row" fxLayoutGap="2%" class="list-item">
-                    <div  fxFlex="20%">
-                        <span class="label">Họ tên</span>
-                    </div>
-                    <div>
-
-                    </div>
-                </div>
-                <mat-divider></mat-divider>
-            </ng-container>
+            <mat-list>
+                <ng-container *ngFor="let data of datas">
+                    <div mat-subheader>{{ data.title }}</div>
+                    <ng-container *ngFor="let value of data.values; let i = index">
+                        <mat-list-item>
+                            <mat-icon mat-list-icon style="cursor: pointer;">note</mat-icon>
+                            <div mat-line>
+                                <a href="javascript:void(0)">{{ value.ten_file }}</a><span *ngIf="value.ghi_chu"> - {{
+                                    value.ghi_chu }}</span>
+                            </div>
+                            <div mat-line>
+                                <span>
+                                    <div class="label-f">Ngày đăng:</div>
+                                    {{
+                                    convertToDate(value.thoi_diem_tao) | date: "dd/MM/yyyy"
+                                    }}
+                                </span>
+                            </div>
+                            <div mat-line>
+                                <span>
+                                    <div class="label-f">Thiết bị:</div>
+                                    {{ value.ten_thiet_bi }}
+                                </span>
+                            </div>
+                            <div mat-line>
+                                <span>
+                                    <div class="label-f">Nền tảng:</div>
+                                    {{ value.nen_tang }}
+                                </span>
+                            </div>
+                            <div mat-line [title]="'Vị trí: '+ value.vi_tri" style="cursor: context-menu;">
+                                <span class="upgrade">
+                                    <div class="label-f">Địa chỉ:</div>
+                                    {{ value.dia_chi }}
+                                </span>
+                            </div>
+                        </mat-list-item>
+                        <mat-divider *ngIf="data.values.length - 1 > i"></mat-divider>
+                    </ng-container>
+                </ng-container>
+            </mat-list>
         </div>
     </div>
     <div mat-dialog-actions>

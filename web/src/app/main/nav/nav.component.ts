@@ -41,7 +41,6 @@ export class NavComponent implements OnInit {
       }
       route = route.firstChild;
     }
-    console.log(arr);
     this.titlesNav$.emit(arr);
 
   }

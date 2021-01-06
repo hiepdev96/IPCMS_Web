@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ListGioiTinh, ListLoaiDinhDanh, ListMappingProfileValue } from 'src/app/common/data';
+import { Field, ProfileViewDetailResponse } from 'src/app/common/model/generic-model';
 
 @Component({
   selector: 'app-form-input-ho-so',
@@ -8,24 +10,24 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class FormInputHoSoComponent implements OnInit {
 
-  @Input() $role: string;
+  @Input() $item: ProfileViewDetailResponse;
   myForm = new FormGroup({
     hoTenCtrl: new FormControl(),
     ngaySinhCtrl: new FormControl(),
-    loaiGiayToDinhDanhCtrl: new FormControl(),
+    loaiDinhDanhCtrl: new FormControl(),
     soDinhDanhCtrl: new FormControl(),
     gioiTinhCtrl: new FormControl(),
     hoKhauThuongTruCtrl: new FormControl(),
     ngayCapCtrl: new FormControl(),
     noiCapCtrl: new FormControl(),
-    hieuLucCtrl: new FormControl(),
-    quocTichCtrl: new FormControl('VIET NAM'),
+    hieuLucDenCtrl: new FormControl(),
+    quocTichCtrl: new FormControl(),
     soDienThoaiCtrl: new FormControl(),
-    soDienThoaiThamChieu1Ctrl: new FormControl(),
+    soDienThoaiThamChieu1Ctrl: new FormControl('', [Validators.required]),
     soDienThoaiThamChieu2Ctrl: new FormControl(),
     emailCtrl: new FormControl(),
     diaChiCtrl: new FormControl(),
-    thuNhapHangThangCtrl: new FormControl(),
+    thuNhapThangCtrl: new FormControl(),
     nhaOCtrl: new FormControl(),
     gioiTinhHienTaiCtrl: new FormControl(),
     trinhDoHocVanCtrl: new FormControl(),
@@ -50,13 +52,12 @@ export class FormInputHoSoComponent implements OnInit {
     loaiKhachHangCtrl: new FormControl(),
     diemTinDungCtrl: new FormControl(),
     hangTinDungCtrl: new FormControl(),
-    doTuoiCtrl: new FormControl(),
+    tuoiCtrl: new FormControl(),
     tinhTrangHonNhanCtrl: new FormControl(),
     soNguoiPhuThuocCtrl: new FormControl(),
   });
   ctrls = this.myForm.controls;
-  lstLoaiGiayToDinhDanh = lstLoaiGiayToDinhDanh;
-  lstGioiTinh = lstGioiTinh;
+  lstGioiTinh = ListGioiTinh;
   lstNhaO = lstNhaO;
   lstTrinhDoHocVan = lstTrinhDoHocVan;
   lstLoaiHinhDonViCongTac = lstLoaiHinhDonViCongTac;
@@ -71,25 +72,28 @@ export class FormInputHoSoComponent implements OnInit {
   lstHangTinDung = lstHangTinDung;
   lstDoTuoi = lstDoTuoi;
   lstTinhTrangHonNhan = lstTinhTrangHonNhan;
+  lstField: Field[] = [];
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.$item);
+    this.$item.profile.forEach(x => {
+      this.lstField = this.lstField.concat(x.listFields);
+    });
+    console.log(this.lstField.map(x => x.name).sort());
+    this.setValueForm();
   }
-  onAvatarChange(event): void {
-    console.log(event);
+  setValueForm(): void {
+    ListMappingProfileValue.forEach(x => {
+      this.ctrls[x.nameCtrl].setValue(x.getValue(this.lstField));
+    });
+    console.log(this.ctrls.gioiTinhCtrl.value);
+  }
+  getListSelect(nameCtrl: string): any {
+    return ListMappingProfileValue.find(x => x.nameCtrl === nameCtrl)?.lstSelect;
   }
 }
 
-export const lstLoaiGiayToDinhDanh = [
-  'Chứng minh nhân dân (9 số)',
-  'Chứng minh nhân dân (12 số)',
-  'Căn cước công dân',
-  'Hộ chiếu',
-  'CMT (CAND)'
-];
-export const lstGioiTinh = [
-  'Nam', 'Nữ'
-];
 export const lstNhaO = [
 
   'Nhà riêng',

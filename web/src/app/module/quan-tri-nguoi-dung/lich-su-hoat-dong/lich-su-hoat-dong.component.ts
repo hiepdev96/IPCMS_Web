@@ -20,6 +20,5 @@ export class LichSuHoatDongComponent implements OnInit {
   ngOnInit(): void {
   }
   onScrollDown(): void {
-    console.log('cc');
   }
 }

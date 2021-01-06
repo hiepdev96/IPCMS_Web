@@ -11,10 +11,16 @@ import { ListWithTitle } from 'src/app/common/model/lst-with-title';
 export class FileDinhKemDialogComponent implements OnInit {
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: ListWithTitle<FileDinhKem>[]
+    @Inject(MAT_DIALOG_DATA) public datas: ListWithTitle<FileDinhKem>[]
   ) { }
 
   ngOnInit(): void {
   }
-
+  convertToDate(value: string): Date {
+    const res = new Date(value + 'Z');
+    if (res.toString() !== 'Invalid Date') {
+      return res;
+    }
+    return null;
+  }
 }

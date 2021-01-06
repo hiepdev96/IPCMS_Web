@@ -702,22 +702,9 @@
 
                     </mat-card-content>
                 </mat-card>
-
-
-
-
-
             </div>
         </div>
         <hr>
-        <!-- <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
-            <button mat-raised-button color="primary" (click)="showUpdate(true)">Cập nhật hồ sơ</button>
-            <button mat-raised-button color="primary">Đã chốt</button>
-            <button mat-raised-button color="accent" type="button">Khách hàng từ chối</button>
-            <button mat-raised-button color="warn" type="button">Hủy</button>
-            <button mat-raised-button type="button" (click)="openDialogConfirm()">Bỏ qua hồ sơ</button>
-            <button mat-stroked-button color="warn" type="button" (click)="close()">Đóng</button>
-        </div> -->
         <ng-container>
             <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
                 <button class="btn btn-primary" (click)="showUpdate(true)">Xử lý hồ sơ</button>
@@ -726,20 +713,10 @@
                 </ng-container>
             </div>
         </ng-container>
-        <!-- <ng-container *ngIf="isShowChecked">
-            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
-                <button mat-raised-button color="primary">Thẩm định đạt</button>
-                <button mat-raised-button color="warn" type="button">Thẩm định không đạt</button>
-                <button mat-stroked-button color="primary">Chấm điểm và xếp hạng</button>
-                <button mat-warn-button color="primary">Phân loại khách hàng</button>
-                <button mat-raised-button type="button" (click)="openDialogConfirm()">Nhả hồ sơ</button>
-                <button mat-stroked-button color="warn" type="button" (click)="close()">Đóng</button>
-            </div>
-        </ng-container> -->
     </div>
 </ng-container>
 <ng-template #updateForm>
-    <app-form-input-ho-so [$role]="$item.role"></app-form-input-ho-so>
+    <app-form-input-ho-so [$item]="$item"></app-form-input-ho-so>
     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%">
         <ng-container *ngIf="$item.role === 'TELESALE'">
             <button class="btn btn-success">Đã chốt</button>

@@ -16,7 +16,7 @@ export function validateDecimalNumber(c: FormControl): any {
     // const DECIMAL_NUMBER_REGEXP = new RegExp(/^\d*\.?,*\d*$/);
     const vS = String(c.value);
     const v = vS.replace(/,/g, '');
-    return !Number.isNaN(v) ? null : {
+    return !Number.isNaN(Number(v)) ? null : {
         decimalNumber: {
             valid: false
         }

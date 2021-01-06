@@ -46,7 +46,6 @@ export class InputSelectComponent implements OnInit, OnDestroy {
   private onDestroy$: Subject<void> = new Subject<void>();
 
   constructor() {
-    console.log(this.keyDisplay);
   }
 
 

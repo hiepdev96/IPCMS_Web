@@ -14,7 +14,6 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
   }
   setTitleNav(title: string): void {
-    console.log(title);
     this.title = title;
   }
   setTitlesNav(lst: string[]): void {

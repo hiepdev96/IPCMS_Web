@@ -53,7 +53,7 @@ export class ChiTietHoSoComponent implements OnInit {
         }));
       }
     });
-    console.log(this.lstDoc);
+    this.showUpdate(true);
   }
 
   openDialogFileDinhKem(): void {
@@ -187,7 +187,8 @@ export const a = {
         },
         {
           name: 'HIEU_LUC_DEN',
-          verified: 'N'
+          verified: 'N',
+          value: '2030-12-23 00:00:00.0',
         },
         {
           name: 'LOAI_DINH_DANH',
@@ -222,7 +223,7 @@ export const a = {
           verify_flag: 'Y'
         },
         {
-          name: 'dia_chi',
+          name: 'DIA_CHI',
           value: 'Đa Sỹ, Kiến Hưng, Hà Đông, Hà Nội',
           verified: '',
           verify_flag: 'N'

@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { validateMobilephone, validateNormalCharacters } from '../../../common/validators';
+import { validateDecimalNumber, validateMobilephone, validateNormalCharacters } from '../../../common/validators';
 import { takeUntil } from 'rxjs/operators';
 import { forwardRef } from '@angular/core';
 
@@ -30,6 +30,7 @@ export class InputTextComponent implements OnInit, OnDestroy, ControlValueAccess
   @Input() value: string;
   @Input() required: boolean;
   @Input() isNormalCharacters: boolean;
+  @Input() isDecimalNumber: boolean;
   @Input() isEmail: boolean;
   @Input() isTel: boolean;
   @Input() type: string;
@@ -55,6 +56,10 @@ export class InputTextComponent implements OnInit, OnDestroy, ControlValueAccess
     const lstValidate = [];
     if (this.isNormalCharacters) {
       lstValidate.push(validateNormalCharacters);
+    }
+    if (this.isDecimalNumber) {
+      console.log(this.isDecimalNumber);
+      lstValidate.push(validateDecimalNumber);
     }
     if (this.isEmail) {
       lstValidate.push(Validators.email);

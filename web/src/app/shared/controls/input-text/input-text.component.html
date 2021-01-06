@@ -29,13 +29,17 @@
 
 <div class="form-group full-width">
   <ng-container *ngIf="label">
-    <label>{{ label ? label : placeholder }}</label>
+    <label>{{ label ? label : placeholder }}</label
+    ><ng-container *ngIf="required">*</ng-container>
   </ng-container>
   <div class="input-group">
     <ng-container *ngIf="!textarea; else textareaHTML">
       <input
         type="text"
         class="form-control"
+        [ngClass]="{
+          'is-invalid': control.invalid && (control.dirty || control.touched)
+        }"
         [placeholder]="placeholder ? placeholder : ''"
         [formControl]="control"
         [required]="required"
@@ -55,7 +59,27 @@
       ></textarea>
     </ng-template>
     <div class="input-group-append" *ngIf="suffix">
-        <span class="input-group-text">{{suffix}}</span>
-      </div>
+      <span class="input-group-text">{{ suffix }}</span>
+    </div>
+    <ng-container *ngIf="control.invalid && (control.dirty || control.touched)">
+      <ng-container *ngIf="control.errors.required">
+        <span class="error invalid-feedback"> {{ label }} là bắt buộc </span>
+      </ng-container>
+      <ng-container *ngIf="control.errors.mobilephone">
+        <span class="error invalid-feedback">
+          {{ label }} không đúng định dạng số điện thoại
+        </span>
+      </ng-container>
+      <ng-container *ngIf="control.errors.decimalNumber">
+        <span class="error invalid-feedback">
+          {{ label }} không đúng định dạng số
+        </span>
+      </ng-container>
+      <ng-container *ngIf="control.errors.email">
+        <span class="error invalid-feedback">
+          {{ label }} không đúng định dạng email
+        </span>
+      </ng-container>
+    </ng-container>
   </div>
 </div>

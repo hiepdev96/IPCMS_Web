@@ -1,5 +1,5 @@
 import { SelectionInput } from './model/selection-input';
-
+import { MappingProfileValue } from './model/mapping-profile-value';
 export const ListClassifyCustomer: SelectionInput[] = [
     new SelectionInput({
         name: 'Hồ sơ phân loại khách hàng',
@@ -324,3 +324,143 @@ export const ListNhaO: SelectionInput[] = [
     }),
 ];
 
+export const ListMappingProfileValue: MappingProfileValue[] = [
+    new MappingProfileValue({
+        block_id: 1,
+        name: 'LOAI_DINH_DANH',
+        nameCtrl: 'loaiDinhDanhCtrl',
+        keySelect: 'value',
+        type: 'select',
+        lstSelect: ListLoaiDinhDanh
+    }),
+    new MappingProfileValue({
+        block_id: 1,
+        name: 'SO_DINH_DANH',
+        nameCtrl: 'soDinhDanhCtrl'
+    }),
+    new MappingProfileValue({
+        block_id: 1,
+        name: 'HO_TEN',
+        nameCtrl: 'hoTenCtrl'
+    }),
+    new MappingProfileValue({
+        block_id: 1,
+        name: 'QUOC_TICH',
+        nameCtrl: 'quocTichCtrl'
+    }),
+    new MappingProfileValue({
+        block_id: 1,
+        name: 'NGAY_SINH',
+        nameCtrl: 'ngaySinhCtrl',
+        type: 'date'
+    }),
+    new MappingProfileValue({
+        block_id: 1,
+        name: 'GIOI_TINH',
+        nameCtrl: 'gioiTinhCtrl',
+        type: 'select',
+        keySelect: 'value',
+        lstSelect: ListGioiTinh
+    }),
+    new MappingProfileValue({
+        block_id: 1,
+        name: 'HO_KHAU_THUONG_TRU',
+        nameCtrl: 'hoKhauThuongTruCtrl'
+    }),
+    new MappingProfileValue({
+        block_id: 1,
+        name: 'NGAY_CAP',
+        nameCtrl: 'ngayCapCtrl',
+        type: 'date'
+    }),
+    new MappingProfileValue({
+        block_id: 1,
+        name: 'NOI_CAP',
+        nameCtrl: 'noiCapCtrl'
+    }),
+    new MappingProfileValue({
+        block_id: 1,
+        name: 'HIEU_LUC_DEN',
+        nameCtrl: 'hieuLucDenCtrl',
+        type: 'date'
+    }),
+    new MappingProfileValue({
+        block_id: 2,
+        name: 'SO_DIEN_THOAI',
+        nameCtrl: 'soDienThoaiCtrl',
+    }),
+    new MappingProfileValue({
+        block_id: 2,
+        name: 'SO_DIEN_THOAI',
+        nameCtrl: 'soDienThoaiCtrl',
+    }),
+    new MappingProfileValue({
+        block_id: 2,
+        name: 'SO_DIEN_THOAI',
+        nameCtrl: 'soDienThoaiCtrl',
+    }),
+    new MappingProfileValue({
+        block_id: 2,
+        name: 'SDT_THAM_CHIEU_1',
+        nameCtrl: 'soDienThoaiThamChieu1Ctrl',
+    }),
+    new MappingProfileValue({
+        block_id: 2,
+        name: 'SDT_THAM_CHIEU_2',
+        nameCtrl: 'soDienThoaiThamChieu2Ctrl',
+    }),
+    new MappingProfileValue({
+        block_id: 2,
+        name: 'DIA_CHI',
+        nameCtrl: 'diaChiCtrl',
+    }),
+    new MappingProfileValue({
+        block_id: 2,
+        name: 'EMAIL',
+        nameCtrl: 'emailCtrl',
+    }),
+    new MappingProfileValue({
+        block_id: 3,
+        name: 'THU_NHAP_THANG',
+        nameCtrl: 'thuNhapThangCtrl',
+    }),
+    new MappingProfileValue({
+        block_id: 4,
+        name: 'NHA_O',
+        nameCtrl: 'nhaOCtrl',
+        type: 'select',
+        keySelect: 'value',
+        lstSelect: ListNhaO
+    }),
+    new MappingProfileValue({
+        block_id: 4,
+        name: 'SO_HOP_DONG_BAO_HIEM',
+        nameCtrl: 'soHopDongBaoHiemCtrl',
+    }),
+    new MappingProfileValue({
+        block_id: 4,
+        name: 'SO_NGUOI_PHU_THUOC',
+        nameCtrl: 'soNguoiPhuThuocCtrl',
+    }),
+    new MappingProfileValue({
+        block_id: 5,
+        name: 'TINH_TRANG_HON_NHAN',
+        nameCtrl: 'tinhTrangHonNhanCtrl',
+        type: 'select',
+        keySelect: 'value',
+        lstSelect: ListTinhTrangHonNhan
+    }),
+    new MappingProfileValue({
+        block_id: 5,
+        name: 'TUOI',
+        nameCtrl: 'tuoiCtrl',
+    }),
+    new MappingProfileValue({
+        block_id: 5,
+        name: 'GIOI_TINH_HIEN_TAI',
+        nameCtrl: 'gioiTinhHienTaiCtrl',
+        type: 'select',
+        keySelect: 'value',
+        lstSelect: ListGioiTinh
+    }),
+];
