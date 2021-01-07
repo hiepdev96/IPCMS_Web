@@ -15,7 +15,7 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angula
 import { environment } from '../../environments/environment';
 import { AuthService } from '../services/auth.service';
 import { SHA256 } from '../common/functions';
-import { FilterProfileRequest, ProfileViewDetailRequest, SwaggerException } from '../common/model/generic-model';
+import { FilterProfileRequest, ProfileViewDetailRequest, SwaggerException, TelesaleRequest } from '../common/model/generic-model';
 
 
 export const API_BASE_URL = new InjectionToken<string>
@@ -96,6 +96,54 @@ export class ProfileClient {
                 } else
                     return <Observable<any | null>><any>_observableThrow(response$);
             }));
+    }
+    public telesale(request: TelesaleRequest, fid: string = 'F14'){
+        let params: string[] = [];
+        let url_ = this.baseUrl + "/ipcms/icp/telesale?";
+        const userId = this.authService.getUserId();
+        url_ += "user_id=" + encodeURIComponent("" + userId) + "&";
+        params.push(userId);
+        params.push(this.authService.getSecretKey());
+        url_ += "fid=" + encodeURIComponent("" + fid) + "&";
+        params.push(fid);
+        const keyParams: string[] = [
+            'id_profile',
+            'status_profile',
+            'scope',
+            'list_parameter',
+            'note'
+        ];
+        for (const key of keyParams) {
+            const v = request[key] ?? '';
+            if (v !== '') {
+                url_ += `${key}=` + encodeURIComponent("" + v) + "&";
+
+            } else {
+                url_ += `${key}&`;
+            }
+            params.push(v);
+        }
+        url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params)) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+        let options_: any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+        return this.http.request('get', url_, options_)
+        .pipe(_observableMergeMap((response$: any) => {
+            return this.processResponse(response$);
+        })).pipe(_observableCatch((response$: any) => {
+            if (response$ instanceof HttpResponseBase) {
+                try {
+                    return this.processResponse(<any>response$);
+                } catch (e) {
+                    return <Observable<any | null>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<any | null>><any>_observableThrow(response$);
+        }));
     }
 
     public viewDetail(request: ProfileViewDetailRequest, fid: string = 'F16') {

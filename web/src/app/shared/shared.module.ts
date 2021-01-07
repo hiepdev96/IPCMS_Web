@@ -9,6 +9,9 @@ import { InputSelectComponent } from './controls/select/input-select.component';
 import { InputDateComponent } from './controls/input-date/input-date.component';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { InputFromToDateComponent } from './controls/input-from-to-date/input-from-to-date.component';
+import { TinhThanhCtrlComponent } from './controls/tinh-thanh-ctrl/tinh-thanh-ctrl.component';
+import { QuanHuyenCtrlComponent } from './controls/quan-huyen-ctrl/quan-huyen-ctrl.component';
+import { PhuongXaCtrlComponent } from './controls/phuong-xa-ctrl/phuong-xa-ctrl.component';
 
 
 @NgModule({
@@ -18,6 +21,9 @@ import { InputFromToDateComponent } from './controls/input-from-to-date/input-fr
     InputSelectComponent,
     InputDateComponent,
     InputFromToDateComponent,
+    TinhThanhCtrlComponent,
+    QuanHuyenCtrlComponent,
+    PhuongXaCtrlComponent,
   ],
   imports: [
     CommonModule,
@@ -38,7 +44,10 @@ import { InputFromToDateComponent } from './controls/input-from-to-date/input-fr
     InputSelectComponent,
     InputDateComponent,
     NgxDaterangepickerMd,
-    InputFromToDateComponent
-  ]
+    InputFromToDateComponent,
+    TinhThanhCtrlComponent,
+    QuanHuyenCtrlComponent,
+    PhuongXaCtrlComponent,
+  ],
 })
 export class SharedModule { }

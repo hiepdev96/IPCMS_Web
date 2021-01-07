@@ -104,6 +104,7 @@ export class DanhSachHoSoComponent implements OnInit, AfterViewInit {
         if (x.errorCode !== 'OK') {
           return this.alertService.error(x.errorMessage, 'Lỗi lọc hồ sơ');
         } else {
+          const count = this.lstResult.length;
           if (x.list_new_profile) {
             this.lstResult = this.lstResult.concat(x.list_new_profile);
           }
@@ -111,7 +112,8 @@ export class DanhSachHoSoComponent implements OnInit, AfterViewInit {
             this.lstResult = this.lstResult.concat(x.list_old_profile);
           }
           if ((!x.list_new_profile || !x.list_new_profile.length)
-            && (!x.list_old_profile || !x.list_old_profile.length)) {
+            && (!x.list_old_profile || !x.list_old_profile.length)
+            || (this.lstResult.length - count) < 20) {
             this.isShowLoadMore = false;
           }
         }
@@ -143,7 +145,7 @@ export class DanhSachHoSoComponent implements OnInit, AfterViewInit {
       status: item.status,
       name: `${item.id_number} - ${item.fullname}`
     });
-      // const features =
+    // const features =
     //   'toolbar=no,location=no,directories=no,menubar=no,scrollbars=yes,resizable=yes,status=yes,left=0,top=0';
     // const page = window.open('./#/chi-tiet-ho-so', '_blank', features);
   }

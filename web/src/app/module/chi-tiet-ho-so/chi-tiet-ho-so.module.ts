@@ -6,12 +6,14 @@ import { ChiTietHoSoComponent } from './chi-tiet-ho-so.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormInputHoSoModule } from '../form-input-ho-so/form-input-ho-so.module';
 import { FileDinhKemDialogComponent } from './dialog/file-dinh-kem-dialog/file-dinh-kem-dialog.component';
+import { ConfirmChotHoSoComponent } from './dialog/confirm-chot-ho-so/confirm-chot-ho-so.component';
 
 
 @NgModule({
   declarations: [
     ChiTietHoSoComponent,
-    FileDinhKemDialogComponent
+    FileDinhKemDialogComponent,
+    ConfirmChotHoSoComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { FileDinhKemDialogComponent } from './dialog/file-dinh-kem-dialog/file-d
     ChiTietHoSoComponent
   ],
   entryComponents: [
-    FileDinhKemDialogComponent
+    FileDinhKemDialogComponent,
+    ConfirmChotHoSoComponent
   ]
 })
 export class ChiTietHoSoModule { }

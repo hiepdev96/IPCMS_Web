@@ -463,4 +463,121 @@ export const ListMappingProfileValue: MappingProfileValue[] = [
         keySelect: 'value',
         lstSelect: ListGioiTinh
     }),
+    new MappingProfileValue({
+        block_id: 6,
+        name: 'TRINH_DO_HOC_VAN',
+        nameCtrl: 'trinhDoHocVanCtrl',
+        type: 'select',
+        keySelect: 'value',
+        lstSelect: ListTrinhDoHocVan
+    }),
+    new MappingProfileValue({
+        block_id: 7,
+        name: 'DANH_HIEU',
+        nameCtrl: 'danhHieuCtrl',
+    }),
+    new MappingProfileValue({
+        block_id: 7,
+        name: 'LOAI_DON_VI_CONG_TAC',
+        nameCtrl: 'loaiDonViCongTacCtrl',
+        type: 'select',
+        keySelect: 'value',
+        lstSelect: ListLoaiDonViCongTac
+    }),
+    new MappingProfileValue({
+        block_id: 7,
+        name: 'CAP_QUAN_LY',
+        nameCtrl: 'capQuanLyCtrl',
+        type: 'select',
+        keySelect: 'value',
+        lstSelect: ListCapQuanLy
+    }),
+    new MappingProfileValue({
+        block_id: 8,
+        name: 'SO_THE_TIN_DUNG',
+        nameCtrl: 'soTheTinDungCtrl'
+    }),
+    new MappingProfileValue({
+        block_id: 9,
+        name: 'TONG_DU_NO_TIN_DUNG',
+        nameCtrl: 'tongDuNoTinDungCtrl'
+    }),
+    new MappingProfileValue({
+        block_id: 9,
+        name: 'LICH_SU_TIN_DUNG',
+        nameCtrl: 'lichSuTinDungCtrl',
+        type: 'select',
+        keySelect: 'value',
+        lstSelect: ListLichSuTinDung
+    }),
+    new MappingProfileValue({
+        block_id: 9,
+        name: 'NO_XAU',
+        nameCtrl: 'noXauCtrl',
+        type: 'select',
+        keySelect: 'value',
+        lstSelect: ListNoXau
+    }),
+    new MappingProfileValue({
+        block_id: 10,
+        name: 'TONG_GIA_TRI_TAI_SAN_DAM_BAO',
+        nameCtrl: 'tongGiaTriDamBaoCtrl',
+    }),
+    new MappingProfileValue({
+        block_id: 10,
+        name: 'TINH_THANH_KHOAN',
+        nameCtrl: 'tinhThanhKhoanCtrl',
+        type: 'select',
+        keySelect: 'value',
+        lstSelect: ListTinhThanhKhoan
+    }),
+    new MappingProfileValue({
+        block_id: 11,
+        name: 'LOAI_KHOAN_VAY',
+        nameCtrl: 'loaiKhoanVayCtrl',
+        type: 'select',
+        keySelect: 'value',
+        lstSelect: ListLoaiKhoanVay
+    }),
+    new MappingProfileValue({
+        block_id: 11,
+        name: 'SAN_PHAM_VAY',
+        nameCtrl: 'sanPhamChoVayCtrl'
+    }),
+    new MappingProfileValue({
+        block_id: 11,
+        name: 'SO_TIEN_VAY',
+        nameCtrl: 'soTienVayCtrl'
+    }),
+    new MappingProfileValue({
+        block_id: 11,
+        name: 'KY_HAN',
+        nameCtrl: 'kyHanCtrl'
+    }),
+    new MappingProfileValue({
+        block_id: 11,
+        name: 'LAI_XUAT',
+        nameCtrl: 'laiSuatCtrl'
+    }),
+    new MappingProfileValue({
+        block_id: 11,
+        name: 'MUC_DICH_VAY',
+        nameCtrl: 'mucDichVayCtrl'
+    }),
+    new MappingProfileValue({
+        block_id: 11,
+        name: 'HINH_THUC_VAY',
+        nameCtrl: 'hinhThucVayCtrl',
+        type: 'select',
+        keySelect: 'value',
+        lstSelect: ListHinhThucVay
+    }),
+    new MappingProfileValue({
+        block_id: 11,
+        name: 'HINH_THUC_THANH_TOAN',
+        nameCtrl: 'hinhThucThanhToanCtrl',
+        type: 'select',
+        keySelect: 'value',
+        lstSelect: ListHinhThucThanhToan
+    }),
 ];

@@ -1,8 +1,8 @@
-<ng-container *ngIf="!isShowUpdate; else updateForm;">
-    <div class="p-20">
-        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-            <div fxFlex="30%">
-                <!-- <mat-card class="example-card m-b-20">
+<ng-container *ngIf="!isShowUpdate; else updateForm">
+  <div class="p-20">
+    <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+      <div fxFlex="30%">
+        <!-- <mat-card class="example-card m-b-20">
 
                     <mat-card-content>
                         <mat-card-header class="border-bottom m-b-20">
@@ -38,199 +38,206 @@
                     </mat-card-content>
                 </mat-card> -->
 
-                <mat-card class="example-card m-b-20">
-                    <!-- <mat-card-header>
+        <mat-card class="example-card m-b-20">
+          <!-- <mat-card-header>
                     <mat-card-title>Thông tin định danh</mat-card-title>
                 </mat-card-header> -->
-                    <img mat-card-image
-                        src="https://scontent.fhan2-1.fna.fbcdn.net/v/t1.0-9/101824450_1606439909537738_7169990735763079168_n.jpg?_nc_cat=106&ccb=2&_nc_sid=09cbfe&_nc_ohc=y1avLv1JYJoAX-5LmD5&_nc_ht=scontent.fhan2-1.fna&oh=6562ff4cba7d99d0fb563ea6d3fd0b11&oe=6017B896">
-                    <mat-card-content>
-                        <div class="label-type">
-                            <ng-container *ngIf="isShowCheckbox">
-                                <mat-checkbox value="true"></mat-checkbox>
-                            </ng-container>
-                            <ng-container *ngIf="isShowChecked">
-                                <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                            </ng-container>
-                            Thông tin định danh và nhận diện
-                        </div>
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="35%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Họ và tên
-                                </label>
-                            </div>
-                            <div fxFlex="63%">
-                                <span>{{getFieldName('HO_TEN')}}</span>
-                            </div>
-                        </div>
+          <img
+            mat-card-image
+            src="https://scontent.fhan2-1.fna.fbcdn.net/v/t1.0-9/101824450_1606439909537738_7169990735763079168_n.jpg?_nc_cat=106&ccb=2&_nc_sid=09cbfe&_nc_ohc=y1avLv1JYJoAX-5LmD5&_nc_ht=scontent.fhan2-1.fna&oh=6562ff4cba7d99d0fb563ea6d3fd0b11&oe=6017B896"
+          />
+          <mat-card-content>
+            <div class="label-type">
+              <ng-container *ngIf="isShowCheckbox">
+                <mat-checkbox value="true"></mat-checkbox>
+              </ng-container>
+              <ng-container *ngIf="isShowChecked">
+                <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+              </ng-container>
+              Thông tin định danh và nhận diện
+            </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="35%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Họ và tên
+                </label>
+              </div>
+              <div fxFlex="63%">
+                <span>{{ getFieldName("HO_TEN") }}</span>
+              </div>
+            </div>
 
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="35%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Ngày sinh
-                                </label>
-                            </div>
-                            <div fxFlex="63%">
-                                <span>{{convertToDate(getFieldName('NGAY_SINH')) | date: 'dd/MM/yyyy'}}</span>
-                            </div>
-                        </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="35%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Ngày sinh
+                </label>
+              </div>
+              <div fxFlex="63%">
+                <span>{{
+                  convertToDate(getFieldName("NGAY_SINH")) | date: "dd/MM/yyyy"
+                }}</span>
+              </div>
+            </div>
 
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="35%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Giới tính
-                                </label>
-                            </div>
-                            <div fxFlex="63%">
-                                <span>{{getGioiTinh(getFieldName('GIOI_TINH'))}}</span>
-                            </div>
-                        </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="35%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Giới tính
+                </label>
+              </div>
+              <div fxFlex="63%">
+                <span>{{ getGioiTinh(getFieldName("GIOI_TINH")) }}</span>
+              </div>
+            </div>
 
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="35%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Hộ khẩu thường trú
-                                </label>
-                            </div>
-                            <div fxFlex="63%">
-                                <span>{{getFieldName('HO_KHAU_THUONG_TRU')}}</span>
-                            </div>
-                        </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="35%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Hộ khẩu thường trú
+                </label>
+              </div>
+              <div fxFlex="63%">
+                <span>{{ getFieldName("HO_KHAU_THUONG_TRU") }}</span>
+              </div>
+            </div>
 
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="35%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Giấy tờ định danh
-                                </label>
-                            </div>
-                            <div fxFlex="63%">
-                                <span>{{getLoaiDinhDanh(getFieldName('LOAI_DINH_DANH'))}}</span>
-                            </div>
-                        </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="35%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Giấy tờ định danh
+                </label>
+              </div>
+              <div fxFlex="63%">
+                <span>{{
+                  getLoaiDinhDanh(getFieldName("LOAI_DINH_DANH"))
+                }}</span>
+              </div>
+            </div>
 
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="35%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Số định danh
+                </label>
+              </div>
+              <div fxFlex="63%">
+                <span>{{ getFieldName("SO_DINH_DANH") }}</span>
+              </div>
+            </div>
 
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="35%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Số định danh
-                                </label>
-                            </div>
-                            <div fxFlex="63%">
-                                <span>{{getFieldName('SO_DINH_DANH')}}</span>
-                            </div>
-                        </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="35%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Ngày cấp
+                </label>
+              </div>
+              <div fxFlex="63%">
+                <span>{{
+                  convertToDate(getFieldName("NGAY_CAP")) | date: "dd/MM/yyyy"
+                }}</span>
+              </div>
+            </div>
 
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="35%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Ngày cấp
-                                </label>
-                            </div>
-                            <div fxFlex="63%">
-                                <span>{{convertToDate(getFieldName('NGAY_CAP')) | date: 'dd/MM/yyyy'}}</span>
-                            </div>
-                        </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="35%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Nơi cấp
+                </label>
+              </div>
+              <div fxFlex="63%">
+                <span>{{ getFieldName("NOI_CAP") }}</span>
+              </div>
+            </div>
 
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="35%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Nơi cấp
-                                </label>
-                            </div>
-                            <div fxFlex="63%">
-                                <span>{{getFieldName('NOI_CAP')}}</span>
-                            </div>
-                        </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="35%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Hiệu lực đến
+                </label>
+              </div>
+              <div fxFlex="63%">
+                <span>{{
+                  convertToDate(getFieldName("HIEU_LUC_DEN"))
+                    | date: "dd/MM/yyyy"
+                }}</span>
+              </div>
+            </div>
 
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="35%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Hiệu lực đến
-                                </label>
-                            </div>
-                            <div fxFlex="63%">
-                                <span>{{convertToDate(getFieldName('HIEU_LUC_DEN')) | date: 'dd/MM/yyyy'}}</span>
-                            </div>
-                        </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="35%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Quốc tịch
+                </label>
+              </div>
+              <div fxFlex="63%">
+                <span>{{ getFieldName("QUOC_TICH") }}</span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
 
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="35%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Quốc tịch
-                                </label>
-                            </div>
-                            <div fxFlex="63%">
-                                <span>{{getFieldName('QUOC_TICH')}}</span>
-                            </div>
-                        </div>
-
-
-                    </mat-card-content>
-                </mat-card>
-
-
-                <!-- <mat-card class="example-card  m-b-20">
+        <!-- <mat-card class="example-card  m-b-20">
                     <mat-card-header class="border-bottom m-b-20">
                         <div class="label-type">Thông tin các tệp đính kèm</div>
                     </mat-card-header>
@@ -251,7 +258,7 @@
                     </mat-card-content>
                 </mat-card> -->
 
-                <!-- <mat-card class="example-card  m-b-20">
+        <!-- <mat-card class="example-card  m-b-20">
                     <mat-card-header class="border-bottom m-b-20">
                         <div class="label-type">Thông tin phân loại</div>
                     </mat-card-header>
@@ -267,7 +274,7 @@
                     </mat-card-content>
                 </mat-card> -->
 
-                <!-- <mat-card class="example-card  m-b-20">
+        <!-- <mat-card class="example-card  m-b-20">
                     <mat-card-header class="border-bottom m-b-20">
                         <div class="label-type">Thông tin đánh giá</div>
                     </mat-card-header>
@@ -290,442 +297,503 @@
                         </div>
                     </mat-card-content>
                 </mat-card> -->
+      </div>
+      <div fxFlex="68%">
+        <mat-card class="example-card m-b-20">
+          <mat-card-header class="border-bottom m-b-20">
+            <div class="label-type">
+              <ng-container *ngIf="isShowCheckbox">
+                <mat-checkbox value="true"></mat-checkbox>
+              </ng-container>
+              <ng-container *ngIf="isShowChecked">
+                <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+              </ng-container>
+              Thông tin liên hệ
             </div>
-            <div fxFlex="68%">
-                <mat-card class="example-card  m-b-20">
-                    <mat-card-header class="border-bottom m-b-20">
-                        <div class="label-type">
-                            <ng-container *ngIf="isShowCheckbox">
-                                <mat-checkbox value="true"></mat-checkbox>
-                            </ng-container>
-                            <ng-container *ngIf="isShowChecked">
-                                <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                            </ng-container>
-                            Thông tin liên hệ
-                        </div>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Số điện thoại
-                                </label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getFieldName('SO_DIEN_THOAI')}}</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Số điện thoại tham chiếu 1
-                                </label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getFieldName('SDT_THAM_CHIEU_1')}}</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Số điện thoại tham chiếu 2
-                                </label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getFieldName('SDT_THAM_CHIEU_2')}}</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>Email</label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getFieldName('EMAIL')}}</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Địa chỉ
-                                </label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getFieldName('dia_chi')}}</span>
-                            </div>
-                        </div>
-                    </mat-card-content>
-                </mat-card>
-
-                <mat-card class="example-card m-b-20">
-                    <mat-card-header class="border-bottom m-b-20">
-                        <div class="label-type">
-                            <ng-container *ngIf="isShowCheckbox">
-                                <mat-checkbox value="true"></mat-checkbox>
-                            </ng-container>
-                            <ng-container *ngIf="isShowChecked">
-                                <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                            </ng-container>
-                            Thông tin đặc trưng
-                        </div>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Giới tính hiện tại
-                                </label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getGioiTinh(getFieldName('GIOI_TINH_HIEN_TAI'))}}</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Tuổi
-                                </label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getFieldName('TUOI')}}</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Tình trạng hôn nhân
-                                </label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getTinhTrangHonNhan(getFieldName('TINH_TRANG_HON_NHAN'))}}</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Số người phụ thuộc
-                                </label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getFieldName('SO_NGUOI_PHU_THUOC')}} người</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Thu nhập hàng tháng
-                                </label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getFieldName('THU_NHAP_THANG')}} triệu đồng</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Nhà ở
-                                </label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getNhaO(getFieldName('NHA_O'))}}</span>
-                            </div>
-                        </div>
-
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Trình độ học vấn
-                                </label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getTrinhDoHocVan(getFieldName('TRINH_DO_HOC_VAN'))}}</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Số danh hiệu đạt được
-                                </label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getFieldName('DANH_HIEU')}}</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Loại hình đơn vị công tác hiện tại
-                                </label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getLoaiDonViCongTac(getFieldName('LOAI_DON_VI_CONG_TAC'))}}</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>Cấp quản lý</label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getCapQuanLy(getFieldName('CAP_QUAN_LY'))}}</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>
-                                    <ng-container *ngIf="isShowCheckbox">
-                                        <mat-checkbox value="true"></mat-checkbox>
-                                    </ng-container>
-                                    <ng-container *ngIf="isShowChecked">
-                                        <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                                    </ng-container>
-                                    Thanh toán bằng thẻ tín dụng
-                                </label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getFieldName('SO_THE_TIN_DUNG')}} thẻ</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>Tổng dư nợ tín dụng</label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getFieldName('TONG_DU_NO_TIN_DUNG')}} triệu đồng</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>Lịch sử tín dụng</label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getLichSuTinDung(getFieldName('LICH_SU_TIN_DUNG'))}}</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>Nợ xấu</label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getNoXau(getFieldName('NO_XAU'))}}</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>Tổng giá trị tài sản đảm bảo</label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getFieldName('TONG_GIA_TRI_TAI_SAN_DAM_BAO')}} triệu đồng</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>Tính thanh khoản</label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getTinhThanhKhoan(getFieldName('TINH_THANH_KHOAN'))}}</span>
-                            </div>
-                        </div>
-                    </mat-card-content>
-                </mat-card>
-
-                <mat-card class="example-card  m-b-20">
-                    <mat-card-header class="border-bottom m-b-20">
-                        <div class="label-type">Thông tin khoản vay</div>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>Loại khoản vay</label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getLoaiKhoanVay(getFieldName('LOAI_KHOAN_VAY'))}}</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>Sản phẩn vay</label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getFieldName('SAN_PHAM_VAY')}}</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>Số tiền vay</label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getFieldName('SO_TIEN_VAY')}} triệu đồng</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>Kỳ hạn</label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getFieldName('KY_HAN')}}</span>
-                            </div>
-                        </div>
-
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>Hình thức vay</label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getHinhThucVay(getFieldName('HINH_THUC_VAY'))}}</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>Hình thức thanh toán</label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getHinhThucThanhToan(getFieldName('HINH_THUC_THANH_TOAN'))}}</span>
-                            </div>
-                        </div>
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>Lãi suất</label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getFieldName('LAI_XUAT')}}</span>
-                            </div>
-                        </div>
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="25%">
-                                <label>Mục đích vay</label>
-                            </div>
-                            <div fxFlex="73%">
-                                <span>{{getFieldName('MUC_DICH_VAY')}}</span>
-                            </div>
-                        </div>
-
-                    </mat-card-content>
-                </mat-card>
+          </mat-card-header>
+          <mat-card-content>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Số điện thoại
+                </label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{ getFieldName("SO_DIEN_THOAI") }}</span>
+              </div>
             </div>
-        </div>
-        <hr>
-        <ng-container>
-            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
-                <button class="btn btn-primary" (click)="showUpdate(true)">Xử lý hồ sơ</button>
-                <ng-container *ngIf="checkShowButtonFileDinhKem()">
-                    <button class="btn btn-secondary" (click)="openDialogFileDinhKem()">Xem tệp đính kèm</button>
-                </ng-container>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Số điện thoại tham chiếu 1
+                </label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{ getFieldName("SDT_THAM_CHIEU_1") }}</span>
+              </div>
             </div>
-        </ng-container>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Số điện thoại tham chiếu 2
+                </label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{ getFieldName("SDT_THAM_CHIEU_2") }}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>Email</label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{ getFieldName("EMAIL") }}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Địa chỉ
+                </label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{ getFieldName("dia_chi") }}</span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="example-card m-b-20">
+          <mat-card-header class="border-bottom m-b-20">
+            <div class="label-type">
+              <ng-container *ngIf="isShowCheckbox">
+                <mat-checkbox value="true"></mat-checkbox>
+              </ng-container>
+              <ng-container *ngIf="isShowChecked">
+                <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+              </ng-container>
+              Thông tin đặc trưng
+            </div>
+          </mat-card-header>
+          <mat-card-content>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Giới tính hiện tại
+                </label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{
+                  getGioiTinh(getFieldName("GIOI_TINH_HIEN_TAI"))
+                }}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Tuổi
+                </label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{ getFieldName("TUOI") }}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Tình trạng hôn nhân
+                </label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{
+                  getTinhTrangHonNhan(getFieldName("TINH_TRANG_HON_NHAN"))
+                }}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Số người phụ thuộc
+                </label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{ getFieldName("SO_NGUOI_PHU_THUOC") }} người</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Thu nhập hàng tháng
+                </label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{ getFieldName("THU_NHAP_THANG") }} triệu đồng</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Nhà ở
+                </label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{ getNhaO(getFieldName("NHA_O")) }}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Trình độ học vấn
+                </label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{
+                  getTrinhDoHocVan(getFieldName("TRINH_DO_HOC_VAN"))
+                }}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Số danh hiệu đạt được
+                </label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{ getFieldName("DANH_HIEU") }}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Loại hình đơn vị công tác hiện tại
+                </label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{
+                  getLoaiDonViCongTac(getFieldName("LOAI_DON_VI_CONG_TAC"))
+                }}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>Cấp quản lý</label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{ getCapQuanLy(getFieldName("CAP_QUAN_LY")) }}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>
+                  <ng-container *ngIf="isShowCheckbox">
+                    <mat-checkbox value="true"></mat-checkbox>
+                  </ng-container>
+                  <ng-container *ngIf="isShowChecked">
+                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  </ng-container>
+                  Thanh toán bằng thẻ tín dụng
+                </label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{ getFieldName("SO_THE_TIN_DUNG") }} thẻ</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>Tổng dư nợ tín dụng</label>
+              </div>
+              <div fxFlex="73%">
+                <span
+                  >{{ getFieldName("TONG_DU_NO_TIN_DUNG") }} triệu đồng</span
+                >
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>Lịch sử tín dụng</label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{
+                  getLichSuTinDung(getFieldName("LICH_SU_TIN_DUNG"))
+                }}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>Nợ xấu</label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{ getNoXau(getFieldName("NO_XAU")) }}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>Tổng giá trị tài sản đảm bảo</label>
+              </div>
+              <div fxFlex="73%">
+                <span
+                  >{{ getFieldName("TONG_GIA_TRI_TAI_SAN_DAM_BAO") }} triệu
+                  đồng</span
+                >
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>Tính thanh khoản</label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{
+                  getTinhThanhKhoan(getFieldName("TINH_THANH_KHOAN"))
+                }}</span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="example-card m-b-20">
+          <mat-card-header class="border-bottom m-b-20">
+            <div class="label-type">Thông tin khoản vay</div>
+          </mat-card-header>
+          <mat-card-content>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>Loại khoản vay</label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{
+                  getLoaiKhoanVay(getFieldName("LOAI_KHOAN_VAY"))
+                }}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>Sản phẩn vay</label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{ getFieldName("SAN_PHAM_VAY") }}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>Số tiền vay</label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{ getFieldName("SO_TIEN_VAY") }} triệu đồng</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>Kỳ hạn</label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{ getFieldName("KY_HAN") }}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>Hình thức vay</label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{ getHinhThucVay(getFieldName("HINH_THUC_VAY")) }}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>Hình thức thanh toán</label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{
+                  getHinhThucThanhToan(getFieldName("HINH_THUC_THANH_TOAN"))
+                }}</span>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>Lãi suất</label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{ getFieldName("LAI_XUAT") }}</span>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div fxFlex="25%">
+                <label>Mục đích vay</label>
+              </div>
+              <div fxFlex="73%">
+                <span>{{ getFieldName("MUC_DICH_VAY") }}</span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </div>
+    <hr />
+    <ng-container>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+        <button class="btn btn-primary" (click)="showUpdate(true)">
+          Xử lý hồ sơ
+        </button>
+        <button
+          class="btn btn-info"
+          (click)="
+            onTelesale(
+              '3',
+              'Khách hàng từ chối',
+              'Bạn có chắn chắn khách hàng đã từ chối không?'
+            )
+          "
+        >
+          Khách hàng từ chối
+        </button>
+        <button
+          class="btn btn-danger"
+          (click)="
+            onTelesale(
+              '4',
+              'Hủy hồ sơ',
+              'Bạn có chắn chắn muốn hủy hồ sơ này không?'
+            )
+          "
+        >
+          Hủy hồ sơ
+        </button>
+        <button
+          mat-stroked-button
+          type="button"
+          (click)="
+            onTelesale(
+              '0',
+              'Bỏ qua hồ sơ',
+              'Bạn có chắn chắn muốn bỏ qua hồ sơ này không?'
+            )
+          "
+        >
+          Bỏ qua
+        </button>
+        <ng-container *ngIf="checkShowButtonFileDinhKem()">
+          <button class="btn btn-secondary" (click)="openDialogFileDinhKem()">
+            Xem tệp đính kèm
+          </button>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
 </ng-container>
 <ng-template #updateForm>
-    <app-form-input-ho-so [$item]="$item"></app-form-input-ho-so>
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%">
-        <ng-container *ngIf="$item.role === 'TELESALE'">
-            <button class="btn btn-success">Đã chốt</button>
-            <button class="btn btn-info">Khách hàng từ chối</button>
-            <button class="btn btn-danger">Hủy hồ sơ</button>
-        </ng-container>
-        <ng-container *ngIf="checkShowButtonFileDinhKem()">
-            <button class="btn btn-secondary" (click)="openDialogFileDinhKem()">Xem tệp đính kèm</button>
-        </ng-container>
-        <button mat-stroked-button type="button" (click)="showUpdate(false)">Bỏ qua</button>
-    </div>
+  <app-form-input-ho-so [$item]="$item"></app-form-input-ho-so>
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%" class="pb-20">
+    <ng-container *ngIf="$item.role === 'TELESALE'">
+      <button class="btn btn-success" (click)="onChotHoSo()">Đã chốt</button>
+    </ng-container>
+    <ng-container *ngIf="checkShowButtonFileDinhKem()">
+      <button class="btn btn-secondary" (click)="openDialogFileDinhKem()">
+        Xem tệp đính kèm
+      </button>
+    </ng-container>
+    <button mat-stroked-button type="button" (click)="showUpdate(false)">
+      Quay lại chi tiết
+    </button>
+  </div>
 </ng-template>

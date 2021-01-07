@@ -82,6 +82,7 @@ export class GenericModel implements IGenericModel {
     communceResponse?: CommunceResponse | undefined;
     profileViewDetailResponse?: ProfileViewDetailResponse | undefined;
     profileViewDetailRequest?: ProfileViewDetailRequest | undefined;
+    telesaleRequest?: TelesaleRequest | undefined;
 
     constructor(data?: IGenericModel) {
         if (data) {
@@ -101,6 +102,7 @@ export class GenericModel implements IGenericModel {
             this.communceResponse = _data["CommunceResponse"] ? CommunceResponse.fromJS(_data["CommunceResponse"]) : <any>undefined;
             this.profileViewDetailResponse = _data["ProfileViewDetailResponse"] ? ProfileViewDetailResponse.fromJS(_data["ProfileViewDetailResponse"]) : <any>undefined;
             this.profileViewDetailRequest = _data["ProfileViewDetailRequest"] ? ProfileViewDetailRequest.fromJS(_data["ProfileViewDetailRequest"]) : <any>undefined;
+            this.telesaleRequest = _data["TelesaleRequest"] ? TelesaleRequest.fromJS(_data["TelesaleRequest"]) : <any>undefined;
         }
     }
 
@@ -120,6 +122,7 @@ export class GenericModel implements IGenericModel {
         data["CommunceResponse"] = this.communceResponse ? this.communceResponse.toJSON() : <any>undefined;
         data["ProfileViewDetailResponse"] = this.profileViewDetailResponse ? this.profileViewDetailResponse.toJSON() : <any>undefined;
         data["ProfileViewDetailRequest"] = this.profileViewDetailRequest ? this.profileViewDetailRequest.toJSON() : <any>undefined;
+        data["TelesaleRequest"] = this.telesaleRequest ? this.telesaleRequest.toJSON() : <any>undefined;
         return data; 
     }
 }
@@ -132,6 +135,7 @@ export interface IGenericModel {
     communceResponse?: CommunceResponse | undefined;
     profileViewDetailResponse?: ProfileViewDetailResponse | undefined;
     profileViewDetailRequest?: ProfileViewDetailRequest | undefined;
+    telesaleRequest?: TelesaleRequest | undefined;
 }
 
 export class FilterProfileRequest implements IFilterProfileRequest {
@@ -936,6 +940,110 @@ export class ProfileViewDetailRequest implements IProfileViewDetailRequest {
 export interface IProfileViewDetailRequest {
     id_profile?: string | undefined;
     classify_cutomer?: string | undefined;
+}
+
+export class TelesaleRequest implements ITelesaleRequest {
+    id_profile?: string | undefined;
+    status_profile?: string | undefined;
+    scope?: string | undefined;
+    list_parameter?: Parameter[] | undefined;
+    note?: string | undefined;
+
+    constructor(data?: ITelesaleRequest) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id_profile = _data["id_profile"];
+            this.status_profile = _data["status_profile"];
+            this.scope = _data["scope"];
+            if (Array.isArray(_data["list_parameter"])) {
+                this.list_parameter = [] as any;
+                for (let item of _data["list_parameter"])
+                    this.list_parameter!.push(Parameter.fromJS(item));
+            }
+            this.note = _data["note"];
+        }
+    }
+
+    static fromJS(data: any): TelesaleRequest {
+        data = typeof data === 'object' ? data : {};
+        let result = new TelesaleRequest();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id_profile"] = this.id_profile;
+        data["status_profile"] = this.status_profile;
+        data["scope"] = this.scope;
+        if (Array.isArray(this.list_parameter)) {
+            data["list_parameter"] = [];
+            for (let item of this.list_parameter)
+                data["list_parameter"].push(item.toJSON());
+        }
+        data["note"] = this.note;
+        return data; 
+    }
+}
+
+export interface ITelesaleRequest {
+    id_profile?: string | undefined;
+    status_profile?: string | undefined;
+    scope?: string | undefined;
+    list_parameter?: Parameter[] | undefined;
+    note?: string | undefined;
+}
+
+export class Parameter implements IParameter {
+    block_id?: string | undefined;
+    name?: string | undefined;
+    value?: string | undefined;
+
+    constructor(data?: IParameter) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.block_id = _data["block_id"];
+            this.name = _data["name"];
+            this.value = _data["value"];
+        }
+    }
+
+    static fromJS(data: any): Parameter {
+        data = typeof data === 'object' ? data : {};
+        let result = new Parameter();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["block_id"] = this.block_id;
+        data["name"] = this.name;
+        data["value"] = this.value;
+        return data; 
+    }
+}
+
+export interface IParameter {
+    block_id?: string | undefined;
+    name?: string | undefined;
+    value?: string | undefined;
 }
 
 export class SwaggerException extends Error {

@@ -1,0 +1,63 @@
+<!-- <div class="modal-lg">
+  <div mat-dialog-title>
+    <div class="modal-header">
+      <h5 class="color-primary"><span [innerHTML]="data.title"></span></h5>
+      <div class="close" mat-dialog-close>
+        <span aria-hidden="true">&times;</span>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-content>
+    <div class="card-body">
+      <div class="mb-2 text-center">
+        <span [innerHTML]="data.message"></span>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <div class="btn btn-outline-primary" mat-dialog-close>Bỏ qua</div>
+        </div>
+        <div class="col-auto">
+          <a
+            href="javascript:void(0)"
+            class="btn btn-primary"
+            (click)="close()"
+          >
+            Xác nhận
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="modal-content">
+  <div class="modal-header">
+    <span class="modal-title"[innerHTML]="data.title"></span>
+    <span type="button" class="close" mat-dialog-close>
+      <span aria-hidden="true">×</span>
+    </span>
+  </div>
+  <div class="modal-body">
+    <div mat-dialog-content>
+      <div class="card-body">
+        <div class="mb-2 text-center">
+          <span [innerHTML]="data.message"></span>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <div class="btn btn-outline-primary" mat-dialog-close>Bỏ qua</div>
+          </div>
+          <div class="col-auto">
+            <a
+              href="javascript:void(0)"
+              class="btn btn-primary"
+              (click)="close()"
+            >
+              Xác nhận
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -32,7 +32,7 @@
           <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
             <input-select
               label="Giới tính"
-              fxFlex="20%"
+              fxFlex="23.5%"
               formControlName="gioiTinhCtrl"
               [items]="getListSelect('gioiTinhCtrl')"
               keyDisplay="name"
@@ -40,7 +40,7 @@
             </input-select>
             <input-text
               label="Hộ khẩu thường trú"
-              fxFlex="78%"
+              fxFlex="74.5%"
               formControlName="hoKhauThuongTruCtrl"
             ></input-text>
           </div>
@@ -100,7 +100,8 @@
           isTel="true"
           fxFlex="32%"
           formControlName="soDienThoaiCtrl"
-        ></input-text>
+        >
+        </input-text>
         <input-text
           label="Số điện thoại tham chiếu 1"
           isTel="true"
@@ -146,11 +147,7 @@
           keyDisplay="name"
         >
         </input-select>
-        <input-text
-          fxFlex="66%"
-          label="Tuổi"
-          formControlName="tuoiCtrl"
-        >
+        <input-text fxFlex="66%" label="Tuổi" formControlName="tuoiCtrl">
         </input-text>
         <input-select
           label="Tình trạng hôn nhân"
@@ -164,7 +161,7 @@
           label="Số người phụ thuộc"
           fxFlex="23.5%"
           isDecimalNumber="true"
-          length="2"
+          length="5"
           formControlName="soNguoiPhuThuocCtrl"
         >
         </input-text>
@@ -192,7 +189,8 @@
           label="Trình độ học vấn"
           fxFlex="49%"
           formControlName="trinhDoHocVanCtrl"
-          [items]="lstTrinhDoHocVan"
+          [items]="getListSelect('trinhDoHocVanCtrl')"
+          keyDisplay="name"
         >
         </input-select>
       </div>
@@ -206,16 +204,18 @@
         </input-text>
 
         <input-select
-          label="Loại hình đơn vị công tác hiện tại"
+          label="Loại đơn vị công tác hiện tại"
           fxFlex="23.5%"
-          formControlName="loaiHinhDonViCongTacCtrl"
-          [items]="lstLoaiHinhDonViCongTac"
+          formControlName="loaiDonViCongTacCtrl"
+          [items]="getListSelect('loaiDonViCongTacCtrl')"
+          keyDisplay="name"
         ></input-select>
         <input-select
           label="Cấp quản lý"
           fxFlex="49%"
           formControlName="capQuanLyCtrl"
-          [items]="lstCapQuanLy"
+          [items]="getListSelect('capQuanLyCtrl')"
+          keyDisplay="name"
         >
         </input-select>
       </div>
@@ -224,6 +224,8 @@
           label="Số hợp đồng bảo hiểm"
           fxFlex="23.5%"
           formControlName="soHopDongBaoHiemCtrl"
+          isDecimalNumber="true"
+          length="5"
         >
         </input-text>
 
@@ -238,14 +240,16 @@
           label="Nợ xấu"
           fxFlex="23.5%"
           formControlName="noXauCtrl"
-          [items]="lstNoXau"
+          [items]="getListSelect('noXauCtrl')"
+          keyDisplay="name"
         >
         </input-select>
         <input-select
           label="Lịch sử tín dụng"
           fxFlex="23.5%"
           formControlName="lichSuTinDungCtrl"
-          [items]="lstLichSuTinDung"
+          [items]="getListSelect('lichSuTinDungCtrl')"
+          keyDisplay="name"
         ></input-select>
       </div>
       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
@@ -253,19 +257,20 @@
           label="Tính thanh khoản"
           fxFlex="23.5%"
           formControlName="tinhThanhKhoanCtrl"
-          [items]="lstTinhThanhKhoan"
+          [items]="getListSelect('tinhThanhKhoanCtrl')"
+          keyDisplay="name"
         ></input-select>
         <input-text
           label="Tổng dư nợ tín dụng hiện tại"
           fxFlex="23.5%"
-          suffix=",000,000 đ"
+          suffix="triệu đồng"
           formControlName="tongDuNoTinDungCtrl"
         >
         </input-text>
         <input-text
           label="Tổng giá trị đảm bảo"
           fxFlex="23.5%"
-          suffix=",000,000 đ"
+          suffix="triệu đồng"
           formControlName="tongGiaTriDamBaoCtrl"
         >
         </input-text>
@@ -283,44 +288,56 @@
           label="Loại khoản vay"
           fxFlex="23.5%"
           formControlName="loaiKhoanVayCtrl"
-          [items]="lstLoaiKhoanVay"
+          [items]="getListSelect('loaiKhoanVayCtrl')"
+          keyDisplay="name"
         ></input-select>
         <input-text
-          label="Tên sản phẩm cho vay"
+          label="Sản phẩm cho vay"
           fxFlex="74.5%"
-          formControlName="tenSanPhamChoVayCtrl"
+          formControlName="sanPhamChoVayCtrl"
         >
         </input-text>
       </div>
       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
         <input-text
-          label="Số tiền cho vay"
+          label="Số tiền vay"
           fxFlex="23.5%"
-          hint="Đơn vị: triệu đồng"
-          formControlName="soTienChoVayCtrl"
+          suffix="triệu đồng"
+          formControlName="soTienVayCtrl"
         >
         </input-text>
-        <input-text label="Kỳ hạn" fxFlex="23.5%" formControlName="kyHanCtrl">
+        <input-text
+          label="Kỳ hạn"
+          fxFlex="23.5%"
+          formControlName="kyHanCtrl"
+          isDecimalNumber="true"
+          length="2"
+          suffix="tháng"
+        >
         </input-text>
         <input-select
-          label="Hình thức cho vay"
+          label="Hình thức vay"
           fxFlex="23.5%"
-          formControlName="hinhThucChoVayCtrl"
-          [items]="lstHinhThucChoVay"
+          formControlName="hinhThucVayCtrl"
+          [items]="getListSelect('hinhThucVayCtrl')"
+          keyDisplay="name"
         ></input-select>
         <input-select
           label="Hình thức thanh toán"
           fxFlex="23.5%"
           formControlName="hinhThucThanhToanCtrl"
-          [items]="lstHinhThucThanhToan"
+          [items]="getListSelect('hinhThucThanhToanCtrl')"
+          keyDisplay="name"
         ></input-select>
       </div>
       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
         <input-text
           label="Lãi suất"
-          textarea="true"
           fxFlex="23.5%"
           formControlName="laiSuatCtrl"
+          isDecimalNumber="true"
+          length="5"
+          suffix="%"
         >
         </input-text>
         <input-text

@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { ConfirmMessageDialogComponent } from '../shared/dialogs/confirm-message-dialog/confirm-message-dialog.component';
 import { ConfirmDialogForm } from './../common/model/confirm-dialog-form';
+import { ConfirmAlertData } from './../common/model/confirm-alert-data';
+import { ConfirmDialogComponent } from '../shared/dialogs/confirm-dialog/confirm-dialog.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -28,6 +30,18 @@ export class AlertService {
   info(message: string, title: string = ''): void {
     console.log('Thông tin');
     this.toastrService.info(message, title);
+  }
+  confirm(message: string, title: string): Observable<boolean> {
+    const form = new ConfirmAlertData({
+      message,
+      title
+    });
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: form,
+      panelClass: 'custom-dialog',
+    });
+    return dialogRef.afterClosed();
+    // return of(true);
   }
 
   confirmMessage(title: string, question: string, required: boolean = false): Observable<any> {

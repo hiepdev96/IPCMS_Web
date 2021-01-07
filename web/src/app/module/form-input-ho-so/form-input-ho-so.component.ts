@@ -32,7 +32,7 @@ export class FormInputHoSoComponent implements OnInit {
     gioiTinhHienTaiCtrl: new FormControl(),
     trinhDoHocVanCtrl: new FormControl(),
     danhHieuCtrl: new FormControl(),
-    loaiHinhDonViCongTacCtrl: new FormControl(),
+    loaiDonViCongTacCtrl: new FormControl(),
     capQuanLyCtrl: new FormControl(),
     soHopDongBaoHiemCtrl: new FormControl(),
     soTheTinDungCtrl: new FormControl(),
@@ -42,10 +42,10 @@ export class FormInputHoSoComponent implements OnInit {
     tongGiaTriDamBaoCtrl: new FormControl(),
     tinhThanhKhoanCtrl: new FormControl(),
     loaiKhoanVayCtrl: new FormControl(),
-    tenSanPhamChoVayCtrl: new FormControl(),
-    soTienChoVayCtrl: new FormControl(),
+    sanPhamChoVayCtrl: new FormControl(),
+    soTienVayCtrl: new FormControl(),
     kyHanCtrl: new FormControl(),
-    hinhThucChoVayCtrl: new FormControl(),
+    hinhThucVayCtrl: new FormControl(),
     hinhThucThanhToanCtrl: new FormControl(),
     laiSuatCtrl: new FormControl(),
     mucDichVayCtrl: new FormControl(),
@@ -58,20 +58,6 @@ export class FormInputHoSoComponent implements OnInit {
   });
   ctrls = this.myForm.controls;
   lstGioiTinh = ListGioiTinh;
-  lstNhaO = lstNhaO;
-  lstTrinhDoHocVan = lstTrinhDoHocVan;
-  lstLoaiHinhDonViCongTac = lstLoaiHinhDonViCongTac;
-  lstCapQuanLy = lstCapQuanLy;
-  lstLichSuTinDung = lstLichSuTinDung;
-  lstNoXau = lstNoXau;
-  lstTinhThanhKhoan = lstTinhThanhKhoan;
-  lstLoaiKhoanVay = lstLoaiKhoanVay;
-  lstHinhThucChoVay = lstHinhThucChoVay;
-  lstHinhThucThanhToan = lstHinhThucThanhToan;
-  lstLoaiKhachHang = lstLoaiKhachHang;
-  lstHangTinDung = lstHangTinDung;
-  lstDoTuoi = lstDoTuoi;
-  lstTinhTrangHonNhan = lstTinhTrangHonNhan;
   lstField: Field[] = [];
   constructor() { }
 
@@ -92,85 +78,7 @@ export class FormInputHoSoComponent implements OnInit {
   getListSelect(nameCtrl: string): any {
     return ListMappingProfileValue.find(x => x.nameCtrl === nameCtrl)?.lstSelect;
   }
+  getListParameter(): any {
+  }
+
 }
-
-export const lstNhaO = [
-
-  'Nhà riêng',
-  'Nhà thuê'
-];
-export const lstTrinhDoHocVan = [
-  'Không, Không tốt nghiệp PTTH',
-  'Phổ thông trung học',
-  'Cao đẳng, đại học',
-  'Cao học, Có bằng thạc sĩ',
-  'Trên cao học, Có bằng tiến sĩ trở lên'
-];
-export const lstLoaiHinhDonViCongTac = [
-  'Không',
-  'Công chức/viên chức',
-  'Doanh nghiệp nhà nước',
-  'Doanh nghiệp FDI',
-  'Doanh nghiệp tư nhân'
-];
-export const lstCapQuanLy = [
-  'Không',
-  'Nhân viên/chuyên viên',
-  'Trưởng nhóm',
-  'Trưởng/Phó phòng/Giám đốc/Phó giám đốc trung tâm',
-  'Giám đốc/Phó giám đốc công ty'
-];
-export const lstLichSuTinDung = [
-  'Tốt',
-  'Trung bình',
-  'Xấu'
-];
-export const lstNoXau = [
-  'Có',
-  'Không'
-];
-export const lstTinhThanhKhoan = [
-  'Tốt',
-  'Trung bình',
-  'Kém'
-];
-export const lstLoaiKhoanVay = [
-  'Tiền mặt',
-  'Tiêu dùng',
-  'Trả góp'
-];
-export const lstHinhThucChoVay = [
-  'Tín chấp',
-  'Thế chấp'
-];
-
-export const lstHinhThucThanhToan = [
-  'Trả góp hàng tháng',
-  'Trả góp 1 lần'
-];
-export const lstLoaiKhachHang = [
-  'Khách hàng mới',
-  'Khách hàng thân thiết',
-  'Khách hàng thường xuyên',
-  'Khách hàng VIP',
-  'Khách hàng xấu'
-];
-
-export const lstHangTinDung = [
-  'AAA',
-  'AA',
-  'A',
-  'B',
-  'C',
-  'D'
-];
-export const lstDoTuoi = [
-  'Vị thành niên',
-  'Thanh niên',
-  'Trưởng thành',
-];
-export const lstTinhTrangHonNhan = [
-  'Độc thân',
-  'Đã lập gia đình'
-];
-

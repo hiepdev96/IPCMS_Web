@@ -1,5 +1,7 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { finalize, map } from 'rxjs/operators';
 import {
   ListCapQuanLy,
   ListGioiTinh,
@@ -16,10 +18,12 @@ import {
   ListTinhTrangHonNhan,
   ListTrinhDoHocVan
 } from 'src/app/common/data';
-import { Field, FileDinhKem, ProfileViewDetailResponse } from 'src/app/common/model/generic-model';
+import { Field, FileDinhKem, GenericResponse, ProfileViewDetailResponse, TelesaleRequest } from 'src/app/common/model/generic-model';
 import { SelectionInput } from 'src/app/common/model/selection-input';
+import { ProfileClient } from 'src/app/connection/profile-connector';
 import { ListWithTitle } from '../../common/model/lst-with-title';
 import { AlertService } from './../../services/alert.service';
+import { ConfirmChotHoSoComponent } from './dialog/confirm-chot-ho-so/confirm-chot-ho-so.component';
 import { FileDinhKemDialogComponent } from './dialog/file-dinh-kem-dialog/file-dinh-kem-dialog.component';
 
 @Component({
@@ -34,11 +38,15 @@ export class ChiTietHoSoComponent implements OnInit {
 
   @Input() $item: ProfileViewDetailResponse;
   @Input() $status: string;
+  @Input() $id: string;
+  @Output() $closeAndReload = new EventEmitter();
   lstField: Field[] = [];
   lstDoc: ListWithTitle<FileDinhKem>[] = [];
   constructor(
     private alertService: AlertService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private spinner: NgxSpinnerService,
+    private profileClient: ProfileClient
   ) {
   }
 
@@ -53,7 +61,7 @@ export class ChiTietHoSoComponent implements OnInit {
         }));
       }
     });
-    this.showUpdate(true);
+    this.showUpdate(false);
   }
 
   openDialogFileDinhKem(): void {
@@ -69,6 +77,43 @@ export class ChiTietHoSoComponent implements OnInit {
   showUpdate(isShow: boolean): void {
     this.isShowUpdate = isShow;
   }
+
+  onTelesale(statusId: string, title: string = null, message: string = null): void {
+    const status = ListStatusProfile.find(x => x.value === statusId);
+    this.alertService.confirm(message ?? `Bạn có chắn chắn muốn thay đổi hồ sơ sang trạng thái <b> ${status.name}</b> không?`,
+      title ?? 'Thay đổi trạng thái hồ sơ')
+      .subscribe(x => {
+        if (x) {
+          this.onTelesaleAPI(new TelesaleRequest({
+            id_profile: this.$id,
+            status_profile: status.value
+          }), title);
+        }
+      });
+  }
+  onChotHoSo(): void {
+    this.dialog.open(ConfirmChotHoSoComponent, {
+      panelClass: 'custom-dialog',
+      width: '88%',
+    });
+  }
+  onTelesaleAPI(request: TelesaleRequest, title = null): void {
+    this.spinner.show();
+    this.profileClient.telesale(request)
+      .pipe(finalize(() => this.spinner.hide()),
+        map(x => GenericResponse.fromJS(x)))
+      .subscribe(x => {
+
+        if (x.errorCode !== 'OK') {
+          return this.alertService.error(x.errorMessage, title ?? 'Thay đổi trạng thái hồ sơ');
+        } else {
+          this.alertService.success('Thay đổi trạng thái hồ sơ thành công', title ?? 'Thay đổi trạng thái hồ sơ');
+          this.$closeAndReload.emit(this.$id);
+        }
+
+      });
+  }
+
   openDialogConfirm(): void {
     this.alertService.confirmMessage('Xác nhận bỏ qua hồ sơ', 'Bạn có chắc chắn muốn bỏ hồ sơ không?');
   }

@@ -16,5 +16,7 @@ namespace WebApplication1.Models
         public CommunceResponse CommunceResponse { set; get; }
         public ProfileViewDetailResponse ProfileViewDetailResponse { set; get; }
         public ProfileViewDetailRequest ProfileViewDetailRequest { set; get; }
+        public TelesaleRequest TelesaleRequest { set; get; }
+
     }
 }

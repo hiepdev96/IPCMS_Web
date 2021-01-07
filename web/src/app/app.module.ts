@@ -21,6 +21,8 @@ import { MaterialModule } from './shared/material/material.module';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ConfirmDialogComponent } from './shared/dialogs/confirm-dialog/confirm-dialog.component';
 
 
 const APP_COMPONENT = [
@@ -49,6 +51,7 @@ export const DATE_FORMATS = {
   declarations: [
     AppComponent,
     ...APP_COMPONENT,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,7 @@ export const DATE_FORMATS = {
     MaterialModule,
     HttpClientModule,
     ToastrModule.forRoot(),
+    NgxSpinnerModule
   ],
   providers: [
     { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
@@ -71,7 +75,8 @@ export const DATE_FORMATS = {
     },
   ],
   entryComponents: [
-    ConfirmMessageDialogComponent
+    ConfirmMessageDialogComponent,
+    ConfirmDialogComponent
   ],
   bootstrap: [AppComponent]
 })

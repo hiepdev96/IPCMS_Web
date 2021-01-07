@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Profile, ProfileViewDetailRequest, ProfileViewDetailResponse } from 'src/app/common/model/generic-model';
 import { Tab } from 'src/app/common/model/tab';
 import { ProfileClient } from 'src/app/connection/profile-connector';
 import { AlertService } from 'src/app/services/alert.service';
+import { DanhSachHoSoComponent } from './danh-sach-ho-so/danh-sach-ho-so.component';
 @Component({
   selector: 'app-quan-ly-ho-so',
   templateUrl: './quan-ly-ho-so.component.html',
@@ -12,6 +13,8 @@ import { AlertService } from 'src/app/services/alert.service';
 export class QuanLyHoSoComponent implements OnInit {
 
   tabs: Tab<ProfileViewDetailResponse>[] = [];
+
+  @ViewChild(DanhSachHoSoComponent) _dsHoSo: DanhSachHoSoComponent;
   index = 0;
   indexDynamic = 1;
   constructor(
@@ -20,11 +23,11 @@ export class QuanLyHoSoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.openDetail(new Tab({
-      id: '123',
+    this.openDetail(new Tab<ProfileViewDetailResponse>({
+      id: '1',
+      name: 'Test',
       value: null,
-      name: 'TEST',
-      status: '5'
+      status: '3'
     }));
   }
   showDetail(value: any): void {
@@ -48,6 +51,17 @@ export class QuanLyHoSoComponent implements OnInit {
             }));
           }
         });
+    }
+  }
+  closeAndReload(id: string): void {
+    this.removeTab(id);
+    this._dsHoSo.onSearch();
+  }
+  removeTab(id: string): void {
+    const index = this.tabs.findIndex(x => x.id === id);
+    this.tabs.splice(index, 1);
+    if (this.index === index + this.indexDynamic) {
+      this.index = 0;
     }
   }
   openDetail(tab: Tab<ProfileViewDetailResponse>): void {
