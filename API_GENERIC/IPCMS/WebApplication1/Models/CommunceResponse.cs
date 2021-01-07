@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebApplication1.Models
 {
-    public class CommunceResponse
+    public class CommunceResponse : GenericResponse
     {
         public List<Communce> communce { set; get; }
     }

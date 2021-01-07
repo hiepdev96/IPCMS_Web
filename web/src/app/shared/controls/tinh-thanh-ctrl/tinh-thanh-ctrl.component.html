@@ -4,7 +4,7 @@
   </ng-container>
   <select class="form-control" [formControl]="control">
     <ng-container *ngIf="!isHiddenDefault">
-      <option [value]="defaultValue">-- Chưa xác định --</option>
+      <option [ngValue]="defaultValue">-- Chưa xác định --</option>
     </ng-container>
     <ng-container *ngFor="let item of getProvices()">
       <option [ngValue]="item">{{ item.name_with_type }}</option>

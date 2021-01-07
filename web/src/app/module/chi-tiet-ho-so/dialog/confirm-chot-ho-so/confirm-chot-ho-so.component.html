@@ -5,13 +5,55 @@
       <span aria-hidden="true">×</span>
     </span>
   </div>
-  <div class="modal-body">
-    <div mat-dialog-content>
-      <div class="card-body">
-        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
-          <tinh-thanh-ctrl label="Tỉnh thành" fxFlex="33%"></tinh-thanh-ctrl>
+  <div mat-dialog-content>
+    <div class="modal-body">
+      <form [formGroup]="myForm">
+        <div class="pt-20">
+          <div class="card card-default">
+            <div class="card-header">
+              <span class="card-title" style="color: blue"
+                >Phạm vi của hồ sơ</span
+              >
+              <!-- <div class="card-tools">
+                <button type="button" class="btn btn-tool">
+                  <i class="fa fa-times"></i>
+                </button>
+              </div> -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+                <tinh-thanh-ctrl
+                  formControlName="tinhThanhCtrl"
+                  label="Tỉnh thành"
+                  fxFlex="33%"
+                ></tinh-thanh-ctrl>
+                <quan-huyen-ctrl
+                  formControlName="quanHuyenCtrl"
+                  [tinhThanh]="ctrls.tinhThanhCtrl.value"
+                  label="Quận huyện"
+                  fxFlex="33%"
+                ></quan-huyen-ctrl>
+                <phuong-xa-ctrl
+                  formControlName="phuongXaCtrl"
+                  [quanHuyen]="ctrls.quanHuyenCtrl.value"
+                  label="Phường xã"
+                  fxFlex="33%"
+                ></phuong-xa-ctrl>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+        <div>
+          <input-text label="Ghi chú" textarea="true" formControlName="noteCtrl"></input-text>
+        </div>
+      </form>
     </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-flat-button color="primary" (click)="onClose()">
+     Đã chốt
+    </button>
+    <button mat-button mat-dialog-close>Bỏ qua</button>
   </div>
 </div>

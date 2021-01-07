@@ -44,14 +44,15 @@ export class AlertService {
     // return of(true);
   }
 
-  confirmMessage(title: string, question: string, required: boolean = false): Observable<any> {
+  confirmMessage(question: string, title: string, required: boolean = false): Observable<any> {
     const form = new ConfirmDialogForm();
     form.title = title;
     form.message = question;
     form.required = required;
     const dialogRef = this.dialog.open(ConfirmMessageDialogComponent, {
       data: form,
-      minWidth: '500px'
+      minWidth: '500px',
+      panelClass: 'custom-dialog'
     });
     return dialogRef.afterClosed();
   }

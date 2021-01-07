@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ListGioiTinh, ListLoaiDinhDanh, ListMappingProfileValue } from 'src/app/common/data';
-import { Field, ProfileViewDetailResponse } from 'src/app/common/model/generic-model';
+import { Field, Parameter, ProfileViewDetailResponse } from 'src/app/common/model/generic-model';
 
 @Component({
   selector: 'app-form-input-ho-so',
@@ -78,7 +78,17 @@ export class FormInputHoSoComponent implements OnInit {
   getListSelect(nameCtrl: string): any {
     return ListMappingProfileValue.find(x => x.nameCtrl === nameCtrl)?.lstSelect;
   }
-  getListParameter(): any {
+  getListParameter(): Parameter[] {
+    const res: Parameter[] = [];
+    ListMappingProfileValue.forEach(x => {
+      res.push(new Parameter({
+        block_id: x.block_id.toString(),
+        name: x.name,
+        value: x.getValueFromControl(this.myForm)
+      }));
+    });
+    console.log(res);
+    return res;
   }
 
 }
