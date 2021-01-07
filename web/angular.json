@@ -18,7 +18,8 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "highcharts"
+              "highcharts",
+              "js-sha256"
            ],
             "outputPath": "dist/web",
             "index": "src/index.html",
