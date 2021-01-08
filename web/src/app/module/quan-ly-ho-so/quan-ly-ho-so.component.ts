@@ -23,12 +23,12 @@ export class QuanLyHoSoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.openDetail(new Tab<ProfileViewDetailResponse>({
-      id: '1',
-      name: 'Test',
-      value: null,
-      status: '3'
-    }));
+    // this.openDetail(new Tab<ProfileViewDetailResponse>({
+    //   id: '271',
+    //   name: 'Test',
+    //   value: null,
+    //   status: '3'
+    // }));
   }
   showDetail(value: any): void {
     let open = null;

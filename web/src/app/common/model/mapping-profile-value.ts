@@ -1,3 +1,5 @@
+import { FormGroup } from '@angular/forms';
+import * as moment from 'moment';
 import { Field } from './generic-model';
 
 export class MappingProfileValue implements IMappingProfileValue {
@@ -26,6 +28,18 @@ export class MappingProfileValue implements IMappingProfileValue {
                 return this.lstSelect.find(x => x[this.keySelect] === res);
             default:
                 return res;
+        }
+    }
+    getValueFromControl(formGroup: FormGroup): any {
+        const res = formGroup.get(this.nameCtrl).value;
+        switch (this.type) {
+            case 'date':
+                return moment(res).format('YYYY-MM-DD');
+            case 'select':
+                return res[this.keySelect];
+            default:
+                return res;
+
         }
     }
     private getFieldName(name: string, lstField: Field[]): string {

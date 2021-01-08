@@ -391,16 +391,6 @@ export const ListMappingProfileValue: MappingProfileValue[] = [
     }),
     new MappingProfileValue({
         block_id: 2,
-        name: 'SO_DIEN_THOAI',
-        nameCtrl: 'soDienThoaiCtrl',
-    }),
-    new MappingProfileValue({
-        block_id: 2,
-        name: 'SO_DIEN_THOAI',
-        nameCtrl: 'soDienThoaiCtrl',
-    }),
-    new MappingProfileValue({
-        block_id: 2,
         name: 'SDT_THAM_CHIEU_1',
         nameCtrl: 'soDienThoaiThamChieu1Ctrl',
     }),

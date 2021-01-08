@@ -97,7 +97,7 @@ export class ProfileClient {
                     return <Observable<any | null>><any>_observableThrow(response$);
             }));
     }
-    public telesale(request: TelesaleRequest, fid: string = 'F14'){
+    public telesale(request: TelesaleRequest, fid: string = 'F14') {
         let params: string[] = [];
         let url_ = this.baseUrl + "/ipcms/icp/telesale?";
         const userId = this.authService.getUserId();
@@ -116,12 +116,17 @@ export class ProfileClient {
         for (const key of keyParams) {
             const v = request[key] ?? '';
             if (v !== '') {
-                url_ += `${key}=` + encodeURIComponent("" + v) + "&";
-
+                if (typeof v === 'object') {
+                    url_ += `${key}=` + encodeURIComponent("" + JSON.stringify(v)) + "&";
+                    params.push(JSON.stringify(v));
+                } else {
+                    url_ += `${key}=` + encodeURIComponent("" + v) + "&";
+                    params.push(v);
+                }
             } else {
                 url_ += `${key}&`;
+                params.push(v);
             }
-            params.push(v);
         }
         url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params)) + "&";
         url_ = url_.replace(/[?&]$/, "");
@@ -132,18 +137,18 @@ export class ProfileClient {
             })
         };
         return this.http.request('get', url_, options_)
-        .pipe(_observableMergeMap((response$: any) => {
-            return this.processResponse(response$);
-        })).pipe(_observableCatch((response$: any) => {
-            if (response$ instanceof HttpResponseBase) {
-                try {
-                    return this.processResponse(<any>response$);
-                } catch (e) {
-                    return <Observable<any | null>><any>_observableThrow(e);
-                }
-            } else
-                return <Observable<any | null>><any>_observableThrow(response$);
-        }));
+            .pipe(_observableMergeMap((response$: any) => {
+                return this.processResponse(response$);
+            })).pipe(_observableCatch((response$: any) => {
+                if (response$ instanceof HttpResponseBase) {
+                    try {
+                        return this.processResponse(<any>response$);
+                    } catch (e) {
+                        return <Observable<any | null>><any>_observableThrow(e);
+                    }
+                } else
+                    return <Observable<any | null>><any>_observableThrow(response$);
+            }));
     }
 
     public viewDetail(request: ProfileViewDetailRequest, fid: string = 'F16') {
@@ -251,18 +256,18 @@ export class ProfileClient {
             })
         };
         return this.http.request('get', url_, options_)
-        .pipe(_observableMergeMap((response$: any) => {
-            return this.processResponse(response$);
-        })).pipe(_observableCatch((response$: any) => {
-            if (response$ instanceof HttpResponseBase) {
-                try {
-                    return this.processResponse(<any>response$);
-                } catch (e) {
-                    return <Observable<any | null>><any>_observableThrow(e);
-                }
-            } else
-                return <Observable<any | null>><any>_observableThrow(response$);
-        }));
+            .pipe(_observableMergeMap((response$: any) => {
+                return this.processResponse(response$);
+            })).pipe(_observableCatch((response$: any) => {
+                if (response$ instanceof HttpResponseBase) {
+                    try {
+                        return this.processResponse(<any>response$);
+                    } catch (e) {
+                        return <Observable<any | null>><any>_observableThrow(e);
+                    }
+                } else
+                    return <Observable<any | null>><any>_observableThrow(response$);
+            }));
     }
 
     public getProvincial() {

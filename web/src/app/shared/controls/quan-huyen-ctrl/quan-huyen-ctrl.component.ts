@@ -6,7 +6,8 @@ import { District, DistrictResponse, Provincial } from 'src/app/common/model/gen
 import { ProfileClient } from 'src/app/connection/profile-connector';
 
 @Component({
-  selector: 'app-quan-huyen-ctrl',
+  // tslint:disable-next-line: component-selector
+  selector: 'quan-huyen-ctrl',
   templateUrl: './quan-huyen-ctrl.component.html',
   styleUrls: ['./quan-huyen-ctrl.component.scss'],
   providers: [
@@ -35,6 +36,10 @@ export class QuanHuyenCtrlComponent implements OnInit, OnDestroy, ControlValueAc
     this._tinhThanh = value;
     if (this._tinhThanh) {
       this.getDistrict();
+    } else {
+      this.lst = [];
+      this.control.setValue(this.defaultValue);
+      // this.outputValue();
     }
   }
   defaultValue = null;
@@ -77,6 +82,17 @@ export class QuanHuyenCtrlComponent implements OnInit, OnDestroy, ControlValueAc
       .subscribe(x => {
         if (x.errorCode === 'OK') {
           this.lst = x.district;
+          if (value) {
+            if (value instanceof District) {
+              if (this.lst.indexOf(value) === -1) {
+                this.control.setValue(this.defaultValue);
+              }
+            } else {
+              if (this.lst.findIndex(z => z.code === value) === -1) {
+                this.control.setValue(this.defaultValue);
+              }
+            }
+          }
         }
       });
   }
@@ -114,7 +130,7 @@ export class QuanHuyenCtrlComponent implements OnInit, OnDestroy, ControlValueAc
   setDisabledState?(isDisabled: boolean): void {
     isDisabled ? this.control.disable() : this.control.enable();
   }
-  getProvices(): Provincial[] {
+  getDistricts(): District[] {
     return this.lst;
   }
   validate(c: FormControl): any {

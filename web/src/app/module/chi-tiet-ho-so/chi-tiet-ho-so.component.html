@@ -472,7 +472,15 @@
                 </label>
               </div>
               <div fxFlex="73%">
-                <span>{{ getFieldName("SO_NGUOI_PHU_THUOC") }} người</span>
+                <span
+                  >{{
+                    (getFieldName("SO_NGUOI_PHU_THUOC")
+                      ? getFieldName("SO_NGUOI_PHU_THUOC")
+                      : 0
+                    ) | number
+                  }}
+                  người</span
+                >
               </div>
             </div>
 
@@ -489,7 +497,15 @@
                 </label>
               </div>
               <div fxFlex="73%">
-                <span>{{ getFieldName("THU_NHAP_THANG") }} triệu đồng</span>
+                <span
+                  >{{
+                    (getFieldName("THU_NHAP_THANG")
+                      ? getFieldName("THU_NHAP_THANG")
+                      : 0
+                    ) | number
+                  }}
+                  triệu đồng</span
+                >
               </div>
             </div>
 
@@ -587,7 +603,15 @@
                 </label>
               </div>
               <div fxFlex="73%">
-                <span>{{ getFieldName("SO_THE_TIN_DUNG") }} thẻ</span>
+                <span
+                  >{{
+                    (getFieldName("SO_THE_TIN_DUNG")
+                      ? getFieldName("SO_THE_TIN_DUNG")
+                      : 0
+                    ) | number
+                  }}
+                  thẻ</span
+                >
               </div>
             </div>
 
@@ -597,7 +621,13 @@
               </div>
               <div fxFlex="73%">
                 <span
-                  >{{ getFieldName("TONG_DU_NO_TIN_DUNG") }} triệu đồng</span
+                  >{{
+                    (getFieldName("TONG_DU_NO_TIN_DUNG")
+                      ? getFieldName("TONG_DU_NO_TIN_DUNG")
+                      : 0
+                    ) | number
+                  }}
+                  triệu đồng</span
                 >
               </div>
             </div>
@@ -628,8 +658,13 @@
               </div>
               <div fxFlex="73%">
                 <span
-                  >{{ getFieldName("TONG_GIA_TRI_TAI_SAN_DAM_BAO") }} triệu
-                  đồng</span
+                  >{{
+                    (getFieldName("TONG_GIA_TRI_TAI_SAN_DAM_BAO")
+                      ? getFieldName("TONG_GIA_TRI_TAI_SAN_DAM_BAO")
+                      : 0
+                    ) | number
+                  }}
+                  triệu đồng</span
                 >
               </div>
             </div>
@@ -677,7 +712,15 @@
                 <label>Số tiền vay</label>
               </div>
               <div fxFlex="73%">
-                <span>{{ getFieldName("SO_TIEN_VAY") }} triệu đồng</span>
+                <span
+                  >{{
+                    (getFieldName("SO_TIEN_VAY")
+                      ? getFieldName("SO_TIEN_VAY")
+                      : 0
+                    ) | number
+                  }}
+                  triệu đồng</span
+                >
               </div>
             </div>
 
@@ -730,8 +773,8 @@
       </div>
     </div>
     <hr />
-    <ng-container>
-      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+      <ng-container *ngIf="$item.role === 'TELESALE'">
         <button class="btn btn-primary" (click)="showUpdate(true)">
           Xử lý hồ sơ
         </button>
@@ -772,13 +815,13 @@
         >
           Bỏ qua
         </button>
-        <ng-container *ngIf="checkShowButtonFileDinhKem()">
-          <button class="btn btn-secondary" (click)="openDialogFileDinhKem()">
-            Xem tệp đính kèm
-          </button>
-        </ng-container>
-      </div>
-    </ng-container>
+      </ng-container>
+      <ng-container *ngIf="checkShowButtonFileDinhKem()">
+        <button class="btn btn-secondary" (click)="openDialogFileDinhKem()">
+          Xem tệp đính kèm
+        </button>
+      </ng-container>
+    </div>
   </div>
 </ng-container>
 <ng-template #updateForm>

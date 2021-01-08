@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize, map } from 'rxjs/operators';
@@ -22,6 +22,7 @@ import { Field, FileDinhKem, GenericResponse, ProfileViewDetailResponse, Telesal
 import { SelectionInput } from 'src/app/common/model/selection-input';
 import { ProfileClient } from 'src/app/connection/profile-connector';
 import { ListWithTitle } from '../../common/model/lst-with-title';
+import { FormInputHoSoComponent } from '../form-input-ho-so/form-input-ho-so.component';
 import { AlertService } from './../../services/alert.service';
 import { ConfirmChotHoSoComponent } from './dialog/confirm-chot-ho-so/confirm-chot-ho-so.component';
 import { FileDinhKemDialogComponent } from './dialog/file-dinh-kem-dialog/file-dinh-kem-dialog.component';
@@ -40,6 +41,7 @@ export class ChiTietHoSoComponent implements OnInit {
   @Input() $status: string;
   @Input() $id: string;
   @Output() $closeAndReload = new EventEmitter();
+  @ViewChild(FormInputHoSoComponent) _formInputHoSo: FormInputHoSoComponent;
   lstField: Field[] = [];
   lstDoc: ListWithTitle<FileDinhKem>[] = [];
   constructor(
@@ -51,7 +53,7 @@ export class ChiTietHoSoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.$item = ProfileViewDetailResponse.fromJS(a);
+    // this.$item = ProfileViewDetailResponse.fromJS(a);
     this.$item.profile.forEach(x => {
       this.lstField = this.lstField.concat(x.listFields);
       if (x.listDoc && x.listDoc.length > 0) {
@@ -80,7 +82,7 @@ export class ChiTietHoSoComponent implements OnInit {
 
   onTelesale(statusId: string, title: string = null, message: string = null): void {
     const status = ListStatusProfile.find(x => x.value === statusId);
-    this.alertService.confirm(message ?? `Bạn có chắn chắn muốn thay đổi hồ sơ sang trạng thái <b> ${status.name}</b> không?`,
+    this.alertService.confirmMessage(message ?? `Bạn có chắn chắn muốn thay đổi hồ sơ sang trạng thái <b> ${status.name}</b> không?`,
       title ?? 'Thay đổi trạng thái hồ sơ')
       .subscribe(x => {
         if (x) {
@@ -92,10 +94,20 @@ export class ChiTietHoSoComponent implements OnInit {
       });
   }
   onChotHoSo(): void {
-    this.dialog.open(ConfirmChotHoSoComponent, {
+    const dialogRef = this.dialog.open(ConfirmChotHoSoComponent, {
       panelClass: 'custom-dialog',
       width: '88%',
     });
+    dialogRef.afterClosed()
+      .subscribe(x => {
+        if (x) {
+          const request = TelesaleRequest.fromJS(x);
+          request.id_profile = this.$id;
+          request.status_profile = '2';
+          request.list_parameter = this._formInputHoSo.getListParameter();
+          this.onTelesaleAPI(request);
+        }
+      });
   }
   onTelesaleAPI(request: TelesaleRequest, title = null): void {
     this.spinner.show();
