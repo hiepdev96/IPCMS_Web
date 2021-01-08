@@ -44,7 +44,8 @@ export class DanhSachHoSoComponent implements OnInit, AfterViewInit {
     'fullname',
     'scope',
     'status',
-    'action'];
+    // 'action'
+  ];
   dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
   isShowAdvanced: boolean;
   ctrls = this.myForm.controls;
@@ -143,7 +144,7 @@ export class DanhSachHoSoComponent implements OnInit, AfterViewInit {
     this.$openDetail.emit({
       request,
       status: item.status,
-      name: `${item.id_number}${item.fullname ? ' - ' + item.fullname : ''}`
+      name: `${item.id_number ? item.id_number : ''}${item.fullname ? ' - ' + item.fullname : ''}`
     });
     // const features =
     //   'toolbar=no,location=no,directories=no,menubar=no,scrollbars=yes,resizable=yes,status=yes,left=0,top=0';

@@ -198,4 +198,16 @@ body {
     font-weight: 500;
     font-size: 18px;
   }
+}.close-tab {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
 }
+
+  .close-tab:hover {
+    border-radius: 50px;
+    background: #808080;
+  }

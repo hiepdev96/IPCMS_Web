@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -26,7 +27,7 @@ import { FormInputHoSoComponent } from '../form-input-ho-so/form-input-ho-so.com
 import { AlertService } from './../../services/alert.service';
 import { ConfirmChotHoSoComponent } from './dialog/confirm-chot-ho-so/confirm-chot-ho-so.component';
 import { FileDinhKemDialogComponent } from './dialog/file-dinh-kem-dialog/file-dinh-kem-dialog.component';
-
+import { StatusProfileConstant } from '../../common/constants/status-profile-constant';
 @Component({
   selector: 'app-chi-tiet-ho-so',
   templateUrl: './chi-tiet-ho-so.component.html',
@@ -44,6 +45,7 @@ export class ChiTietHoSoComponent implements OnInit {
   @ViewChild(FormInputHoSoComponent) _formInputHoSo: FormInputHoSoComponent;
   lstField: Field[] = [];
   lstDoc: ListWithTitle<FileDinhKem>[] = [];
+  avatar: any;
   constructor(
     private alertService: AlertService,
     private dialog: MatDialog,
@@ -63,12 +65,17 @@ export class ChiTietHoSoComponent implements OnInit {
         }));
       }
     });
+    this.profileClient.imagePortait(this.$id)
+      .subscribe(x => {
+        // tslint:disable-next-line: no-string-literal
+        this.avatar = x['url'];
+      });
     this.showUpdate(false);
   }
 
   openDialogFileDinhKem(): void {
     if (!this.lstDoc || this.lstDoc.length === 0) {
-      this.alertService.info('Không tồn tại tệp đính kèm', 'Xem tệp đính kèm');
+      return this.alertService.info('Không tồn tại tệp đính kèm', 'Xem tệp đính kèm');
     }
     this.dialog.open(FileDinhKemDialogComponent, {
       data: this.lstDoc,
@@ -88,8 +95,41 @@ export class ChiTietHoSoComponent implements OnInit {
         if (x) {
           this.onTelesaleAPI(new TelesaleRequest({
             id_profile: this.$id,
-            status_profile: status.value
+            status_profile: status.value,
+            note: x.message
           }), title);
+        }
+      });
+  }
+
+  approvalFinishProfile(isApproval: boolean): void {
+    if (isApproval) {
+      this.alertService.confirmMessage('Bạn có chắn chắn muốn phê duyệt hồ sơ này không?', 'Phê duyệt hồ sơ')
+        .subscribe(x => {
+          if (x) {
+            this.approvalFinishProfileAPI(StatusProfileConstant.DA_PHE_DUYET_HOAN_THIEN, x.message, 'Phê duyệt hồ sơ');
+          }
+        });
+    } else {
+      this.alertService.confirmMessage('Bạn có chắn chắn thay đổi trạng thái hồ sơ sang <b>Đang hoàn thiện</b> không?', 'Thay đổi trạng thái')
+        .subscribe(x => {
+          if (x) {
+            this.approvalFinishProfileAPI(StatusProfileConstant.DANG_HOAN_THIEN, x.message,
+              'Thay đổi trạng thái về Đang hoàn thiện');
+          }
+        });
+    }
+  }
+  private approvalFinishProfileAPI(status: string, message: string, titleAlert: string): void {
+    this.spinner.show();
+    this.profileClient.approvalFinishProfile(this.$id, status, message)
+      .pipe(finalize(() => this.spinner.hide()))
+      .subscribe(x => {
+        if (x.errorCode !== 'OK') {
+          return this.alertService.error(x.errorMessage ?? '', titleAlert);
+        } else {
+          this.alertService.success(titleAlert + ' thành công', titleAlert);
+          this.$closeAndReload.emit(this.$id);
         }
       });
   }
@@ -103,7 +143,7 @@ export class ChiTietHoSoComponent implements OnInit {
         if (x) {
           const request = TelesaleRequest.fromJS(x);
           request.id_profile = this.$id;
-          request.status_profile = '2';
+          request.status_profile = StatusProfileConstant.CHOT;
           request.list_parameter = this._formInputHoSo.getListParameter();
           this.onTelesaleAPI(request);
         }
@@ -125,12 +165,52 @@ export class ChiTietHoSoComponent implements OnInit {
 
       });
   }
+  verifyFinishProfile(status: string): void {
+    let titleAlert = '';
+    let messageAlert = '';
+    let title = '';
+    switch (status) {
+      case (StatusProfileConstant.DA_THAM_DINH_DAT):
+        titleAlert = 'Thẩm định hồ sơ';
+        messageAlert = 'Bạn có chắn chắn muốn thẩm định hồ sơ này đạt không?';
+        title = 'Thẩm định hồ sơ';
+        break;
+      case (StatusProfileConstant.THAM_DINH_KHONG_DAT):
+        titleAlert = 'Thẩm định hồ sơ';
+        messageAlert = 'Bạn có chắn chắn muốn thẩm định hồ sơ này không đạt không?';
+        title = 'Thẩm định hồ sơ';
+        break;
+      case (StatusProfileConstant.DA_PHE_DUYET_HOAN_THIEN):
+        titleAlert = 'Chuyển trạng thái về <b>đã phê duyệt hoàn thiện</b> ';
+        messageAlert = 'Bạn có chắn chắn muốn chuyển trạng thái về <b>đã phê duyệt hoàn thiện</b> không?';
+        title = 'Thay đổi trạng thái hồ sơ';
+        break;
+    }
+    this.alertService.confirmMessage(messageAlert, titleAlert).subscribe(z => {
+      if (z) {
+        this.spinner.show();
+        this.profileClient.verifyFinishProfile(this.$id, status, z.message)
+          .pipe(finalize(() => this.spinner.hide()),
+            map(x => GenericResponse.fromJS(x)))
+          .subscribe(x => {
 
+            if (x.errorCode !== 'OK') {
+              return this.alertService.error(x.errorMessage, title);
+            } else {
+              this.alertService.success(title + ' thành công', title);
+              this.$closeAndReload.emit(this.$id);
+            }
+
+          });
+      }
+    });
+
+  }
   openDialogConfirm(): void {
     this.alertService.confirmMessage('Xác nhận bỏ qua hồ sơ', 'Bạn có chắc chắn muốn bỏ hồ sơ không?');
   }
   checkShowButtonFileDinhKem(): boolean {
-    return this.$status >= '5';
+    return this.$status >= StatusProfileConstant.DANG_HOAN_THIEN;
   }
   getFieldName(name: string): string {
     const res = this.lstField.find(x => x.name === name)?.value;

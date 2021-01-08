@@ -209,10 +209,225 @@ export class ProfileClient {
         params.push(fid);
         url_ += "id_profile=" + encodeURIComponent("" + id_profile) + "&";
         params.push(id_profile);
-        url_ += "doc_id=" + encodeURIComponent("" + doc_id) + "&";
+        // url_ += "doc_id=" + encodeURIComponent("" + doc_id) + "&";
         params.push(doc_id);
         url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params));
 
+        url_ = url_.replace(/[?&]$/, "");
+        let options_: any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+        return this.http.request('get', url_, options_)
+        // .pipe(_observableMergeMap((response$: any) => {
+        //     return this.processResponse(response$);
+        // })).pipe(_observableCatch((response$: any) => {
+        //     if (response$ instanceof HttpResponseBase) {
+        //         try {
+        //             return this.processResponse(<any>response$);
+        //         } catch (e) {
+        //             return <Observable<any | null>><any>_observableThrow(e);
+        //         }
+        //     } else
+        //         return <Observable<any | null>><any>_observableThrow(response$);
+        // }));
+    }
+
+    public verifyGroupField(id_profile: string, block_id: string, fid: string = 'F32') {
+        let params: string[] = [];
+        let url_ = this.baseUrl + "/ipcms/icp/view_detail/image_portrait?";
+        const userId = this.authService.getUserId();
+        url_ += "user_id=" + encodeURIComponent("" + userId) + "&";
+        params.push(userId);
+        params.push(this.authService.getSecretKey());
+        url_ += "fid=" + encodeURIComponent("" + fid) + "&";
+        params.push(fid);
+        url_ += "id_profile=" + encodeURIComponent("" + id_profile) + "&";
+        params.push(id_profile);
+        url_ += "block_id=" + encodeURIComponent("" + block_id) + "&";
+        params.push(block_id);
+        url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params));
+
+        url_ = url_.replace(/[?&]$/, "");
+        let options_: any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+        return this.http.request('get', url_, options_)
+            .pipe(_observableMergeMap((response$: any) => {
+                return this.processResponse(response$);
+            })).pipe(_observableCatch((response$: any) => {
+                if (response$ instanceof HttpResponseBase) {
+                    try {
+                        return this.processResponse(<any>response$);
+                    } catch (e) {
+                        return <Observable<any | null>><any>_observableThrow(e);
+                    }
+                } else
+                    return <Observable<any | null>><any>_observableThrow(response$);
+            }));
+    }
+    public verifyFieldProfile(id_profile: string, field_name: string, fid: string = 'F33') {
+        let params: string[] = [];
+        let url_ = this.baseUrl + "/ipcms/icp/view_detail/verify_field_profile?";
+        const userId = this.authService.getUserId();
+        url_ += "user_id=" + encodeURIComponent("" + userId) + "&";
+        params.push(userId);
+        params.push(this.authService.getSecretKey());
+        url_ += "fid=" + encodeURIComponent("" + fid) + "&";
+        params.push(fid);
+        url_ += "id_profile=" + encodeURIComponent("" + id_profile) + "&";
+        params.push(id_profile);
+        url_ += "field_name=" + encodeURIComponent("" + field_name) + "&";
+        params.push(field_name);
+        url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params));
+
+        url_ = url_.replace(/[?&]$/, "");
+        let options_: any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+        return this.http.request('get', url_, options_)
+            .pipe(_observableMergeMap((response$: any) => {
+                return this.processResponse(response$);
+            })).pipe(_observableCatch((response$: any) => {
+                if (response$ instanceof HttpResponseBase) {
+                    try {
+                        return this.processResponse(<any>response$);
+                    } catch (e) {
+                        return <Observable<any | null>><any>_observableThrow(e);
+                    }
+                } else
+                    return <Observable<any | null>><any>_observableThrow(response$);
+            }));
+    }
+    public classCustomer(id_profile: string, type_customer: string, fid: string = 'F34') {
+        let params: string[] = [];
+        let url_ = this.baseUrl + "/ipcms/icp/view_detail/class_customer?";
+        const userId = this.authService.getUserId();
+        url_ += "user_id=" + encodeURIComponent("" + userId) + "&";
+        params.push(userId);
+        params.push(this.authService.getSecretKey());
+        url_ += "fid=" + encodeURIComponent("" + fid) + "&";
+        params.push(fid);
+        url_ += "id_profile=" + encodeURIComponent("" + id_profile) + "&";
+        params.push(id_profile);
+        url_ += "field_name=" + encodeURIComponent("" + type_customer) + "&";
+        params.push(type_customer);
+        url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params));
+        url_ = url_.replace(/[?&]$/, "");
+        let options_: any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+        return this.http.request('get', url_, options_)
+            .pipe(_observableMergeMap((response$: any) => {
+                return this.processResponse(response$);
+            })).pipe(_observableCatch((response$: any) => {
+                if (response$ instanceof HttpResponseBase) {
+                    try {
+                        return this.processResponse(<any>response$);
+                    } catch (e) {
+                        return <Observable<any | null>><any>_observableThrow(e);
+                    }
+                } else
+                    return <Observable<any | null>><any>_observableThrow(response$);
+            }));
+    }
+
+    public creditScoringProfile(id_profile: string, fid: string = 'F35') {
+        let params: string[] = [];
+        let url_ = this.baseUrl + "/ipcms/icp/credit_scoring_profile?";
+        const userId = this.authService.getUserId();
+        url_ += "user_id=" + encodeURIComponent("" + userId) + "&";
+        params.push(userId);
+        params.push(this.authService.getSecretKey());
+        url_ += "fid=" + encodeURIComponent("" + fid) + "&";
+        params.push(fid);
+        url_ += "id_profile=" + encodeURIComponent("" + id_profile) + "&";
+        params.push(id_profile);
+        url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params));
+        url_ = url_.replace(/[?&]$/, "");
+        let options_: any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+        return this.http.request('get', url_, options_)
+            .pipe(_observableMergeMap((response$: any) => {
+                return this.processResponse(response$);
+            })).pipe(_observableCatch((response$: any) => {
+                if (response$ instanceof HttpResponseBase) {
+                    try {
+                        return this.processResponse(<any>response$);
+                    } catch (e) {
+                        return <Observable<any | null>><any>_observableThrow(e);
+                    }
+                } else
+                    return <Observable<any | null>><any>_observableThrow(response$);
+            }));
+    }
+
+    public verifyFinishProfile(id_profile: string, status_profile: string, note_his_profile: string, fid: string = 'F36') {
+        let params: string[] = [];
+        let url_ = this.baseUrl + "/ipcms/icp/verify_finish_profile?";
+        const userId = this.authService.getUserId();
+        url_ += "user_id=" + encodeURIComponent("" + userId) + "&";
+        params.push(userId);
+        params.push(this.authService.getSecretKey());
+        url_ += "fid=" + encodeURIComponent("" + fid) + "&";
+        params.push(fid);
+        url_ += "id_profile=" + encodeURIComponent("" + id_profile) + "&";
+        params.push(id_profile);
+        url_ += "status_profile=" + encodeURIComponent("" + status_profile) + "&";
+        params.push(status_profile);
+        url_ += "note_his_profile=" + encodeURIComponent("" + note_his_profile) + "&";
+        params.push(note_his_profile);
+        url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params));
+        url_ = url_.replace(/[?&]$/, "");
+        let options_: any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+        return this.http.request('get', url_, options_)
+            .pipe(_observableMergeMap((response$: any) => {
+                return this.processResponse(response$);
+            })).pipe(_observableCatch((response$: any) => {
+                if (response$ instanceof HttpResponseBase) {
+                    try {
+                        return this.processResponse(<any>response$);
+                    } catch (e) {
+                        return <Observable<any | null>><any>_observableThrow(e);
+                    }
+                } else
+                    return <Observable<any | null>><any>_observableThrow(response$);
+            }));
+    }
+    public cancellProfile(list_id_profile: string[], note_his_profile: string, fid: string = 'F25') {
+        let params: string[] = [];
+        let url_ = this.baseUrl + "/ipcms/icp/verify_finish_profile?";
+        const userId = this.authService.getUserId();
+        url_ += "user_id=" + encodeURIComponent("" + userId) + "&";
+        params.push(userId);
+        params.push(this.authService.getSecretKey());
+        url_ += "fid=" + encodeURIComponent("" + fid) + "&";
+        params.push(fid);
+        url_ += "list_id_profile=" + encodeURIComponent("" + JSON.stringify(list_id_profile)) + "&";
+        params.push(JSON.stringify(list_id_profile));
+        url_ += "note_his_profile=" + encodeURIComponent("" + note_his_profile) + "&";
+        params.push(note_his_profile);
+        url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params));
         url_ = url_.replace(/[?&]$/, "");
         let options_: any = {
             observe: "response",
@@ -246,6 +461,33 @@ export class ProfileClient {
         params.push(fid);
         url_ += "id_profile=" + encodeURIComponent("" + id_profile) + "&";
         params.push(id_profile);
+        url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params));
+
+        url_ = url_.replace(/[?&]$/, "");
+        let options_: any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+        return this.http.request('get', url_, options_);
+    }
+
+    public approvalFinishProfile(id_profile: string, status_profile: string, note_his_profile: string, fid: string = 'F1A') {
+        let params: string[] = [];
+        let url_ = this.baseUrl + "/ipcms/icp/approval_finish_profile?";
+        const userId = this.authService.getUserId();
+        url_ += "user_id=" + encodeURIComponent("" + userId) + "&";
+        params.push(userId);
+        params.push(this.authService.getSecretKey());
+        url_ += "fid=" + encodeURIComponent("" + fid) + "&";
+        params.push(fid);
+        url_ += "id_profile=" + encodeURIComponent("" + id_profile) + "&";
+        params.push(id_profile);
+        url_ += "status_profile=" + encodeURIComponent("" + status_profile) + "&";
+        params.push(status_profile);
+        url_ += "note_his_profile=" + encodeURIComponent("" + note_his_profile) + "&";
+        params.push(note_his_profile);
         url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params));
 
         url_ = url_.replace(/[?&]$/, "");

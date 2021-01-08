@@ -23,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ConfirmDialogComponent } from './shared/dialogs/confirm-dialog/confirm-dialog.component';
-
+import { ErrorsHandler } from './common/interceptors/errors-handler';
 
 const APP_COMPONENT = [
   MainComponent,
@@ -73,6 +73,7 @@ export const DATE_FORMATS = {
       useClass: MomentDateAdapter,
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
     },
+    ErrorsHandler
   ],
   entryComponents: [
     ConfirmMessageDialogComponent,
