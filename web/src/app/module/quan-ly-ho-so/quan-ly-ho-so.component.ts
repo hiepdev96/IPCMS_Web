@@ -43,6 +43,11 @@ export class QuanLyHoSoComponent implements OnInit {
           if (x.errorCode !== 'OK') {
             return this.alertService.error(x.errorMessage, 'Lỗi xem chi tiết hồ sơ');
           } else {
+            let isShowClose = true;
+
+            if (x.role === 'TELESALE') {
+              isShowClose = false;
+            }
             this.openDetail(new Tab({
               id: value.request.id_profile,
               value: x,

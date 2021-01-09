@@ -9,71 +9,6 @@
 
 import { mergeMap as _observableMergeMap, catchError as _observableCatch } from 'rxjs/operators';
 import { Observable, throwError as _observableThrow, of as _observableOf } from 'rxjs';
-import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angular/common/http';
-
-export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
-
-@Injectable()
-export class DefaultClient {
-    private http: HttpClient;
-    private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
-
-    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
-        this.http = http;
-        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
-    }
-
-    getAll(): Observable<GenericModel | null> {
-        let url_ = this.baseUrl + "/api/Default";
-        url_ = url_.replace(/[?&]$/, "");
-
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-                "Accept": "application/json"
-            })
-        };
-
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetAll(<any>response_);
-                } catch (e) {
-                    return <Observable<GenericModel | null>><any>_observableThrow(e);
-                }
-            } else
-                return <Observable<GenericModel | null>><any>_observableThrow(response_);
-        }));
-    }
-
-    protected processGetAll(response: HttpResponseBase): Observable<GenericModel | null> {
-        const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = resultData200 ? GenericModel.fromJS(resultData200) : <any>null;
-            return _observableOf(result200);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
-        }
-        return _observableOf<GenericModel | null>(<any>null);
-    }
-}
-
 export class GenericModel implements IGenericModel {
     filterProfileRequest?: FilterProfileRequest | undefined;
     filterProfileResponse?: FilterProfileResponse | undefined;
@@ -123,7 +58,7 @@ export class GenericModel implements IGenericModel {
         data["ProfileViewDetailResponse"] = this.profileViewDetailResponse ? this.profileViewDetailResponse.toJSON() : <any>undefined;
         data["ProfileViewDetailRequest"] = this.profileViewDetailRequest ? this.profileViewDetailRequest.toJSON() : <any>undefined;
         data["TelesaleRequest"] = this.telesaleRequest ? this.telesaleRequest.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
@@ -196,7 +131,7 @@ export class FilterProfileRequest implements IFilterProfileRequest {
         data["create_from"] = this.create_from;
         data["create_to"] = this.create_to;
         data["classify_cutomer"] = this.classify_cutomer;
-        return data; 
+        return data;
     }
 }
 
@@ -248,7 +183,7 @@ export class GenericResponse implements IGenericResponse {
         data["errorCode"] = this.errorCode;
         data["errorMessage"] = this.errorMessage;
         data["role"] = this.role;
-        return data; 
+        return data;
     }
 }
 
@@ -305,7 +240,7 @@ export class FilterProfileResponse extends GenericResponse implements IFilterPro
         }
         data["current_page"] = this.current_page;
         super.toJSON(data);
-        return data; 
+        return data;
     }
 }
 
@@ -355,7 +290,7 @@ export class Profile implements IProfile {
         data["id_number"] = this.id_number;
         data["scope"] = this.scope;
         data["status"] = this.status;
-        return data; 
+        return data;
     }
 }
 
@@ -400,7 +335,7 @@ export class ProvincialResponse extends GenericResponse implements IProvincialRe
                 data["provincial"].push(item.toJSON());
         }
         super.toJSON(data);
-        return data; 
+        return data;
     }
 }
 
@@ -448,7 +383,7 @@ export class Provincial implements IProvincial {
         data["type"] = this.type;
         data["name_with_type"] = this.name_with_type;
         data["code"] = this.code;
-        return data; 
+        return data;
     }
 }
 
@@ -493,7 +428,7 @@ export class DistrictResponse extends GenericResponse implements IDistrictRespon
                 data["district"].push(item.toJSON());
         }
         super.toJSON(data);
-        return data; 
+        return data;
     }
 }
 
@@ -547,7 +482,7 @@ export class District implements IDistrict {
         data["path_with_type"] = this.path_with_type;
         data["code"] = this.code;
         data["parent_code"] = this.parent_code;
-        return data; 
+        return data;
     }
 }
 
@@ -594,7 +529,7 @@ export class CommunceResponse extends GenericResponse implements ICommunceRespon
                 data["communce"].push(item.toJSON());
         }
         super.toJSON(data);
-        return data; 
+        return data;
     }
 }
 
@@ -651,7 +586,7 @@ export class Communce implements ICommunce {
         data["path"] = this.path;
         data["code"] = this.code;
         data["parent_code"] = this.parent_code;
-        return data; 
+        return data;
     }
 }
 
@@ -699,7 +634,7 @@ export class ProfileViewDetailResponse extends GenericResponse implements IProfi
                 data["profile"].push(item.toJSON());
         }
         super.toJSON(data);
-        return data; 
+        return data;
     }
 }
 
@@ -766,7 +701,7 @@ export class BlockField implements IBlockField {
             for (let item of this.listFields)
                 data["listFields"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
@@ -834,7 +769,7 @@ export class FileDinhKem implements IFileDinhKem {
         data["ten_thiet_bi"] = this.ten_thiet_bi;
         data["ghi_chu"] = this.ghi_chu;
         data["ten_file"] = this.ten_file;
-        return data; 
+        return data;
     }
 }
 
@@ -888,7 +823,7 @@ export class Field implements IField {
         data["value"] = this.value;
         data["verified"] = this.verified;
         data["verify_flag"] = this.verify_flag;
-        return data; 
+        return data;
     }
 }
 
@@ -930,7 +865,7 @@ export class ProfileViewDetailRequest implements IProfileViewDetailRequest {
         data = typeof data === 'object' ? data : {};
         data["id_profile"] = this.id_profile;
         data["classify_cutomer"] = this.classify_cutomer;
-        return data; 
+        return data;
     }
 }
 
@@ -987,7 +922,7 @@ export class TelesaleRequest implements ITelesaleRequest {
                 data["list_parameter"].push(item.toJSON());
         }
         data["note"] = this.note;
-        return data; 
+        return data;
     }
 }
 
@@ -1033,7 +968,7 @@ export class Parameter implements IParameter {
         data["block_id"] = this.block_id;
         data["name"] = this.name;
         data["value"] = this.value;
-        return data; 
+        return data;
     }
 }
 

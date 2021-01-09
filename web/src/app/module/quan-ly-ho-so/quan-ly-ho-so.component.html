@@ -1,10 +1,32 @@
-<mat-tab-group [selectedIndex]="index" (selectedIndexChange)="changeSelectedIndex($event)">
-    <mat-tab label="Danh sách">
-        <app-danh-sach-ho-so ($openDetail)="showDetail($event)"></app-danh-sach-ho-so>
+<mat-tab-group
+  [selectedIndex]="index"
+  (selectedIndexChange)="changeSelectedIndex($event)"
+>
+  <mat-tab>
+    <ng-template mat-tab-label> Danh sách </ng-template>
+    <app-danh-sach-ho-so
+      ($openDetail)="showDetail($event)"
+    ></app-danh-sach-ho-so>
+  </mat-tab>
+  <ng-container *ngFor="let tab of tabs">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        {{ tab.name }}
+        <mat-icon
+          class="example-tab-icon close-tab"
+          mat-button
+          mat-icon-button
+          clickStopPropagation
+          (click)="removeTab(tab.id)"
+          >close</mat-icon
+        >
+      </ng-template>
+      <app-chi-tiet-ho-so
+        [$item]="tab.value"
+        [$id]="tab.id"
+        [$status]="tab.status"
+        ($closeAndReload)="closeAndReload($event)"
+      ></app-chi-tiet-ho-so>
     </mat-tab>
-    <ng-container *ngFor="let tab of tabs">
-        <mat-tab [label]="tab.name">
-            <app-chi-tiet-ho-so [$item]="tab.value" [$id]="tab.id" [$status]="tab.status" ($closeAndReload)="closeAndReload($event)"></app-chi-tiet-ho-so>
-        </mat-tab>
-    </ng-container>
+  </ng-container>
 </mat-tab-group>

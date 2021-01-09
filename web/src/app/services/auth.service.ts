@@ -8,7 +8,7 @@ export class AuthService {
   constructor() { }
 
   getUserId(): string{
-    return 'BM1';
+    return 'APPRAISER1';
   }
 
   getSecretKey(): string{
