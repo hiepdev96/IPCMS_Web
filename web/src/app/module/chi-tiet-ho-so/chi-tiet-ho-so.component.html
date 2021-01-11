@@ -1,43 +1,7 @@
 <ng-container *ngIf="!isShowUpdate; else updateForm">
   <div class="p-20">
     <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-      <div fxFlex="30%">
-        <!-- <mat-card class="example-card m-b-20">
-
-                    <mat-card-content>
-                        <mat-card-header class="border-bottom m-b-20">
-                            <div class="label-type">Thông tin hồ sơ</div>
-                        </mat-card-header>
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="35%">
-                                <label>Trạng thái hồ sơ</label>
-                            </div>
-                            <div fxFlex="63%" style="color: green;">
-                                <span>Đang TELESALE</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="35%">
-                                <label>Số lần khóa</label>
-                            </div>
-                            <div fxFlex="63%">
-                                <span>1 lần</span>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="35%">
-                                <label>Khóa</label>
-                            </div>
-                            <div fxFlex="63%">
-                                <span>Đang khóa</span>
-                            </div>
-                        </div>
-
-                    </mat-card-content>
-                </mat-card> -->
-
+      <div fxFlex="31%">
         <mat-card class="example-card m-b-20">
           <!-- <mat-card-header>
                     <mat-card-title>Thông tin định danh</mat-card-title>
@@ -46,7 +10,7 @@
             <img mat-card-image [src]="avatar" />
           </ng-container>
           <mat-card-content>
-            <div class="label-type">
+            <!-- <div class="label-type">
               <ng-container *ngIf="isShowCheckbox">
                 <mat-checkbox value="true"></mat-checkbox>
               </ng-container>
@@ -54,337 +18,487 @@
                 <mat-icon class="ic-checked">check_circle_outline</mat-icon>
               </ng-container>
               Thông tin định danh và nhận diện
+            </div> -->
+            <div class="sub-label">
+              <ng-container *ngIf="getCheckedFlagBlock('1')">
+                <ng-container *ngIf="isShowCheckbox">
+                  <mat-checkbox value="true"></mat-checkbox>
+                </ng-container>
+                <ng-container *ngIf="isShowChecked">
+                  <mat-icon class="ic-checked" [style.color]="getCheckedBlock('1') ? 'green' : 'gray'"
+                    [title]="getCheckedBlock('1') ? 'Đã xác minh' : 'Chưa xác minh'">{{
+                    getCheckedBlock('1')
+                    ? "check_circle_outline"
+                    : "published_with_changes"
+                    }}</mat-icon>
+                </ng-container>
+              </ng-container>
+              Thông tin định danh
             </div>
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="35%">
+              <div style="min-width: 138px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
-                  </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  <ng-container *ngIf="getCheckedFlagField('HO_TEN')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                      getCheckedField('HO_TEN') ? 'green' : 'gray'
+                    " [title]="
+                      getCheckedField('HO_TEN')
+                        ? 'Đã xác minh'
+                        : 'Chưa xác minh'
+                    ">{{
+                        getCheckedField('HO_TEN')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
                   Họ và tên
                 </label>
               </div>
-              <div fxFlex="63%">
-                <span>{{ getFieldName("HO_TEN") }}</span>
+              <div>
+                <span>{{ getFieldName('HO_TEN') }}</span>
               </div>
             </div>
-
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="35%">
+              <div style="min-width: 138px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
-                  </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  <ng-container *ngIf="getCheckedFlagField('NGAY_SINH')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('NGAY_SINH') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('NGAY_SINH')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('NGAY_SINH')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
                   Ngày sinh
                 </label>
               </div>
-              <div fxFlex="63%">
+              <div>
                 <span>{{
-                  convertToDate(getFieldName("NGAY_SINH")) | date: "dd/MM/yyyy"
-                }}</span>
+                  convertToDate(getFieldName('NGAY_SINH')) | date: "dd/MM/yyyy"
+                  }}</span>
               </div>
             </div>
 
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="35%">
+              <div style="min-width: 138px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
-                  </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  <ng-container *ngIf="getCheckedFlagField('GIOI_TINH')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('GIOI_TINH') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('GIOI_TINH')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('GIOI_TINH')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
                   Giới tính
                 </label>
               </div>
-              <div fxFlex="63%">
-                <span>{{ getGioiTinh(getFieldName("GIOI_TINH")) }}</span>
+              <div>
+                <span>{{ getGioiTinh(getFieldName('GIOI_TINH')) }}</span>
               </div>
             </div>
 
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="35%">
+              <div style="min-width: 138px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
-                  </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  <ng-container *ngIf="getCheckedFlagField('HO_KHAU_THUONG_TRU')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('HO_KHAU_THUONG_TRU') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('HO_KHAU_THUONG_TRU')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('HO_KHAU_THUONG_TRU')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
                   Hộ khẩu thường trú
                 </label>
               </div>
-              <div fxFlex="63%">
-                <span>{{ getFieldName("HO_KHAU_THUONG_TRU") }}</span>
+              <div>
+                <span>{{ getFieldName('HO_KHAU_THUONG_TRU') }}</span>
               </div>
             </div>
 
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="35%">
+              <div style="min-width: 138px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
-                  </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  <ng-container *ngIf="getCheckedFlagField('LOAI_DINH_DANH')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('LOAI_DINH_DANH') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('LOAI_DINH_DANH')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('LOAI_DINH_DANH')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
                   Giấy tờ định danh
                 </label>
               </div>
-              <div fxFlex="63%">
+              <div>
                 <span>{{
-                  getLoaiDinhDanh(getFieldName("LOAI_DINH_DANH"))
-                }}</span>
+                  getLoaiDinhDanh(getFieldName('LOAI_DINH_DANH'))
+                  }}</span>
               </div>
             </div>
 
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="35%">
+              <div style="min-width: 138px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
-                  </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  <ng-container *ngIf="getCheckedFlagField('SO_DINH_DANH')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('SO_DINH_DANH') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('SO_DINH_DANH')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('SO_DINH_DANH')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
                   Số định danh
                 </label>
               </div>
-              <div fxFlex="63%">
-                <span>{{ getFieldName("SO_DINH_DANH") }}</span>
+              <div>
+                <span>{{ getFieldName('SO_DINH_DANH') }}</span>
               </div>
             </div>
 
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="35%">
+              <div style="min-width: 138px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
-                  </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  <ng-container *ngIf="getCheckedFlagField('NGAY_CAP')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('NGAY_CAP') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('NGAY_CAP')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('SO_DINH_DANH')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
                   Ngày cấp
                 </label>
               </div>
-              <div fxFlex="63%">
+              <div>
                 <span>{{
-                  convertToDate(getFieldName("NGAY_CAP")) | date: "dd/MM/yyyy"
-                }}</span>
+                  convertToDate(getFieldName('NGAY_CAP')) | date: "dd/MM/yyyy"
+                  }}</span>
               </div>
             </div>
 
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="35%">
+              <div style="min-width: 138px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
-                  </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  <ng-container *ngIf="getCheckedFlagField('NOI_CAP')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('NOI_CAP') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('NOI_CAP')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('NOI_CAP')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
                   Nơi cấp
                 </label>
               </div>
-              <div fxFlex="63%">
-                <span>{{ getFieldName("NOI_CAP") }}</span>
+              <div>
+                <span>{{ getFieldName('NOI_CAP') }}</span>
               </div>
             </div>
 
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="35%">
+              <div style="min-width: 138px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
-                  </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  <ng-container *ngIf="getCheckedFlagField('HIEU_LUC_DEN')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('HIEU_LUC_DEN') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('HIEU_LUC_DEN')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('HIEU_LUC_DEN')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
                   Hiệu lực đến
                 </label>
               </div>
-              <div fxFlex="63%">
+              <div>
                 <span>{{
-                  convertToDate(getFieldName("HIEU_LUC_DEN"))
-                    | date: "dd/MM/yyyy"
-                }}</span>
+                  convertToDate(getFieldName('HIEU_LUC_DEN'))
+                  | date: "dd/MM/yyyy"
+                  }}</span>
               </div>
             </div>
 
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="35%">
+              <div style="min-width: 138px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
-                  </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  <ng-container *ngIf="getCheckedFlagField('QUOC_TICH')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('QUOC_TICH') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('QUOC_TICH')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('QUOC_TICH')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
                   Quốc tịch
                 </label>
               </div>
-              <div fxFlex="63%">
-                <span>{{ getFieldName("QUOC_TICH") }}</span>
+              <div>
+                <span>{{ getFieldName('QUOC_TICH') }}</span>
               </div>
             </div>
           </mat-card-content>
         </mat-card>
-
-        <!-- <mat-card class="example-card  m-b-20">
-                    <mat-card-header class="border-bottom m-b-20">
-                        <div class="label-type">Thông tin các tệp đính kèm</div>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <ng-container *ngFor="let doc of lstDoc">
-                            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                                <div fxFlex="35%">
-                                    <label>
-                                        {{doc.title}}
-                                    </label>
-                                </div>
-                            </div>
-                            <ng-container *ngFor="let value of doc.values">
-                                <div style="margin-left:20px"> <a href="javascript:void(0)">{{value.dinh_danh_ho_so}} -
-                                        {{value.ten_file}}</a></div>
-                            </ng-container>
-                        </ng-container>
-                    </mat-card-content>
-                </mat-card> -->
-
-        <!-- <mat-card class="example-card  m-b-20">
-                    <mat-card-header class="border-bottom m-b-20">
-                        <div class="label-type">Thông tin phân loại</div>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="35%">
-                                <label>Loại khách hàng</label>
-                            </div>
-                            <div fxFlex="63%">
-                                <span>Khách hàng thân thiết</span>
-                            </div>
-                        </div>
-                    </mat-card-content>
-                </mat-card> -->
-
-        <!-- <mat-card class="example-card  m-b-20">
-                    <mat-card-header class="border-bottom m-b-20">
-                        <div class="label-type">Thông tin đánh giá</div>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="35%">
-                                <label>Hạng tín dụng</label>
-                            </div>
-                            <div fxFlex="63%">
-                                <span>AAA</span>
-                            </div>
-                        </div>
-                        <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                            <div fxFlex="35%">
-                                <label>Điểm tín dụng</label>
-                            </div>
-                            <div fxFlex="63%">
-                                <span>100</span>
-                            </div>
-                        </div>
-                    </mat-card-content>
-                </mat-card> -->
       </div>
-      <div fxFlex="68%">
+      <div fxFlex="67%">
         <mat-card class="example-card m-b-20">
           <mat-card-header class="border-bottom m-b-20">
-            <div class="label-type">
-              <ng-container *ngIf="isShowCheckbox">
-                <mat-checkbox value="true"></mat-checkbox>
-              </ng-container>
-              <ng-container *ngIf="isShowChecked">
-                <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+            <div class="label-type">Thông tin liên hệ</div>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="sub-label">
+              <ng-container *ngIf="getCheckedFlagBlock('2')">
+                <ng-container *ngIf="isShowCheckbox">
+                  <mat-checkbox value="true"></mat-checkbox>
+                </ng-container>
+                <ng-container *ngIf="isShowChecked">
+                  <mat-icon class="ic-checked" [style.color]="getCheckedBlock('2') ? 'green' : 'gray'"
+                    [title]="getCheckedBlock('2') ? 'Đã xác minh' : 'Chưa xác minh'">{{
+                    getCheckedBlock('2')
+                    ? "check_circle_outline"
+                    : "published_with_changes"
+                    }}</mat-icon>
+                </ng-container>
               </ng-container>
               Thông tin liên hệ
             </div>
-          </mat-card-header>
-          <mat-card-content>
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
+              <div style="min-width: 200px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
-                  </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  <ng-container *ngIf="getCheckedFlagField('SO_DIEN_THOAI')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('SO_DIEN_THOAI') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('SO_DIEN_THOAI')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('SO_DIEN_THOAI')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
                   Số điện thoại
                 </label>
               </div>
-              <div fxFlex="73%">
-                <span>{{ getFieldName("SO_DIEN_THOAI") }}</span>
+              <div fxFlex="67%">
+                <span>{{ getFieldName('SO_DIEN_THOAI') }}</span>
               </div>
             </div>
 
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
+              <div style="min-width: 200px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
-                  </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  <ng-container *ngIf="getCheckedFlagField('SDT_THAM_CHIEU_1')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('SDT_THAM_CHIEU_1') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('SDT_THAM_CHIEU_1')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('SDT_THAM_CHIEU_1')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
                   Số điện thoại tham chiếu 1
                 </label>
               </div>
-              <div fxFlex="73%">
-                <span>{{ getFieldName("SDT_THAM_CHIEU_1") }}</span>
+              <div fxFlex="67%">
+                <span>{{ getFieldName('SDT_THAM_CHIEU_1') }}</span>
               </div>
             </div>
 
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
+              <div style="min-width: 200px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
-                  </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  <ng-container *ngIf="getCheckedFlagField('SDT_THAM_CHIEU_2')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('SDT_THAM_CHIEU_2') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('SDT_THAM_CHIEU_2')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('SDT_THAM_CHIEU_2')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
                   Số điện thoại tham chiếu 2
                 </label>
               </div>
-              <div fxFlex="73%">
-                <span>{{ getFieldName("SDT_THAM_CHIEU_2") }}</span>
+              <div fxFlex="67%">
+                <span>{{ getFieldName('SDT_THAM_CHIEU_2') }}</span>
               </div>
             </div>
 
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
-                <label>Email</label>
-              </div>
-              <div fxFlex="73%">
-                <span>{{ getFieldName("EMAIL") }}</span>
-              </div>
-            </div>
-
-            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
+              <div style="min-width: 200px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
+                  <ng-container *ngIf="getCheckedFlagField('EMAIL')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('EMAIL') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('EMAIL')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('SDT_THAM_CHIEU_2')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  Email
+                </label>
+              </div>
+              <div fxFlex="67%">
+                <span>{{ getFieldName('EMAIL') }}</span>
+              </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('DIA_CHI')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('DIA_CHI') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('DIA_CHI')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('DIA_CHI')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
                   Địa chỉ
                 </label>
               </div>
-              <div fxFlex="73%">
-                <span>{{ getFieldName("dia_chi") }}</span>
+              <div fxFlex="67%">
+                <span>{{ getFieldName('DIA_CHI') }}</span>
               </div>
             </div>
           </mat-card-content>
@@ -392,290 +506,675 @@
 
         <mat-card class="example-card m-b-20">
           <mat-card-header class="border-bottom m-b-20">
-            <div class="label-type">
-              <ng-container *ngIf="isShowCheckbox">
-                <mat-checkbox value="true"></mat-checkbox>
-              </ng-container>
-              <ng-container *ngIf="isShowChecked">
-                <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-              </ng-container>
-              Thông tin đặc trưng
-            </div>
+            <div class="label-type">Thông tin đặc trưng</div>
           </mat-card-header>
           <mat-card-content>
+            <div class="sub-label">
+              <ng-container *ngIf="getCheckedFlagBlock('3')">
+                <ng-container *ngIf="isShowCheckbox">
+                  <mat-checkbox value="true"></mat-checkbox>
+                </ng-container>
+                <ng-container *ngIf="isShowChecked">
+                  <mat-icon class="ic-checked" [style.color]="getCheckedBlock('3') ? 'green' : 'gray'"
+                    [title]="getCheckedBlock('3') ? 'Đã xác minh' : 'Chưa xác minh'">{{
+                    getCheckedBlock('3')
+                    ? "check_circle_outline"
+                    : "published_with_changes"
+                    }}</mat-icon>
+                </ng-container>
+              </ng-container>
+              Năng lực tài chính
+            </div>
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
+              <div style="min-width: 200px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
+                  <ng-container *ngIf="getCheckedFlagField('THU_NHAP_THANG')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('THU_NHAP_THANG') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('THU_NHAP_THANG')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('THU_NHAP_THANG')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                  </ng-container>
-                  Giới tính hiện tại
+                  Thu nhập tháng
                 </label>
               </div>
-              <div fxFlex="73%">
+              <div fxFlex="67%">
                 <span>{{
-                  getGioiTinh(getFieldName("GIOI_TINH_HIEN_TAI"))
-                }}</span>
-              </div>
-            </div>
-
-            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
-                <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
-                  </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                  </ng-container>
-                  Tuổi
-                </label>
-              </div>
-              <div fxFlex="73%">
-                <span>{{ getFieldName("TUOI") }}</span>
-              </div>
-            </div>
-
-            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
-                <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
-                  </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                  </ng-container>
-                  Tình trạng hôn nhân
-                </label>
-              </div>
-              <div fxFlex="73%">
-                <span>{{
-                  getTinhTrangHonNhan(getFieldName("TINH_TRANG_HON_NHAN"))
-                }}</span>
-              </div>
-            </div>
-
-            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
-                <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
-                  </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                  </ng-container>
-                  Số người phụ thuộc
-                </label>
-              </div>
-              <div fxFlex="73%">
-                <span
-                  >{{
-                    (getFieldName("SO_NGUOI_PHU_THUOC")
-                      ? getFieldName("SO_NGUOI_PHU_THUOC")
-                      : 0
-                    ) | number
+                  (getFieldName('THU_NHAP_THANG')
+                  ? getFieldName('THU_NHAP_THANG')
+                  : 0
+                  ) | number
                   }}
-                  người</span
-                >
+                  triệu đồng</span>
               </div>
             </div>
-
-            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
-                <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
-                  </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                  </ng-container>
-                  Thu nhập hàng tháng
-                </label>
-              </div>
-              <div fxFlex="73%">
-                <span
-                  >{{
-                    (getFieldName("THU_NHAP_THANG")
-                      ? getFieldName("THU_NHAP_THANG")
-                      : 0
-                    ) | number
-                  }}
-                  triệu đồng</span
-                >
-              </div>
+            <div class="divider"></div>
+            <div class="sub-label">
+              <ng-container *ngIf="getCheckedFlagBlock('4')">
+                <ng-container *ngIf="isShowCheckbox">
+                  <mat-checkbox value="true"></mat-checkbox>
+                </ng-container>
+                <ng-container *ngIf="isShowChecked">
+                  <mat-icon class="ic-checked" [style.color]="getCheckedBlock('4') ? 'green' : 'gray'"
+                    [title]="getCheckedBlock('4') ? 'Đã xác minh' : 'Chưa xác minh'">{{
+                    getCheckedBlock('4')
+                    ? "check_circle_outline"
+                    : "published_with_changes"
+                    }}</mat-icon>
+                </ng-container>
+              </ng-container>
+              Chi phí thường xuyên
             </div>
-
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
+              <div style="min-width: 200px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
-                  </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  <ng-container *ngIf="getCheckedFlagField('NHA_O')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('NHA_O') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('NHA_O')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('NHA_O')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
                   Nhà ở
                 </label>
               </div>
-              <div fxFlex="73%">
-                <span>{{ getNhaO(getFieldName("NHA_O")) }}</span>
+              <div fxFlex="67%">
+                <span>{{ getNhaO(getFieldName('NHA_O')) }}</span>
               </div>
             </div>
 
+
+
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
+              <div style="min-width: 200px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
+                  <ng-container *ngIf="getCheckedFlagField('SO_HOP_DONG_BAO_HIEM')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('SO_HOP_DONG_BAO_HIEM') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('SO_HOP_DONG_BAO_HIEM')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('SO_HOP_DONG_BAO_HIEM')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  Số hợp đồng bảo hiểm
+                </label>
+              </div>
+              <div fxFlex="67%">
+                <span>{{
+                  (getFieldName('SO_HOP_DONG_BAO_HIEM')
+                  ? getFieldName('SO_HOP_DONG_BAO_HIEM')
+                  : 0
+                  ) | number
+                  }}
+                  hợp đồng</span>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('SO_NGUOI_PHU_THUOC')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('SO_NGUOI_PHU_THUOC') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('SO_NGUOI_PHU_THUOC')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('SO_NGUOI_PHU_THUOC')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
+                  </ng-container>
+                  Số người phụ thuộc
+                </label>
+              </div>
+              <div fxFlex="67%">
+                <span>{{
+                  (getFieldName('SO_NGUOI_PHU_THUOC')
+                  ? getFieldName('SO_NGUOI_PHU_THUOC')
+                  : 0
+                  ) | number
+                  }}
+                  người</span>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="sub-label">
+              <ng-container *ngIf="getCheckedFlagBlock('5')">
+                <ng-container *ngIf="isShowCheckbox">
+                  <mat-checkbox value="true"></mat-checkbox>
+                </ng-container>
+                <ng-container *ngIf="isShowChecked">
+                  <mat-icon class="ic-checked" [style.color]="getCheckedBlock('5') ? 'green' : 'gray'"
+                    [title]="getCheckedBlock('5') ? 'Đã xác minh' : 'Chưa xác minh'">{{
+                    getCheckedBlock('5')
+                    ? "check_circle_outline"
+                    : "published_with_changes"
+                    }}</mat-icon>
+                </ng-container>
+              </ng-container>
+              Nhân khẩu học
+            </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('TINH_TRANG_HON_NHAN')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('TINH_TRANG_HON_NHAN') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('TINH_TRANG_HON_NHAN')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('TINH_TRANG_HON_NHAN')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
+                  </ng-container>
+                  Tình trạng hôn nhân
+                </label>
+              </div>
+              <div fxFlex="67%">
+                <span>{{
+                  getTinhTrangHonNhan(getFieldName('TINH_TRANG_HON_NHAN'))
+                  }}</span>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('TUOI')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('TUOI') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('TUOI')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('TUOI')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
+                  </ng-container>
+                  Tuổi
+                </label>
+              </div>
+              <div fxFlex="67%">
+                <span>{{ getFieldName('TUOI') }}</span>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('GIOI_TINH_HIEN_TAI')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('GIOI_TINH_HIEN_TAI') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('GIOI_TINH_HIEN_TAI')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('GIOI_TINH_HIEN_TAI')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
+                  </ng-container>
+                  Giới tính hiện tại
+                </label>
+              </div>
+              <div fxFlex="67%">
+                <span>{{
+                  getGioiTinh(getFieldName('GIOI_TINH_HIEN_TAI'))
+                  }}</span>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+            <div class="sub-label">
+              <ng-container *ngIf="getCheckedFlagBlock('6')">
+                <ng-container *ngIf="isShowCheckbox">
+                  <mat-checkbox value="true"></mat-checkbox>
+                </ng-container>
+                <ng-container *ngIf="isShowChecked">
+                  <mat-icon class="ic-checked" [style.color]="getCheckedBlock('6') ? 'green' : 'gray'"
+                    [title]="getCheckedBlock('6') ? 'Đã xác minh' : 'Chưa xác minh'">{{
+                    getCheckedBlock('6')
+                    ? "check_circle_outline"
+                    : "published_with_changes"
+                    }}</mat-icon>
+                </ng-container>
+              </ng-container>
+              Học vấn
+            </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('TRINH_DO_HOC_VAN')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('TRINH_DO_HOC_VAN') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('TRINH_DO_HOC_VAN')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('TRINH_DO_HOC_VAN')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
                   Trình độ học vấn
                 </label>
               </div>
-              <div fxFlex="73%">
+              <div fxFlex="67%">
                 <span>{{
-                  getTrinhDoHocVan(getFieldName("TRINH_DO_HOC_VAN"))
-                }}</span>
+                  getTrinhDoHocVan(getFieldName('TRINH_DO_HOC_VAN'))
+                  }}</span>
               </div>
             </div>
 
+            <div class="divider"></div>
+            <div class="sub-label">
+              <ng-container *ngIf="getCheckedFlagBlock('7')">
+                <ng-container *ngIf="isShowCheckbox">
+                  <mat-checkbox value="true"></mat-checkbox>
+                </ng-container>
+                <ng-container *ngIf="isShowChecked">
+                  <mat-icon class="ic-checked" [style.color]="getCheckedBlock('7') ? 'green' : 'gray'"
+                    [title]="getCheckedBlock('7') ? 'Đã xác minh' : 'Chưa xác minh'">{{
+                    getCheckedBlock('7')
+                    ? "check_circle_outline"
+                    : "published_with_changes"
+                    }}</mat-icon>
+                </ng-container>
+              </ng-container>
+              Danh hiệu, địa vị xã hội
+            </div>
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
+              <div style="min-width: 200px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
-                  </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+                  <ng-container *ngIf="getCheckedFlagField('DANH_HIEU')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('DANH_HIEU') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('DANH_HIEU')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('DANH_HIEU')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
                   Số danh hiệu đạt được
                 </label>
               </div>
-              <div fxFlex="73%">
-                <span>{{ getFieldName("DANH_HIEU") }}</span>
+              <div fxFlex="67%">
+                <span>{{ getFieldName('DANH_HIEU') }}</span>
               </div>
             </div>
-
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
+              <div style="min-width: 200px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
+                  <ng-container *ngIf="getCheckedFlagField('LOAI_DON_VI_CONG_TAC')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('LOAI_DON_VI_CONG_TAC') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('LOAI_DON_VI_CONG_TAC')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('LOAI_DON_VI_CONG_TAC')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
-                  </ng-container>
-                  Loại hình đơn vị công tác hiện tại
+                  Loại hình đơn vị công tác
                 </label>
               </div>
-              <div fxFlex="73%">
+              <div fxFlex="67%">
                 <span>{{
-                  getLoaiDonViCongTac(getFieldName("LOAI_DON_VI_CONG_TAC"))
-                }}</span>
+                  getLoaiDonViCongTac(getFieldName('LOAI_DON_VI_CONG_TAC'))
+                  }}</span>
               </div>
             </div>
-
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
-                <label>Cấp quản lý</label>
-              </div>
-              <div fxFlex="73%">
-                <span>{{ getCapQuanLy(getFieldName("CAP_QUAN_LY")) }}</span>
-              </div>
-            </div>
-
-            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
+              <div style="min-width: 200px">
                 <label>
-                  <ng-container *ngIf="isShowCheckbox">
-                    <mat-checkbox value="true"></mat-checkbox>
+                  <ng-container *ngIf="getCheckedFlagField('CAP_QUAN_LY')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('CAP_QUAN_LY') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('CAP_QUAN_LY')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('CAP_QUAN_LY')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
-                  <ng-container *ngIf="isShowChecked">
-                    <mat-icon class="ic-checked">check_circle_outline</mat-icon>
+
+                  Cấp quản lý
+                </label>
+              </div>
+              <div fxFlex="67%">
+                <span>{{ getCapQuanLy(getFieldName('CAP_QUAN_LY')) }}</span>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+            <div class="sub-label">
+              <ng-container *ngIf="getCheckedFlagBlock('8')">
+                <ng-container *ngIf="isShowCheckbox">
+                  <mat-checkbox value="true"></mat-checkbox>
+                </ng-container>
+                <ng-container *ngIf="isShowChecked">
+                  <mat-icon class="ic-checked" [style.color]="getCheckedBlock('8') ? 'green' : 'gray'"
+                    [title]="getCheckedBlock('8') ? 'Đã xác minh' : 'Chưa xác minh'">{{
+                    getCheckedBlock('8')
+                    ? "check_circle_outline"
+                    : "published_with_changes"
+                    }}</mat-icon>
+                </ng-container>
+              </ng-container>
+              Hành vi thói quen tiêu dùng
+            </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('SO_THE_TIN_DUNG')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('SO_THE_TIN_DUNG') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('SO_THE_TIN_DUNG')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('SO_THE_TIN_DUNG')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
                   </ng-container>
                   Thanh toán bằng thẻ tín dụng
                 </label>
               </div>
-              <div fxFlex="73%">
-                <span
-                  >{{
-                    (getFieldName("SO_THE_TIN_DUNG")
-                      ? getFieldName("SO_THE_TIN_DUNG")
-                      : 0
-                    ) | number
-                  }}
-                  thẻ</span
-                >
-              </div>
-            </div>
-
-            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
-                <label>Tổng dư nợ tín dụng</label>
-              </div>
-              <div fxFlex="73%">
-                <span
-                  >{{
-                    (getFieldName("TONG_DU_NO_TIN_DUNG")
-                      ? getFieldName("TONG_DU_NO_TIN_DUNG")
-                      : 0
-                    ) | number
-                  }}
-                  triệu đồng</span
-                >
-              </div>
-            </div>
-
-            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
-                <label>Lịch sử tín dụng</label>
-              </div>
-              <div fxFlex="73%">
+              <div fxFlex="67%">
                 <span>{{
-                  getLichSuTinDung(getFieldName("LICH_SU_TIN_DUNG"))
-                }}</span>
-              </div>
-            </div>
-
-            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
-                <label>Nợ xấu</label>
-              </div>
-              <div fxFlex="73%">
-                <span>{{ getNoXau(getFieldName("NO_XAU")) }}</span>
-              </div>
-            </div>
-
-            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
-                <label>Tổng giá trị tài sản đảm bảo</label>
-              </div>
-              <div fxFlex="73%">
-                <span
-                  >{{
-                    (getFieldName("TONG_GIA_TRI_TAI_SAN_DAM_BAO")
-                      ? getFieldName("TONG_GIA_TRI_TAI_SAN_DAM_BAO")
-                      : 0
-                    ) | number
+                  (getFieldName('SO_THE_TIN_DUNG')
+                  ? getFieldName('SO_THE_TIN_DUNG')
+                  : 0
+                  ) | number
                   }}
-                  triệu đồng</span
-                >
+                  thẻ</span>
               </div>
             </div>
 
+            <div class="divider"></div>
+            <div class="sub-label">
+              <ng-container *ngIf="getCheckedFlagBlock('9')">
+                <ng-container *ngIf="isShowCheckbox">
+                  <mat-checkbox value="true"></mat-checkbox>
+                </ng-container>
+                <ng-container *ngIf="isShowChecked">
+                  <mat-icon class="ic-checked" [style.color]="getCheckedBlock('9') ? 'green' : 'gray'"
+                    [title]="getCheckedBlock('9') ? 'Đã xác minh' : 'Chưa xác minh'">{{
+                    getCheckedBlock('9')
+                    ? "check_circle_outline"
+                    : "published_with_changes"
+                    }}</mat-icon>
+                </ng-container>
+              </ng-container>
+              Dư nợ tín dụng
+            </div>
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
-                <label>Tính thanh khoản</label>
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('TONG_DU_NO_TIN_DUNG')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('TONG_DU_NO_TIN_DUNG') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('TONG_DU_NO_TIN_DUNG')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('TONG_DU_NO_TIN_DUNG')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
+                  </ng-container>
+                  Tổng dư nợ tín dụng
+                </label>
               </div>
-              <div fxFlex="73%">
+              <div fxFlex="67%">
                 <span>{{
-                  getTinhThanhKhoan(getFieldName("TINH_THANH_KHOAN"))
-                }}</span>
+                  (getFieldName('TONG_DU_NO_TIN_DUNG')
+                  ? getFieldName('TONG_DU_NO_TIN_DUNG')
+                  : 0
+                  ) | number
+                  }}
+                  triệu đồng</span>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('LICH_SU_TIN_DUNG')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('LICH_SU_TIN_DUNG') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('LICH_SU_TIN_DUNG')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('LICH_SU_TIN_DUNG')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
+                  </ng-container>
+                  Lịch sử tín dụng
+                </label>
+              </div>
+              <div fxFlex="67%">
+                <span>{{
+                  getLichSuTinDung(getFieldName('LICH_SU_TIN_DUNG'))
+                  }}</span>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('NO_XAU')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('NO_XAU') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('NO_XAU')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('NO_XAU')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
+                  </ng-container>
+                  Nợ xấu
+                </label>
+              </div>
+              <div fxFlex="67%">
+                <span>{{ getNoXau(getFieldName('NO_XAU')) }}</span>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+            <div class="sub-label">
+              <ng-container *ngIf="getCheckedFlagBlock('10')">
+                <ng-container *ngIf="isShowCheckbox">
+                  <mat-checkbox value="true"></mat-checkbox>
+                </ng-container>
+                <ng-container *ngIf="isShowChecked">
+                  <mat-icon class="ic-checked" [style.color]="getCheckedBlock('10') ? 'green' : 'gray'"
+                    [title]="getCheckedBlock('10') ? 'Đã xác minh' : 'Chưa xác minh'">{{
+                    getCheckedBlock('10')
+                    ? "check_circle_outline"
+                    : "published_with_changes"
+                    }}</mat-icon>
+                </ng-container>
+              </ng-container>
+              Tài sản đảm bảo
+            </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('TONG_GIA_TRI_TAI_SAN_DAM_BAO')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('TONG_GIA_TRI_TAI_SAN_DAM_BAO') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('TONG_GIA_TRI_TAI_SAN_DAM_BAO')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('TONG_GIA_TRI_TAI_SAN_DAM_BAO')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
+                  </ng-container>
+                  Tổng giá trị tài sản đảm bảo
+                </label>
+              </div>
+              <div fxFlex="67%">
+                <span>{{
+                  (getFieldName('TONG_GIA_TRI_TAI_SAN_DAM_BAO')
+                  ? getFieldName('TONG_GIA_TRI_TAI_SAN_DAM_BAO')
+                  : 0
+                  ) | number
+                  }}
+                  triệu đồng</span>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('TINH_THANH_KHOAN')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('TINH_THANH_KHOAN') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('TINH_THANH_KHOAN')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('TINH_THANH_KHOAN')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
+                  </ng-container>Tính thanh khoản
+                </label>
+
+              </div>
+              <div fxFlex="67%">
+                <span>{{
+                  getTinhThanhKhoan(getFieldName('TINH_THANH_KHOAN'))
+                  }}</span>
               </div>
             </div>
           </mat-card-content>
@@ -686,85 +1185,259 @@
             <div class="label-type">Thông tin khoản vay</div>
           </mat-card-header>
           <mat-card-content>
+            <div class="sub-label">
+              <ng-container *ngIf="getCheckedFlagBlock('11')">
+                <ng-container *ngIf="isShowCheckbox">
+                  <mat-checkbox value="true"></mat-checkbox>
+                </ng-container>
+                <ng-container *ngIf="isShowChecked">
+                  <mat-icon class="ic-checked" [style.color]="getCheckedBlock('11') ? 'green' : 'gray'"
+                    [title]="getCheckedBlock('11') ? 'Đã xác minh' : 'Chưa xác minh'">{{
+                    getCheckedBlock('11')
+                    ? "check_circle_outline"
+                    : "published_with_changes"
+                    }}</mat-icon>
+                </ng-container>
+              </ng-container>
+              Thông tin khoản vay
+            </div>
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
-                <label>Loại khoản vay</label>
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('LOAI_KHOAN_VAY')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('LOAI_KHOAN_VAY') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('LOAI_KHOAN_VAY')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('LOAI_KHOAN_VAY')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
+                  </ng-container>
+                  Loại khoản vay
+                </label>
               </div>
-              <div fxFlex="73%">
+              <div fxFlex="67%">
                 <span>{{
-                  getLoaiKhoanVay(getFieldName("LOAI_KHOAN_VAY"))
-                }}</span>
+                  getLoaiKhoanVay(getFieldName('LOAI_KHOAN_VAY'))
+                  }}</span>
               </div>
             </div>
 
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
-                <label>Sản phẩn vay</label>
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('SAN_PHAM_VAY')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('SAN_PHAM_VAY') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('SAN_PHAM_VAY')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('SAN_PHAM_VAY')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
+                  </ng-container>
+                  Sản phẩn vay
+                </label>
               </div>
-              <div fxFlex="73%">
-                <span>{{ getFieldName("SAN_PHAM_VAY") }}</span>
+              <div fxFlex="67%">
+                <span>{{ getFieldName('SAN_PHAM_VAY') }}</span>
               </div>
             </div>
 
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
-                <label>Số tiền vay</label>
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('SO_TIEN_VAY')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('SO_TIEN_VAY') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('SO_TIEN_VAY')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('SO_TIEN_VAY')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
+                  </ng-container>
+                  Số tiền vay
+                </label>
               </div>
-              <div fxFlex="73%">
-                <span
-                  >{{
-                    (getFieldName("SO_TIEN_VAY")
-                      ? getFieldName("SO_TIEN_VAY")
-                      : 0
-                    ) | number
+              <div fxFlex="67%">
+                <span>{{
+                  (getFieldName('SO_TIEN_VAY')
+                  ? getFieldName('SO_TIEN_VAY')
+                  : 0
+                  ) | number
                   }}
-                  triệu đồng</span
-                >
+                  triệu đồng</span>
               </div>
             </div>
 
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
-                <label>Kỳ hạn</label>
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('KY_HAN')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('KY_HAN') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('KY_HAN')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('KY_HAN')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
+                  </ng-container>
+                  Kỳ hạn
+                </label>
               </div>
-              <div fxFlex="73%">
-                <span>{{ getFieldName("KY_HAN") }}</span>
+              <div fxFlex="67%">
+                <span>{{ getFieldName('KY_HAN') }}</span>
               </div>
             </div>
 
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
-                <label>Hình thức vay</label>
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('HINH_THUC_VAY')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('HINH_THUC_VAY') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('HINH_THUC_VAY')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('HINH_THUC_VAY')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
+                  </ng-container>
+                  Hình thức vay
+                </label>
               </div>
-              <div fxFlex="73%">
-                <span>{{ getHinhThucVay(getFieldName("HINH_THUC_VAY")) }}</span>
+              <div fxFlex="67%">
+                <span>{{ getHinhThucVay(getFieldName('HINH_THUC_VAY')) }}</span>
               </div>
             </div>
 
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
-                <label>Hình thức thanh toán</label>
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('HINH_THUC_THANH_TOAN')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('HINH_THUC_THANH_TOAN') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('HINH_THUC_THANH_TOAN')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('HINH_THUC_THANH_TOAN')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
+                  </ng-container>
+                    Hình thức thanh toán
+                </label>
               </div>
-              <div fxFlex="73%">
+              <div fxFlex="67%">
                 <span>{{
-                  getHinhThucThanhToan(getFieldName("HINH_THUC_THANH_TOAN"))
-                }}</span>
+                  getHinhThucThanhToan(getFieldName('HINH_THUC_THANH_TOAN'))
+                  }}</span>
               </div>
             </div>
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
-                <label>Lãi suất</label>
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('LAI_XUAT')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('LAI_XUAT') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('LAI_XUAT')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('LAI_XUAT')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
+                  </ng-container>
+                    Lãi suất
+                </label>
               </div>
-              <div fxFlex="73%">
-                <span>{{ getFieldName("LAI_XUAT") }}</span>
+              <div fxFlex="67%">
+                <span>{{ getFieldName('LAI_XUAT') }}</span>
               </div>
             </div>
             <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <div fxFlex="25%">
-                <label>Mục đích vay</label>
+              <div style="min-width: 200px">
+                <label>
+                  <ng-container *ngIf="getCheckedFlagField('MUC_DICH_VAY')">
+                    <ng-container *ngIf="isShowCheckbox">
+                      <mat-checkbox value="true"></mat-checkbox>
+                    </ng-container>
+                    <ng-container>
+                      <mat-icon class="ic-checked" [style.color]="
+                          getCheckedField('MUC_DICH_VAY') ? 'green' : 'gray'
+                        " [title]="
+                          getCheckedField('MUC_DICH_VAY')
+                            ? 'Đã xác minh'
+                            : 'Chưa xác minh'
+                        ">{{
+                        getCheckedField('MUC_DICH_VAY')
+                        ? "check_circle_outline"
+                        : "published_with_changes"
+                        }}</mat-icon>
+                    </ng-container>
+                  </ng-container>
+                    Mục đích vay
+                </label>
               </div>
-              <div fxFlex="73%">
-                <span>{{ getFieldName("MUC_DICH_VAY") }}</span>
+              <div fxFlex="67%">
+                <span>{{ getFieldName('MUC_DICH_VAY') }}</span>
               </div>
             </div>
           </mat-card-content>
@@ -777,41 +1450,31 @@
         <button class="btn btn-primary" (click)="showUpdate(true)">
           Xử lý hồ sơ
         </button>
-        <button
-          class="btn btn-info"
-          (click)="
+        <button class="btn btn-info" (click)="
             onTelesale(
               '3',
               'Khách hàng từ chối',
               'Bạn có chắn chắn khách hàng đã từ chối không?'
             )
-          "
-        >
+          ">
           Khách hàng từ chối
         </button>
-        <button
-          class="btn btn-danger"
-          (click)="
+        <button class="btn btn-danger" (click)="
             onTelesale(
               '4',
               'Hủy hồ sơ',
               'Bạn có chắn chắn muốn hủy hồ sơ này không?'
             )
-          "
-        >
+          ">
           Hủy hồ sơ
         </button>
-        <button
-          mat-stroked-button
-          type="button"
-          (click)="
+        <button mat-stroked-button type="button" (click)="
             onTelesale(
               '0',
               'Bỏ qua hồ sơ',
               'Bạn có chắn chắn muốn bỏ qua hồ sơ này không?'
             )
-          "
-        >
+          ">
           Bỏ qua
         </button>
       </ng-container>
@@ -825,19 +1488,16 @@
       </ng-container>
 
       <ng-container *ngIf="$item.role === 'APPRAISER'">
-        <button class="btn btn-info" (click)="showUpdate(true)">
+        <button class="btn btn-info" (click)="isShowCheckbox = true">
           Xác minh trường thông tin
         </button>
-        <button class="btn btn-primary" (click)="approvalFinishProfile(true)">
+        <button class="btn btn-primary" (click)="verifyFinishProfile('10')">
           Thẩm định đạt
         </button>
-        <button class="btn btn-danger" (click)="approvalFinishProfile(false)">
+        <button class="btn btn-danger" (click)="verifyFinishProfile('11')">
           Thẩm định không đạt
         </button>
-        <button
-          class="btn btn-secondary"
-          (click)="approvalFinishProfile(false)"
-        >
+        <button class="btn btn-secondary" (click)="verifyFinishProfile('8')">
           Chuyển về đang hoàn thiện
         </button>
       </ng-container>

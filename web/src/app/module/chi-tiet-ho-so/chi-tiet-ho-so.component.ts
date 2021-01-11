@@ -12,6 +12,7 @@ import {
   ListLoaiDinhDanh,
   ListLoaiDonViCongTac,
   ListLoaiKhoanVay,
+  ListMappingProfileValue,
   ListNhaO,
   ListNoXau,
   ListStatusProfile,
@@ -19,7 +20,7 @@ import {
   ListTinhTrangHonNhan,
   ListTrinhDoHocVan
 } from 'src/app/common/data';
-import { Field, FileDinhKem, GenericResponse, ProfileViewDetailResponse, TelesaleRequest } from 'src/app/common/model/generic-model';
+import { BlockField, Field, FileDinhKem, GenericResponse, ProfileViewDetailResponse, TelesaleRequest } from 'src/app/common/model/generic-model';
 import { SelectionInput } from 'src/app/common/model/selection-input';
 import { ProfileClient } from 'src/app/connection/profile-connector';
 import { ListWithTitle } from '../../common/model/lst-with-title';
@@ -28,6 +29,8 @@ import { AlertService } from './../../services/alert.service';
 import { ConfirmChotHoSoComponent } from './dialog/confirm-chot-ho-so/confirm-chot-ho-so.component';
 import { FileDinhKemDialogComponent } from './dialog/file-dinh-kem-dialog/file-dinh-kem-dialog.component';
 import { StatusProfileConstant } from '../../common/constants/status-profile-constant';
+import { globalconstants } from '../../common/constants/global-contants';
+import { MappingProfileValue } from 'src/app/common/model/mapping-profile-value';
 @Component({
   selector: 'app-chi-tiet-ho-so',
   templateUrl: './chi-tiet-ho-so.component.html',
@@ -46,6 +49,7 @@ export class ChiTietHoSoComponent implements OnInit {
   lstField: Field[] = [];
   lstDoc: ListWithTitle<FileDinhKem>[] = [];
   avatar: any;
+  lstBlock: BlockField[] = [];
   constructor(
     private alertService: AlertService,
     private dialog: MatDialog,
@@ -57,6 +61,7 @@ export class ChiTietHoSoComponent implements OnInit {
   ngOnInit(): void {
     // this.$item = ProfileViewDetailResponse.fromJS(a);
     this.$item.profile.forEach(x => {
+      this.lstBlock.push(x);
       this.lstField = this.lstField.concat(x.listFields);
       if (x.listDoc && x.listDoc.length > 0) {
         this.lstDoc.push(new ListWithTitle({
@@ -65,12 +70,31 @@ export class ChiTietHoSoComponent implements OnInit {
         }));
       }
     });
+    if (this.$item.role === 'APPRAISER' || this.$item.role === 'ADMIN') {
+      this.isShowChecked = true;
+    }
     this.profileClient.imagePortait(this.$id)
       .subscribe(x => {
         // tslint:disable-next-line: no-string-literal
         this.avatar = x['url'];
       });
-    this.showUpdate(false);
+    console.log(this.$item);
+  }
+  getCheckedBlock(block_id: string): boolean {
+    const value = this.lstBlock.find(x => x.block_id === block_id);
+    return value && value.verified === 'Y';
+  }
+  getCheckedFlagBlock(block_id: string): boolean {
+    const value = this.lstBlock.find(x => x.block_id === block_id);
+    return value && value.verify_flag === 'Y';
+  }
+  getCheckedField(name: string): boolean {
+    const value = this.lstField.find(x => x.name === name);
+    return value && value.verified === 'Y';
+  }
+  getCheckedFlagField(name: string): boolean {
+    const value = this.lstField.find(x => x.name === name);
+    return value && value.verify_flag === 'Y';
   }
 
   openDialogFileDinhKem(): void {
@@ -204,7 +228,6 @@ export class ChiTietHoSoComponent implements OnInit {
           });
       }
     });
-
   }
   openDialogConfirm(): void {
     this.alertService.confirmMessage('Xác nhận bỏ qua hồ sơ', 'Bạn có chắc chắn muốn bỏ hồ sơ không?');

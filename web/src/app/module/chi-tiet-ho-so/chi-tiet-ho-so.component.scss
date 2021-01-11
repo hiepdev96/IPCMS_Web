@@ -8,7 +8,7 @@ label {
 }
 
 label::after {
-  content: ':';
+  content: ":";
 }
 
 .label-type {
@@ -21,10 +21,21 @@ label::after {
 
 .border-bottom {
   border-bottom: 1px solid gray;
-
 }
 
 .ic-checked {
   color: green;
-  ;
+  font-size: 15px;
+  height: 15px;
+  width: 15px;
+  cursor: default;
+}
+.sub-label {
+  color: gray;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+.divider {
+  border-bottom: 1px solid rgb(216, 216, 216);
+  margin-bottom: 10px;
 }
