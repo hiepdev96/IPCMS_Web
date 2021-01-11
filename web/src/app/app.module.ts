@@ -24,6 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ConfirmDialogComponent } from './shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { ErrorsHandler } from './common/interceptors/errors-handler';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const APP_COMPONENT = [
   MainComponent,
@@ -56,6 +57,8 @@ export const DATE_FORMATS = {
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     FormInputHoSoModule,
     MatDialogModule,

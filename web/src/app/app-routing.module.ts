@@ -17,13 +17,13 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'dashboard',
+    component: DashboardComponent
+  },
+  {
     path: '',
     component: MainComponent,
     children: [
-      {
-        path: 'dashboard',
-        component: DashboardComponent
-      },
       {
         path: 'ql-ho-so',
         loadChildren: () => import('./module/quan-ly-ho-so/quan-ly-ho-so.module').then(m => m.QuanLyHoSoModule)

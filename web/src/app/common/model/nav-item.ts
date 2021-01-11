@@ -4,7 +4,7 @@ export class NavItem {
     public title?: string;
     public icon?: string;
     public routerLink?: string;
-    public roles?: number[];
+    public roles?: string[];
     public active?: boolean;
     public children?: NavItem[];
     public constructor(data?: INavItem) {
@@ -23,7 +23,7 @@ export interface INavItem {
     name?: string;
     icon?: string;
     routerLink?: string;
-    roles?: number[];
+    roles?: string[];
     active?: boolean;
     children?: NavItem[];
     title?: string;

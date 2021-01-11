@@ -1,0 +1,18 @@
+<ng-container *ngIf="!isShowForm; else formNguoiDung">
+  <app-chi-tiet-nguoi-dung [$item]="getUser()"></app-chi-tiet-nguoi-dung>
+  <div fxLayout="row" fxLayoutGap="2%" class="pb-20">
+    <button mat-flat-button color="primary" (click)="toggleEditForm(true)">
+      Cập nhật thông tin
+    </button>
+  </div>
+</ng-container>
+<ng-template #formNguoiDung>
+  <app-form-nguoi-dung [$item]="getUser()"></app-form-nguoi-dung>
+  <div fxLayout="row" fxLayoutGap="2%" class="pb-20">
+    <button mat-flat-button color="primary" (click)="onUpdate()">
+      Cập nhật thông tin
+    </button>
+    <button mat-flat-button  (click)="toggleEditForm(false)">Quay lại chi tiết</button>
+  </div>
+</ng-template>
+

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { NavItem } from '../../common/model/nav-item';
 @Component({
   selector: 'app-nav',
@@ -15,7 +16,8 @@ export class NavComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private titleService: Title
+    private titleService: Title,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -65,8 +67,25 @@ export class NavComponent implements OnInit {
   getRouting(url): string[] {
     return [url];
   }
+  checkShow(item: NavItem): boolean {
+    if (item.roles && item.roles.length > 0) {
+      return item.roles.includes(this.authService.getRole());
+    }
+
+    return true;
+  }
 }
 const navItems: NavItem[] = [
+  {
+    isTitle: true,
+    name: 'Tài khoản'
+  },
+  {
+    name: 'Thông tin cá nhân',
+    title: 'Thông tin cá nhân',
+    routerLink: '/quan-tri-nguoi-dung/thong-tin-ca-nhan',
+    icon: 'fas fa-th-list'
+  },
   {
     isTitle: true,
     name: 'QUẢN LÝ HỒ SƠ'
@@ -84,16 +103,18 @@ const navItems: NavItem[] = [
     routerLink: '/ql-ho-so/loc-ho-so',
     icon: 'fas fa-th-list'
   },
-  // {
-  //   name: 'QUẢN TRỊ NGƯỜI DÙNG',
-  //   isTitle: true,
-  // },
-  // {
-  //   name: 'Tạo người dùng',
-  //   title: 'Tạo người dùng',
-  //   routerLink: '/quan-tri-nguoi-dung/tao-nguoi-dung',
-  //   icon: 'fas fa-user-plus'
-  // },
+  {
+    name: 'QUẢN TRỊ NGƯỜI DÙNG',
+    isTitle: true,
+    roles: ['ADMIN'],
+  },
+  {
+    name: 'Tạo người dùng',
+    title: 'Tạo người dùng',
+    roles: ['ADMIN'],
+    routerLink: '/quan-tri-nguoi-dung/tao-nguoi-dung',
+    icon: 'fas fa-user-plus'
+  },
   // {
   //   name: 'Danh sách người dùng',
   //   title: 'Danh sách người dùng',

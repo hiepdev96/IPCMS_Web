@@ -40,7 +40,9 @@ export class InputTextComponent implements OnInit, OnDestroy, ControlValueAccess
   @Input() max: number;
   @Input() min: number;
   @Input() icon: string;
+  @Input() pattern: string;
   @Input() textarea: boolean;
+  @Input() readonly: boolean;
   control = new FormControl('');
   @Output() valid = new EventEmitter<boolean>();
 
@@ -70,6 +72,9 @@ export class InputTextComponent implements OnInit, OnDestroy, ControlValueAccess
     if (this.required) {
       lstValidate.push(Validators.required);
     }
+    if (this.pattern) {
+      lstValidate.push(Validators.pattern(this.pattern));
+    }
     if (lstValidate.length > 0) {
       this.control.setValidators(lstValidate);
     }
@@ -91,6 +96,7 @@ export class InputTextComponent implements OnInit, OnDestroy, ControlValueAccess
   onTouched: any = () => { };
 
   writeValue(obj: any): void {
+    console.log(obj);
     this.control.setValue(obj, {
       emitModelToViewChange: true
     });
