@@ -571,3 +571,30 @@ export const ListMappingProfileValue: MappingProfileValue[] = [
         lstSelect: ListHinhThucThanhToan
     }),
 ];
+export const ListStatusUser: SelectionInput[] = [
+
+    new SelectionInput({
+        name: 'ACTIVE',
+        value: 'A',
+    }),
+    new SelectionInput({
+        name: 'SUSPENDED',
+        value: 'S',
+    }),
+    new SelectionInput({
+        name: 'DROPED',
+        value: 'D',
+    })
+];
+export const ListRoleUser: string[] = [
+    'PARTNER',
+    'TELESALE',
+    'SALE',
+    'BM',
+    'ADMIN',
+    'APPRAISER',
+    'MCAS',
+    'RM',
+    'MONITOR'
+];
+

@@ -5,7 +5,6 @@ export class SelectionInput {
         this.value = data.value;
         this.name = data.name;
     }
-
 }
 export interface ISelectionInput {
     value: any;

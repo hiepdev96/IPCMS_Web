@@ -11928,9 +11928,9 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   padding: 0.5rem;
 }
 
-.nav-sidebar .nav-header:not(:first-of-type) {
+/* .nav-sidebar .nav-header:not(:first-of-type) {
   padding: 1.7rem 1rem .5rem;
-}
+} */
 
 .nav-sidebar .nav-link p {
   display: inline-block;

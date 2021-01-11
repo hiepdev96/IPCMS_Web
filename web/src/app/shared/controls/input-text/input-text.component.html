@@ -47,6 +47,7 @@
         [maxlength]="length"
         [max]="max"
         [min]="min"
+        [readonly]="readonly"
       />
     </ng-container>
     <ng-template #textareaHTML>
@@ -56,6 +57,7 @@
         [formControl]="control"
         [required]="required"
         [maxlength]="length"
+        [readonly]="readonly"
       ></textarea>
     </ng-template>
     <div class="input-group-append" *ngIf="suffix">
@@ -78,6 +80,11 @@
       <ng-container *ngIf="control.errors.email">
         <span class="error invalid-feedback">
           {{ label }} không đúng định dạng email
+        </span>
+      </ng-container>
+      <ng-container *ngIf="control.errors.pattern">
+        <span class="error invalid-feedback">
+          {{ label }} không đúng định dạng
         </span>
       </ng-container>
     </ng-container>

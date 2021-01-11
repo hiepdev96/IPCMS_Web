@@ -34,7 +34,7 @@
   <!-- <div class="navbar-nav ml-auto">
     <div class="drop-down-user"> -->
   <ul class="navbar-nav ml-auto">
-    <span class="line-height-40"> Xin chào! <span class="name-user">Tạ Đức Hiệp</span></span>
+    <span class="line-height-40"> Xin chào! <span class="name-user">{{getUsername()}}</span></span>
 
 
     <li class="nav-item dropdown">
@@ -44,7 +44,7 @@
       </a>
       <div class="dropdown-menu dropdown-menu-xs dropdown-menu-right">
         <div class="dropdown-header bg-light"><strong>Tài khoản</strong></div>
-        <a href="#" class="dropdown-item">
+        <a href="javascript:void(0)" (click)="onLogout()" class="dropdown-item">
           <i class="fas fa-sign-out-alt mr-2"></i>Đăng xuất
         </a>
         <!-- <div class="dropdown-divider"></div>

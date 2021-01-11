@@ -5,6 +5,7 @@ import { LichSuHoatDongComponent } from './lich-su-hoat-dong/lich-su-hoat-dong.c
 
 import { QuanTriNguoiDungComponent } from './quan-tri-nguoi-dung.component';
 import { TaoNguoiDungComponent } from './tao-nguoi-dung/tao-nguoi-dung.component';
+import { ThongTinCaNhanComponent } from './thong-tin-ca-nhan/thong-tin-ca-nhan.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,13 @@ const routes: Routes = [
         component: TaoNguoiDungComponent,
         data: {
           title: 'Tạo người dùng'
+        }
+      },
+      {
+        path: 'thong-tin-ca-nhan',
+        component: ThongTinCaNhanComponent,
+        data: {
+          title: 'Thông tin cá nhân'
         }
       },
       {

@@ -21,7 +21,7 @@ import { FilterProfileRequest, ProfileViewDetailRequest, SwaggerException, Teles
 export const API_BASE_URL = new InjectionToken<string>
     ('API URL', {
         providedIn: 'root',
-        factory: () => environment.apiUrl
+        factory: () => environment.apiUrlProfile
     });
 @Injectable({
     providedIn: 'root'
@@ -77,26 +77,10 @@ export class ProfileClient {
         params.push(String(page));
         url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params)) + "&";
         url_ = url_.replace(/[?&]$/, "");
-        let options_: any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-            })
-        };
-        return this.http.request('get', url_, options_)
-            .pipe(_observableMergeMap((response$: any) => {
-                return this.processResponse(response$);
-            })).pipe(_observableCatch((response$: any) => {
-                if (response$ instanceof HttpResponseBase) {
-                    try {
-                        return this.processResponse(<any>response$);
-                    } catch (e) {
-                        return <Observable<any | null>><any>_observableThrow(e);
-                    }
-                } else
-                    return <Observable<any | null>><any>_observableThrow(response$);
-            }));
+        return this.callAPI(url_);
     }
+
+
     public telesale(request: TelesaleRequest, fid: string = 'F14') {
         let params: string[] = [];
         let url_ = this.baseUrl + "/ipcms/icp/telesale?";
@@ -130,25 +114,7 @@ export class ProfileClient {
         }
         url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params)) + "&";
         url_ = url_.replace(/[?&]$/, "");
-        let options_: any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-            })
-        };
-        return this.http.request('get', url_, options_)
-            .pipe(_observableMergeMap((response$: any) => {
-                return this.processResponse(response$);
-            })).pipe(_observableCatch((response$: any) => {
-                if (response$ instanceof HttpResponseBase) {
-                    try {
-                        return this.processResponse(<any>response$);
-                    } catch (e) {
-                        return <Observable<any | null>><any>_observableThrow(e);
-                    }
-                } else
-                    return <Observable<any | null>><any>_observableThrow(response$);
-            }));
+        return this.callAPI(url_);
     }
 
     public viewDetail(request: ProfileViewDetailRequest, fid: string = 'F16') {
@@ -176,25 +142,7 @@ export class ProfileClient {
         }
         url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params)) + "&";
         url_ = url_.replace(/[?&]$/, "");
-        let options_: any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-            })
-        };
-        return this.http.request('get', url_, options_)
-            .pipe(_observableMergeMap((response$: any) => {
-                return this.processResponse(response$);
-            })).pipe(_observableCatch((response$: any) => {
-                if (response$ instanceof HttpResponseBase) {
-                    try {
-                        return this.processResponse(<any>response$);
-                    } catch (e) {
-                        return <Observable<any | null>><any>_observableThrow(e);
-                    }
-                } else
-                    return <Observable<any | null>><any>_observableThrow(response$);
-            }));
+        return this.callAPI(url_);
     }
 
     public viewDoc(id_profile: string, doc_id: string, fid: string = 'F16') {
@@ -251,25 +199,8 @@ export class ProfileClient {
         url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params));
 
         url_ = url_.replace(/[?&]$/, "");
-        let options_: any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-            })
-        };
-        return this.http.request('get', url_, options_)
-            .pipe(_observableMergeMap((response$: any) => {
-                return this.processResponse(response$);
-            })).pipe(_observableCatch((response$: any) => {
-                if (response$ instanceof HttpResponseBase) {
-                    try {
-                        return this.processResponse(<any>response$);
-                    } catch (e) {
-                        return <Observable<any | null>><any>_observableThrow(e);
-                    }
-                } else
-                    return <Observable<any | null>><any>_observableThrow(response$);
-            }));
+        return this.callAPI(url_);
+
     }
     public verifyFieldProfile(id_profile: string, field_name: string, fid: string = 'F33') {
         let params: string[] = [];
@@ -285,27 +216,8 @@ export class ProfileClient {
         url_ += "field_name=" + encodeURIComponent("" + field_name) + "&";
         params.push(field_name);
         url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params));
-
         url_ = url_.replace(/[?&]$/, "");
-        let options_: any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-            })
-        };
-        return this.http.request('get', url_, options_)
-            .pipe(_observableMergeMap((response$: any) => {
-                return this.processResponse(response$);
-            })).pipe(_observableCatch((response$: any) => {
-                if (response$ instanceof HttpResponseBase) {
-                    try {
-                        return this.processResponse(<any>response$);
-                    } catch (e) {
-                        return <Observable<any | null>><any>_observableThrow(e);
-                    }
-                } else
-                    return <Observable<any | null>><any>_observableThrow(response$);
-            }));
+        return this.callAPI(url_);
     }
     public classCustomer(id_profile: string, type_customer: string, fid: string = 'F34') {
         let params: string[] = [];
@@ -328,19 +240,7 @@ export class ProfileClient {
             headers: new HttpHeaders({
             })
         };
-        return this.http.request('get', url_, options_)
-            .pipe(_observableMergeMap((response$: any) => {
-                return this.processResponse(response$);
-            })).pipe(_observableCatch((response$: any) => {
-                if (response$ instanceof HttpResponseBase) {
-                    try {
-                        return this.processResponse(<any>response$);
-                    } catch (e) {
-                        return <Observable<any | null>><any>_observableThrow(e);
-                    }
-                } else
-                    return <Observable<any | null>><any>_observableThrow(response$);
-            }));
+        return this.callAPI(url_);
     }
 
     public creditScoringProfile(id_profile: string, fid: string = 'F35') {
@@ -362,19 +262,7 @@ export class ProfileClient {
             headers: new HttpHeaders({
             })
         };
-        return this.http.request('get', url_, options_)
-            .pipe(_observableMergeMap((response$: any) => {
-                return this.processResponse(response$);
-            })).pipe(_observableCatch((response$: any) => {
-                if (response$ instanceof HttpResponseBase) {
-                    try {
-                        return this.processResponse(<any>response$);
-                    } catch (e) {
-                        return <Observable<any | null>><any>_observableThrow(e);
-                    }
-                } else
-                    return <Observable<any | null>><any>_observableThrow(response$);
-            }));
+        return this.callAPI(url_);
     }
 
     public verifyFinishProfile(id_profile: string, status_profile: string, note_his_profile: string, fid: string = 'F36') {
@@ -400,19 +288,7 @@ export class ProfileClient {
             headers: new HttpHeaders({
             })
         };
-        return this.http.request('get', url_, options_)
-            .pipe(_observableMergeMap((response$: any) => {
-                return this.processResponse(response$);
-            })).pipe(_observableCatch((response$: any) => {
-                if (response$ instanceof HttpResponseBase) {
-                    try {
-                        return this.processResponse(<any>response$);
-                    } catch (e) {
-                        return <Observable<any | null>><any>_observableThrow(e);
-                    }
-                } else
-                    return <Observable<any | null>><any>_observableThrow(response$);
-            }));
+        return this.callAPI(url_);
     }
     public cancellProfile(list_id_profile: string[], note_his_profile: string, fid: string = 'F25') {
         let params: string[] = [];
@@ -429,25 +305,7 @@ export class ProfileClient {
         params.push(note_his_profile);
         url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params));
         url_ = url_.replace(/[?&]$/, "");
-        let options_: any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-            })
-        };
-        return this.http.request('get', url_, options_)
-            .pipe(_observableMergeMap((response$: any) => {
-                return this.processResponse(response$);
-            })).pipe(_observableCatch((response$: any) => {
-                if (response$ instanceof HttpResponseBase) {
-                    try {
-                        return this.processResponse(<any>response$);
-                    } catch (e) {
-                        return <Observable<any | null>><any>_observableThrow(e);
-                    }
-                } else
-                    return <Observable<any | null>><any>_observableThrow(response$);
-            }));
+        return this.callAPI(url_);
     }
 
     public imagePortait(id_profile: string, fid: string = 'F16') {
@@ -491,25 +349,7 @@ export class ProfileClient {
         url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params));
 
         url_ = url_.replace(/[?&]$/, "");
-        let options_: any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-            })
-        };
-        return this.http.request('get', url_, options_)
-            .pipe(_observableMergeMap((response$: any) => {
-                return this.processResponse(response$);
-            })).pipe(_observableCatch((response$: any) => {
-                if (response$ instanceof HttpResponseBase) {
-                    try {
-                        return this.processResponse(<any>response$);
-                    } catch (e) {
-                        return <Observable<any | null>><any>_observableThrow(e);
-                    }
-                } else
-                    return <Observable<any | null>><any>_observableThrow(response$);
-            }));
+        return this.callAPI(url_);
     }
 
     public getProvincial() {
@@ -521,25 +361,7 @@ export class ProfileClient {
         params.push(this.authService.getSecretKey());
         url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params)) + "&";
         url_ = url_.replace(/[?&]$/, "");
-        let options_: any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-            })
-        };
-        return this.http.request('get', url_, options_)
-            .pipe(_observableMergeMap((response$: any) => {
-                return this.processResponse(response$);
-            })).pipe(_observableCatch((response$: any) => {
-                if (response$ instanceof HttpResponseBase) {
-                    try {
-                        return this.processResponse(<any>response$);
-                    } catch (e) {
-                        return <Observable<any | null>><any>_observableThrow(e);
-                    }
-                } else
-                    return <Observable<any | null>><any>_observableThrow(response$);
-            }));
+        return this.callAPI(url_);
     }
 
     public getDistrict(code_provincial: string) {
@@ -555,25 +377,7 @@ export class ProfileClient {
         }
         url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params)) + "&";
         url_ = url_.replace(/[?&]$/, "");
-        let options_: any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-            })
-        };
-        return this.http.request('get', url_, options_)
-            .pipe(_observableMergeMap((response$: any) => {
-                return this.processResponse(response$);
-            })).pipe(_observableCatch((response$: any) => {
-                if (response$ instanceof HttpResponseBase) {
-                    try {
-                        return this.processResponse(<any>response$);
-                    } catch (e) {
-                        return <Observable<any | null>><any>_observableThrow(e);
-                    }
-                } else
-                    return <Observable<any | null>><any>_observableThrow(response$);
-            }));
+        return this.callAPI(url_);
     }
 
     public getCommune(code_district: string) {
@@ -589,11 +393,13 @@ export class ProfileClient {
         }
         url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params)) + "&";
         url_ = url_.replace(/[?&]$/, "");
+        return this.callAPI(url_);
+    }
+    private callAPI(url_: string) {
         let options_: any = {
             observe: "response",
             responseType: "blob",
-            headers: new HttpHeaders({
-            })
+            headers: new HttpHeaders({})
         };
         return this.http.request('get', url_, options_)
             .pipe(_observableMergeMap((response$: any) => {
@@ -605,11 +411,11 @@ export class ProfileClient {
                     } catch (e) {
                         return <Observable<any | null>><any>_observableThrow(e);
                     }
-                } else
+                }
+                else
                     return <Observable<any | null>><any>_observableThrow(response$);
             }));
     }
-
     private processResponse(response: HttpResponseBase): Observable<any> {
         const status = response.status;
         const responseBlob =

@@ -1,11 +1,54 @@
-<div class="body"></div>
-<div class="grad"></div>
-<div class="header">
-    <div>Site<span>Random</span></div>
-</div>
-<br>
-<div class="login">
-    <input type="text" placeholder="username" name="user"><br>
-    <input type="password" placeholder="password" name="password"><br>
-    <input type="button" value="Login">
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <div
+        class="login100-form-title"
+        style="background-image: url(../../../assets/bg-01.jpg)"
+      >
+        <span class="login100-form-title-1"> ICPMS </span>
+        <div style="color: #ffffff; font-size: 20px">
+          Hệ thống quản lý hồ sơ khách hàng
+        </div>
+      </div>
+
+      <form class="login100-form validate-form" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <div
+          class="wrap-input100 validate-input m-b-26"
+          style="margin-bottom: 20px"
+          [ngClass]="{'alert-validate': ctrls.userIdCtrl.invalid && (ctrls.userIdCtrl.dirty || ctrls.userIdCtrl.touched)}"
+          data-validate="User ID là bắt buộc"
+        >
+          <span class="label-input100">User ID</span>
+          <input
+            class="input100"
+            type="text"
+            name="username"
+            placeholder="Nhập User ID"
+            formControlName="userIdCtrl"
+          />
+          <span class="focus-input100"></span>
+        </div>
+
+        <div
+          class="wrap-input100 validate-input m-b-18"
+          [ngClass]="{'alert-validate': ctrls.secretKeyCtrl.invalid && (ctrls.secretKeyCtrl.dirty || ctrls.secretKeyCtrl.touched)}"
+          data-validate="Secret Key là bắt buộc"
+        >
+          <span class="label-input100">Secret Key</span>
+          <input
+            class="input100"
+            type="password"
+            name="pass"
+            placeholder="Nhập Secret Key"
+            formControlName="secretKeyCtrl"
+          />
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="container-login100-form-btn" style="margin-top: 30px">
+          <button class="login100-form-btn" type="submit">Đăng nhập</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

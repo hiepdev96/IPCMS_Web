@@ -17,6 +17,10 @@ namespace WebApplication1.Models
         public ProfileViewDetailResponse ProfileViewDetailResponse { set; get; }
         public ProfileViewDetailRequest ProfileViewDetailRequest { set; get; }
         public TelesaleRequest TelesaleRequest { set; get; }
-
+        public UserNewRequest UserNewRequest { set; get; }
+        public UserNewResponse UserNewResponse { set; get; }
+        public UserDetailResponse UserDetailResponse { set; get; }
+        public UserDisableScopeRequest UserDisableScopeRequest { set; get; }
+        public UserUpdateRequest UserUpdateRequest { set; get; }
     }
 }

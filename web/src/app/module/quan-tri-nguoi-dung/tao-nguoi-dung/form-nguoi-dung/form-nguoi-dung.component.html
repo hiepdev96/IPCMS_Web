@@ -1,104 +1,3 @@
-<!-- <div class="p-20">
-  <form [formGroup]="myForm">
-    <div class="title-type">
-      <span class="label-type">* Thông tin người dùng</span>
-    </div>
-    <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-      <input-text
-        label="Họ và tên"
-        fxFlex="23.5%"
-        formControlName="nameCtrl"
-      ></input-text>
-      <input-text
-        label="Số điện thoại"
-        fxFlex="23.5%"
-        formControlName="phoneCtrl"
-      ></input-text>
-      <input-text
-        label="Email"
-        fxFlex="23.5%"
-        formControlName="emailCtrl"
-      ></input-text>
-      <input-text
-        label="Mật khẩu"
-        fxFlex="23.5%"
-        formControlName="matKhauCtrl"
-      ></input-text>
-    </div>
-
-    <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-      <input-text
-        label="Tổ chức"
-        fxFlex="23.5%"
-        formControlName="organizationCtrl"
-      ></input-text>
-      <input-text
-        label="Chức vụ"
-        fxFlex="23.5%"
-        formControlName="positionCtrl"
-      ></input-text>
-      <input-text
-        label="Địa chỉ"
-        fxFlex="49%"
-        formControlName="addressCtrl"
-      ></input-text>
-    </div>
-    <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-      <input-select
-        label="Vai trò người dùng"
-        fxFlex="23.5%"
-        formControlName="roleCtrl"
-      ></input-select>
-      <input-text
-        label="Mô tả"
-        fxFlex="74.5%"
-        formControlName="moTaCtrl"
-      ></input-text>
-    </div>
-  </form>
-  <div class="title-type">
-    <span class="label-type">* Phạm vi người dùng theo địa lý</span>
-  </div>
-  <ng-container *ngFor="let item of lstScope; let idx = index">
-    <mat-expansion-panel
-      hideToggle
-      [expanded]="step === idx"
-      (opened)="setStep(idx)"
-      (closed)="closed()"
-    >
-      <mat-expansion-panel-header>
-        <ng-container *ngIf="step !== idx">
-          <mat-panel-title> /Hà Nội/Hai Bà Trưng/Đồng Tâm </mat-panel-title>
-          <mat-panel-description>
-            <span></span>
-            <span
-              ><label>Thời gian hiệu lực: </label> 20/10/2020 - 20/1/2021</span
-            >
-          </mat-panel-description>
-        </ng-container>
-      </mat-expansion-panel-header>
-      <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-        <input-text label="Phạm vi" fxFlex="49%" value="/"></input-text>
-        <input-date label="Hiệu lực từ ngày" fxFlex="23.5%"></input-date>
-        <input-date label="Hiệu lực đến ngày" fxFlex="23.5%"></input-date>
-      </div>
-      <mat-action-row>
-        <button mat-button color="warn" (click)="prevStep()">Xóa</button>
-      </mat-action-row>
-    </mat-expansion-panel>
-  </ng-container>
-  <div>
-    <button
-      mat-button
-      class="full-width"
-      style="font-size: 20px; color: blue"
-      title="Thêm phạm vi"
-      (click)="addScope()"
-    >
-      +
-    </button>
-  </div>
-</div> -->
 
 <div class="card card-info">
   <div class="card-header">
@@ -110,12 +9,16 @@
         <input-text
           label="Họ và tên"
           fxFlex="23.5%"
-          formControlName="nameCtrl"
+          formControlName="fullNameCtrl"
+          required="true"
+          length="50"
         ></input-text>
         <input-text
           label="Số điện thoại"
           fxFlex="23.5%"
-          formControlName="phoneCtrl"
+          formControlName="phoneNumberCtrl"
+          required="true"
+          isTel="true"
         ></input-text>
         <input-text
           label="Email"
@@ -123,9 +26,10 @@
           formControlName="emailCtrl"
         ></input-text>
         <input-text
-          label="ID"
+          label="User ID"
           fxFlex="23.5%"
-          formControlName="idCtrl"
+          formControlName="userIdCtrl"
+          pattern="[A-Z_][A-Z0-9_]*"
         ></input-text>
       </div>
       <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
@@ -149,57 +53,59 @@
         <input-select
           label="Vai trò người dùng"
           fxFlex="23.5%"
+          [items]="lstRole"
           formControlName="roleCtrl"
         ></input-select>
         <input-text
           label="Mô tả"
           fxFlex="74.5%"
-          formControlName="moTaCtrl"
+          formControlName="noteCtrl"
         ></input-text>
       </div>
     </form>
   </div>
 </div>
-
-<div class="card card-info">
-  <div class="card-header">
-    <span class="card-title">Thông tin phạm vi theo khu vực địa lý</span>
-  </div>
-  <div class="card-body">
-    <ng-container *ngFor="let item of lstScope; let idx = index">
-      <div class="pt-20">
-        <div class="card card-default">
-          <div class="card-header">
-            <span class="card-title" style="color: blue;">Phạm vi {{ idx + 1 }}</span>
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool">
-                <i class="fa fa-times"></i>
-              </button>
+<ng-container *ngIf="getRole() === 'ADMIN'">
+  <div class="card card-info">
+    <div class="card-header">
+      <span class="card-title">Thông tin phạm vi theo khu vực địa lý</span>
+    </div>
+    <div class="card-body">
+      <ng-container *ngFor="let item of lstScope; let idx = index">
+        <div class="pt-20">
+          <div class="card card-default">
+            <div class="card-header">
+              <span class="card-title" style="color: blue;">Phạm vi {{ idx + 1 }}</span>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool">
+                  <i class="fa fa-times"></i>
+                </button>
+              </div>
             </div>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-              <input-select label="Tỉnh thành" fxFlex="20%"></input-select>
-              <input-select label="Quận huyện" fxFlex="20%"></input-select>
-              <input-select label="Phường xã" fxFlex="20%"></input-select>
-              <input-date label="Hiệu lực từ ngày" fxFlex="20%"></input-date>
-              <input-date label="Hiệu lực đến ngày" fxFlex="20%"></input-date>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+                <input-select label="Tỉnh thành" fxFlex="20%"></input-select>
+                <input-select label="Quận huyện" fxFlex="20%"></input-select>
+                <input-select label="Phường xã" fxFlex="20%"></input-select>
+                <input-date label="Hiệu lực từ ngày" fxFlex="20%"></input-date>
+                <input-date label="Hiệu lực đến ngày" fxFlex="20%"></input-date>
+              </div>
             </div>
           </div>
         </div>
+      </ng-container>
+      <div>
+        <button
+          mat-button
+          class="full-width"
+          style="font-size: 20px; color: blue"
+          title="Thêm phạm vi"
+          (click)="addScope()"
+        >
+          +
+        </button>
       </div>
-    </ng-container>
-    <div>
-      <button
-        mat-button
-        class="full-width"
-        style="font-size: 20px; color: blue"
-        title="Thêm phạm vi"
-        (click)="addScope()"
-      >
-        +
-      </button>
     </div>
   </div>
-</div>
+</ng-container>

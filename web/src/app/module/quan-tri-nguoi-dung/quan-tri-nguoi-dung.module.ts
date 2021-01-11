@@ -11,6 +11,7 @@ import { ChiTietNguoiDungComponent } from './chi-tiet-nguoi-dung/chi-tiet-nguoi-
 import { CapNhatPhamViNguoiDungComponent } from './dialog/cap-nhat-pham-vi-nguoi-dung/cap-nhat-pham-vi-nguoi-dung.component';
 import { LichSuHoatDongComponent } from './lich-su-hoat-dong/lich-su-hoat-dong.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ThongTinCaNhanComponent } from './thong-tin-ca-nhan/thong-tin-ca-nhan.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     DanhSachNguoiDungComponent,
     ChiTietNguoiDungComponent,
     CapNhatPhamViNguoiDungComponent,
-    LichSuHoatDongComponent],
+    LichSuHoatDongComponent,
+    ThongTinCaNhanComponent],
   imports: [
     CommonModule,
     QuanTriNguoiDungRoutingModule,

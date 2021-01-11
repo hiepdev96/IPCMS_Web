@@ -1,9 +1,11 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-
-
   <a href="#" class="brand-link">
-    <img src="assets/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-      style="opacity: 0.8;" />
+    <img
+      src="assets/AdminLTELogo.png"
+      alt="AdminLTE Logo"
+      class="brand-image img-circle elevation-3"
+      style="opacity: 0.8"
+    />
     <span class="brand-text font-weight-light">Hồ sơ khách hàng</span>
   </a>
 
@@ -11,29 +13,38 @@
   <div class="sidebar">
     <!-- Sidebar Menu -->
     <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <ul
+        class="nav nav-pills nav-sidebar flex-column"
+        data-widget="treeview"
+        role="menu"
+        data-accordion="false"
+      >
         <ng-container *ngFor="let item of navItems">
-          <ng-container *ngIf="item.isTitle;else notIsTitle">
-            <li class="nav-header">{{item.name}}</li>
+          <ng-container *ngIf="checkShow(item)">
+            <ng-container *ngIf="item.isTitle; else notIsTitle">
+              <li class="nav-header">{{ item.name }}</li>
+            </ng-container>
+            <ng-template #notIsTitle>
+              <li class="nav-item">
+                <a
+                  href="javascript:void(0)"
+                  [routerLink]="getRouting(item.routerLink)"
+                  class="nav-link"
+                  [ngClass]="item.active ? 'active' : ''"
+                >
+                  <i class="nav-icon" [class]="item.icon"></i>
+                  <p style="margin-left: 5px">
+                    {{ item.name }}
+                    <!-- <span class="badge badge-info right">2</span> -->
+                  </p>
+                </a>
+              </li>
+            </ng-template>
           </ng-container>
-          <ng-template #notIsTitle>
-            <li class="nav-item">
-              <a href="javascript:void(0)" [routerLink]="getRouting(item.routerLink)" class="nav-link"
-                [ngClass]="item.active ? 'active' : ''">
-                <i class="nav-icon" [class]="item.icon"></i>
-                <p style="margin-left:5px;">
-                  {{item.name}}
-                  <!-- <span class="badge badge-info right">2</span> -->
-                </p>
-              </a>
-            </li>
-          </ng-template>
         </ng-container>
       </ul>
-
     </nav>
-    <div style="height: 20px;">
-    </div>
+    <div style="height: 20px"></div>
     <!-- /.sidebar-menu -->
   </div>
 
