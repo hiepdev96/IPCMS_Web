@@ -88,6 +88,7 @@ export class GenericModel implements IGenericModel {
     userDetailResponse?: UserDetailResponse | undefined;
     userDisableScopeRequest?: UserDisableScopeRequest | undefined;
     userUpdateRequest?: UserUpdateRequest | undefined;
+    userCreateRequest?: UserCreateRequest | undefined;
 
     constructor(data?: IGenericModel) {
         if (data) {
@@ -113,6 +114,7 @@ export class GenericModel implements IGenericModel {
             this.userDetailResponse = _data["UserDetailResponse"] ? UserDetailResponse.fromJS(_data["UserDetailResponse"]) : <any>undefined;
             this.userDisableScopeRequest = _data["UserDisableScopeRequest"] ? UserDisableScopeRequest.fromJS(_data["UserDisableScopeRequest"]) : <any>undefined;
             this.userUpdateRequest = _data["UserUpdateRequest"] ? UserUpdateRequest.fromJS(_data["UserUpdateRequest"]) : <any>undefined;
+            this.userCreateRequest = _data["UserCreateRequest"] ? UserCreateRequest.fromJS(_data["UserCreateRequest"]) : <any>undefined;
         }
     }
 
@@ -138,6 +140,7 @@ export class GenericModel implements IGenericModel {
         data["UserDetailResponse"] = this.userDetailResponse ? this.userDetailResponse.toJSON() : <any>undefined;
         data["UserDisableScopeRequest"] = this.userDisableScopeRequest ? this.userDisableScopeRequest.toJSON() : <any>undefined;
         data["UserUpdateRequest"] = this.userUpdateRequest ? this.userUpdateRequest.toJSON() : <any>undefined;
+        data["UserCreateRequest"] = this.userCreateRequest ? this.userCreateRequest.toJSON() : <any>undefined;
         return data; 
     }
 }
@@ -156,6 +159,7 @@ export interface IGenericModel {
     userDetailResponse?: UserDetailResponse | undefined;
     userDisableScopeRequest?: UserDisableScopeRequest | undefined;
     userUpdateRequest?: UserUpdateRequest | undefined;
+    userCreateRequest?: UserCreateRequest | undefined;
 }
 
 export class FilterProfileRequest implements IFilterProfileRequest {
@@ -1459,6 +1463,130 @@ export interface IUserUpdateRequest {
     email?: string | undefined;
     address?: string | undefined;
     note?: string | undefined;
+}
+
+export class UserCreateRequest implements IUserCreateRequest {
+    new_user_id?: string | undefined;
+    full_name?: string | undefined;
+    origanization?: string | undefined;
+    position?: string | undefined;
+    phone_number?: string | undefined;
+    email?: string | undefined;
+    address?: string | undefined;
+    role?: string | undefined;
+    note?: string | undefined;
+    scope?: UserScopeRequest[] | undefined;
+
+    constructor(data?: IUserCreateRequest) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.new_user_id = _data["new_user_id"];
+            this.full_name = _data["full_name"];
+            this.origanization = _data["origanization"];
+            this.position = _data["position"];
+            this.phone_number = _data["phone_number"];
+            this.email = _data["email"];
+            this.address = _data["address"];
+            this.role = _data["role"];
+            this.note = _data["note"];
+            if (Array.isArray(_data["scope"])) {
+                this.scope = [] as any;
+                for (let item of _data["scope"])
+                    this.scope!.push(UserScopeRequest.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): UserCreateRequest {
+        data = typeof data === 'object' ? data : {};
+        let result = new UserCreateRequest();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["new_user_id"] = this.new_user_id;
+        data["full_name"] = this.full_name;
+        data["origanization"] = this.origanization;
+        data["position"] = this.position;
+        data["phone_number"] = this.phone_number;
+        data["email"] = this.email;
+        data["address"] = this.address;
+        data["role"] = this.role;
+        data["note"] = this.note;
+        if (Array.isArray(this.scope)) {
+            data["scope"] = [];
+            for (let item of this.scope)
+                data["scope"].push(item.toJSON());
+        }
+        return data; 
+    }
+}
+
+export interface IUserCreateRequest {
+    new_user_id?: string | undefined;
+    full_name?: string | undefined;
+    origanization?: string | undefined;
+    position?: string | undefined;
+    phone_number?: string | undefined;
+    email?: string | undefined;
+    address?: string | undefined;
+    role?: string | undefined;
+    note?: string | undefined;
+    scope?: UserScopeRequest[] | undefined;
+}
+
+export class UserScopeRequest implements IUserScopeRequest {
+    scope?: string | undefined;
+    start_date?: string | undefined;
+    exp_date?: string | undefined;
+
+    constructor(data?: IUserScopeRequest) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.scope = _data["scope"];
+            this.start_date = _data["start_date"];
+            this.exp_date = _data["exp_date"];
+        }
+    }
+
+    static fromJS(data: any): UserScopeRequest {
+        data = typeof data === 'object' ? data : {};
+        let result = new UserScopeRequest();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["scope"] = this.scope;
+        data["start_date"] = this.start_date;
+        data["exp_date"] = this.exp_date;
+        return data; 
+    }
+}
+
+export interface IUserScopeRequest {
+    scope?: string | undefined;
+    start_date?: string | undefined;
+    exp_date?: string | undefined;
 }
 
 export class SwaggerException extends Error {

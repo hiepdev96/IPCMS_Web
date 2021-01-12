@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { NavItem } from '../../common/model/nav-item';
+import { roles } from '../../common/constants/role-constants';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -78,7 +79,7 @@ export class NavComponent implements OnInit {
 const navItems: NavItem[] = [
   {
     isTitle: true,
-    name: 'Tài khoản'
+    name: 'TÀI KHOẢN'
   },
   {
     name: 'Thông tin cá nhân',
@@ -104,15 +105,15 @@ const navItems: NavItem[] = [
     icon: 'fas fa-th-list'
   },
   {
-    name: 'QUẢN TRỊ NGƯỜI DÙNG',
+    name: 'NGƯỜI DÙNG',
     isTitle: true,
-    roles: ['ADMIN'],
+    roles: [roles.ADMIN, roles.BM, roles.MONITOR],
   },
   {
-    name: 'Tạo người dùng',
-    title: 'Tạo người dùng',
-    roles: ['ADMIN'],
-    routerLink: '/quan-tri-nguoi-dung/tao-nguoi-dung',
+    name: 'Quản lý người dùng',
+    title: 'Quản lý người dùng',
+    roles: [roles.ADMIN, roles.BM, roles.MONITOR],
+    routerLink: '/quan-tri-nguoi-dung/quan-ly-nguoi-dung',
     icon: 'fas fa-user-plus'
   },
   // {

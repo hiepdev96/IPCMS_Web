@@ -55,8 +55,10 @@ export class ThongTinCaNhanComponent implements OnInit {
             this.userClient.detail(this.getUser().user_id)
               .pipe(map(z => UserDetailResponse.fromJS(z)))
               .subscribe(z => {
-                this.authService.setUser(z);
-                this.toggleEditForm(false);
+                if (z.errorCode === 'OK') {
+                  this.authService.setUser(z.user);
+                  this.toggleEditForm(false);
+                }
               });
           }
         });

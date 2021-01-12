@@ -185,7 +185,7 @@ export class ProfileClient {
 
     public verifyGroupField(id_profile: string, block_id: string, fid: string = 'F32') {
         let params: string[] = [];
-        let url_ = this.baseUrl + "/ipcms/icp/view_detail/image_portrait?";
+        let url_ = this.baseUrl + "/ipcms/icp/verify_group_field?";
         const userId = this.authService.getUserId();
         url_ += "user_id=" + encodeURIComponent("" + userId) + "&";
         params.push(userId);
@@ -204,7 +204,7 @@ export class ProfileClient {
     }
     public verifyFieldProfile(id_profile: string, field_name: string, fid: string = 'F33') {
         let params: string[] = [];
-        let url_ = this.baseUrl + "/ipcms/icp/view_detail/verify_field_profile?";
+        let url_ = this.baseUrl + "/ipcms/icp/verify_field_profile?";
         const userId = this.authService.getUserId();
         url_ += "user_id=" + encodeURIComponent("" + userId) + "&";
         params.push(userId);
@@ -292,7 +292,7 @@ export class ProfileClient {
     }
     public cancellProfile(list_id_profile: string[], note_his_profile: string, fid: string = 'F25') {
         let params: string[] = [];
-        let url_ = this.baseUrl + "/ipcms/icp/verify_finish_profile?";
+        let url_ = this.baseUrl + "/ipcms/icp/cancell_profile?";
         const userId = this.authService.getUserId();
         url_ += "user_id=" + encodeURIComponent("" + userId) + "&";
         params.push(userId);

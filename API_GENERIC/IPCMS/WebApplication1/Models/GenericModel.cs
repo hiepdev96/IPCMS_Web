@@ -22,5 +22,6 @@ namespace WebApplication1.Models
         public UserDetailResponse UserDetailResponse { set; get; }
         public UserDisableScopeRequest UserDisableScopeRequest { set; get; }
         public UserUpdateRequest UserUpdateRequest { set; get; }
+        public UserCreateRequest UserCreateRequest { set; get; }
     }
 }

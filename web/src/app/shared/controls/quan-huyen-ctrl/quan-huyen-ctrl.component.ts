@@ -28,7 +28,11 @@ export class QuanHuyenCtrlComponent implements OnInit, OnDestroy, ControlValueAc
   control = new FormControl('');
   @Input() label: string;
   @Input() placeholder: string;
-  @Input() required: boolean;
+  @Input() set required(value: boolean) {
+    if (value) {
+      this.control.setValidators(Validators.required);
+    }
+  }
   @Input() isHiddenDefault: boolean;
   @Input() submitted: boolean;
   _tinhThanh: string | Provincial | any;
@@ -48,9 +52,7 @@ export class QuanHuyenCtrlComponent implements OnInit, OnDestroy, ControlValueAc
   constructor(
     private profileClient: ProfileClient
   ) {
-    if (this.required) {
-      this.control.setValidators(Validators.required);
-    }
+
   }
 
   ngOnInit(): void {

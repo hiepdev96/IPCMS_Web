@@ -1,1 +1,31 @@
-<p>quan-tri-nguoi-dung works!</p>
+<mat-tab-group>
+  <!-- <mat-tab>
+    <ng-template mat-tab-label> Danh sách </ng-template>
+    <app-danh-sach-nguoi-dung></app-danh-sach-nguoi-dung>
+  </mat-tab> -->
+  <mat-tab>
+    <ng-template mat-tab-label>Thêm mới</ng-template>
+    <app-tao-nguoi-dung></app-tao-nguoi-dung>
+  </mat-tab>
+  <!-- <ng-container *ngFor="let tab of tabs">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        {{ tab.name }}
+        <mat-icon
+          class="example-tab-icon close-tab"
+          mat-button
+          mat-icon-button
+          clickStopPropagation
+          (click)="removeTab(tab.id)"
+          >close</mat-icon
+        >
+      </ng-template>
+      <app-chi-tiet-ho-so
+        [$item]="tab.value"
+        [$id]="tab.id"
+        [$status]="tab.status"
+        ($closeAndReload)="closeAndReload($event)"
+      ></app-chi-tiet-ho-so>
+    </mat-tab>
+  </ng-container> -->
+</mat-tab-group>

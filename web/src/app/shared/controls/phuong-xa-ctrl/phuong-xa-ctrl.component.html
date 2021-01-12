@@ -1,14 +1,27 @@
 <div class="form-group full-width">
-    <ng-container *ngIf="label">
-      <label>{{ label ? label : placeholder }}</label>
+  <ng-container *ngIf="label">
+    <label>{{ label ? label : placeholder }}</label>
+  </ng-container>
+  <select
+    class="form-control"
+    [formControl]="control"
+    [ngClass]="{
+      'is-invalid':
+      control.invalid && (control.dirty || control.touched || submitted)
+    }"
+  >
+    <ng-container *ngIf="!isHiddenDefault">
+      <option [ngValue]="defaultValue">-- Chưa xác định --</option>
     </ng-container>
-    <select class="form-control" [formControl]="control">
-      <ng-container *ngIf="!isHiddenDefault">
-        <option [ngValue]="defaultValue">-- Chưa xác định --</option>
-      </ng-container>
-      <ng-container *ngFor="let item of getCommunes()">
-        <option [ngValue]="item">{{ item.name_with_type }}</option>
-      </ng-container>
-    </select>
-  </div>
-  
+    <ng-container *ngFor="let item of getCommunes()">
+      <option [ngValue]="item">{{ item.name_with_type }}</option>
+    </ng-container>
+  </select>
+  <ng-container
+    *ngIf=" control.invalid && (control.dirty || control.touched || submitted)"
+  >
+    <ng-container *ngIf="control.errors.required">
+      <span class="error invalid-feedback"> {{ label }} là bắt buộc </span>
+    </ng-container>
+  </ng-container>
+</div>

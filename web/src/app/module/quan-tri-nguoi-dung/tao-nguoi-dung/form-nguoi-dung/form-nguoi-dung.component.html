@@ -1,4 +1,3 @@
-
 <div class="card card-info">
   <div class="card-header">
     <span class="card-title">Thông tin người dùng</span>
@@ -12,6 +11,7 @@
           formControlName="fullNameCtrl"
           required="true"
           length="50"
+          [submitted]="submitted"
         ></input-text>
         <input-text
           label="Số điện thoại"
@@ -19,17 +19,21 @@
           formControlName="phoneNumberCtrl"
           required="true"
           isTel="true"
+          [submitted]="submitted"
         ></input-text>
         <input-text
           label="Email"
           fxFlex="23.5%"
           formControlName="emailCtrl"
+          [submitted]="submitted"
         ></input-text>
         <input-text
           label="User ID"
           fxFlex="23.5%"
+          required="true"
           formControlName="userIdCtrl"
           pattern="[A-Z_][A-Z0-9_]*"
+          [submitted]="submitted"
         ></input-text>
       </div>
       <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
@@ -37,16 +41,19 @@
           label="Tổ chức"
           fxFlex="23.5%"
           formControlName="organizationCtrl"
+          [submitted]="submitted"
         ></input-text>
         <input-text
           label="Chức vụ"
           fxFlex="23.5%"
           formControlName="positionCtrl"
+          [submitted]="submitted"
         ></input-text>
         <input-text
           label="Địa chỉ"
           fxFlex="49%"
           formControlName="addressCtrl"
+          [submitted]="submitted"
         ></input-text>
       </div>
       <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
@@ -55,57 +62,82 @@
           fxFlex="23.5%"
           [items]="lstRole"
           formControlName="roleCtrl"
+          [submitted]="submitted"
+          required="true"
         ></input-select>
         <input-text
           label="Mô tả"
           fxFlex="74.5%"
           formControlName="noteCtrl"
+          [submitted]="submitted"
         ></input-text>
       </div>
     </form>
   </div>
 </div>
-<ng-container *ngIf="getRole() === 'ADMIN'">
-  <div class="card card-info">
-    <div class="card-header">
-      <span class="card-title">Thông tin phạm vi theo khu vực địa lý</span>
-    </div>
-    <div class="card-body">
-      <ng-container *ngFor="let item of lstScope; let idx = index">
-        <div class="pt-20">
-          <div class="card card-default">
-            <div class="card-header">
-              <span class="card-title" style="color: blue;">Phạm vi {{ idx + 1 }}</span>
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool">
-                  <i class="fa fa-times"></i>
-                </button>
-              </div>
+<div class="card card-info">
+  <div class="card-header">
+    <span class="card-title">Thông tin phạm vi theo khu vực địa lý</span>
+  </div>
+  <div class="card-body">
+    <ng-container *ngFor="let item of lstScope; let idx = index">
+      <div class="pt-20">
+        <div class="card card-default">
+          <div class="card-header">
+            <span class="card-title" style="color: blue"
+              >Phạm vi {{ idx + 1 }}</span
+            >
+            <div class="card-tools">
+              <button
+                type="button"
+                class="btn btn-tool"
+                title="Xóa phạm vi"
+                (click)="removeScope(item)"
+              >
+                <i class="fa fa-times"></i>
+              </button>
             </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+          </div>
+          <div class="card-body">
+            <!-- <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
                 <input-select label="Tỉnh thành" fxFlex="20%"></input-select>
                 <input-select label="Quận huyện" fxFlex="20%"></input-select>
                 <input-select label="Phường xã" fxFlex="20%"></input-select>
                 <input-date label="Hiệu lực từ ngày" fxFlex="20%"></input-date>
                 <input-date label="Hiệu lực đến ngày" fxFlex="20%"></input-date>
+              </div> -->
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div style="min-width: 120px">
+                <label style="color: green">Phạm vi :</label>
+              </div>
+              <div>{{ item.scope }}</div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
+              <div style="min-width: 120px" style="color: green">
+                <label>Thời gian hiệu lực :</label>
+              </div>
+              <div>
+                {{ item.start_date | date: "dd/MM/yyyy" }} -
+                {{ item.exp_date | date: "dd/MM/yyyy" }}
               </div>
             </div>
           </div>
         </div>
-      </ng-container>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="getRole() === 'ADMIN' && !$item">
       <div>
         <button
           mat-button
           class="full-width"
           style="font-size: 20px; color: blue"
           title="Thêm phạm vi"
-          (click)="addScope()"
+          (click)="openDialogUpdateScope()"
         >
           +
         </button>
       </div>
-    </div>
+    </ng-container>
   </div>
-</ng-container>
+</div>

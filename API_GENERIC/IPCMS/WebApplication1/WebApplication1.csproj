@@ -176,6 +176,7 @@
     <Compile Include="Models\ProvincialResponse.cs" />
     <Compile Include="Models\TelesaleRequest.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserCreateRequest.cs" />
     <Compile Include="Models\UserInList.cs" />
     <Compile Include="Models\UserAddScopeRequest.cs" />
     <Compile Include="Models\UserDetailResponse.cs" />
@@ -185,6 +186,7 @@
     <Compile Include="Models\UserNewRequest.cs" />
     <Compile Include="Models\UserNewResponse.cs" />
     <Compile Include="Models\UserScope.cs" />
+    <Compile Include="Models\UserScopeRequest.cs" />
     <Compile Include="Models\UserUpdateRequest.cs" />
     <Compile Include="Models\ViewDocRequest.cs" />
     <Compile Include="Models\ViewDocResponse.cs" />

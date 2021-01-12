@@ -11,7 +11,10 @@ import { dateToString } from 'src/app/common/functions';
 import { merge } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { Tab } from '../../../common/model/tab';
-import { FilterProfileRequest, FilterProfileResponse, Profile, ProfileViewDetailRequest, ProfileViewDetailResponse } from 'src/app/common/model/generic-model';
+import { FilterProfileRequest, FilterProfileResponse, GenericResponse, Profile, ProfileViewDetailRequest, ProfileViewDetailResponse } from 'src/app/common/model/generic-model';
+import { AuthService } from 'src/app/services/auth.service';
+import { SelectionModel } from '@angular/cdk/collections';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-danh-sach-ho-so',
   templateUrl: './danh-sach-ho-so.component.html',
@@ -46,7 +49,6 @@ export class DanhSachHoSoComponent implements OnInit, AfterViewInit {
     'status',
     // 'action'
   ];
-  dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
   isShowAdvanced: boolean;
   ctrls = this.myForm.controls;
   page = 1;
@@ -54,10 +56,16 @@ export class DanhSachHoSoComponent implements OnInit, AfterViewInit {
   isShowLoadMore = true;
   isShowProgress = true;
   @Output() $openDetail = new EventEmitter();
+  selection = new SelectionModel<Profile>(true, []);
   constructor(
     private profileClient: ProfileClient,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private authService: AuthService,
+    private spinner: NgxSpinnerService
   ) {
+    if (this.authService.isAdmin()) {
+      this.displayedColumns = ['checked'].concat(this.displayedColumns);
+    }
   }
   ngOnInit(): void {
     merge(
@@ -72,6 +80,49 @@ export class DanhSachHoSoComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     this.filterProfile();
+  }
+  isAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
+  isAllSelected(): boolean {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.lstResult.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle(): void {
+    console.log(this.isAllSelected());
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.selection.select(...this.lstResult);
+  }
+
+  onCancel(): void {
+    const lstId = this.selection.selected.map(x => x.id_profile);
+    if (!lstId || lstId.length === 0) {
+      return this.alertService.error('Bạn cần phải lựa chọn hồ sơ để hủy', 'Hủy hồ sơ');
+    }
+    this.alertService.confirmMessage('Bạn có chắn chắn muốn hủy những hồ sơ đã chọn không?', ' Hủy hồ sơ')
+      .subscribe(x => {
+        if (x) {
+          this.spinner.show();
+          this.profileClient.cancellProfile(lstId, x.message)
+            .pipe(
+              map(z => GenericResponse.fromJS(z)),
+              finalize(() => this.spinner.hide())
+            )
+            .subscribe(z => {
+              if (z.errorCode !== 'OK') {
+                return this.alertService.error(z.errorMessage, 'Lỗi hủy hồ sơ');
+              } else {
+                this.alertService.success('Hủy hồ sơ thành công', 'Hủy hồ sơ');
+                this.onSearch();
+              }
+            });
+        }
+      });
+
   }
   setShowAdvanced(value: boolean): void {
     this.isShowAdvanced = value;

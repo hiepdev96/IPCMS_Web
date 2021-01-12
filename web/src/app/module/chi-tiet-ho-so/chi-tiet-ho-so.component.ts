@@ -31,6 +31,9 @@ import { FileDinhKemDialogComponent } from './dialog/file-dinh-kem-dialog/file-d
 import { StatusProfileConstant } from '../../common/constants/status-profile-constant';
 import { globalconstants } from '../../common/constants/global-contants';
 import { MappingProfileValue } from 'src/app/common/model/mapping-profile-value';
+import { ConfirmThamDinhHoSoComponent } from './dialog/confirm-tham-dinh-ho-so/confirm-tham-dinh-ho-so.component';
+import { ConfirmPheDuyetHoSoComponent } from './dialog/confirm-phe-duyet-ho-so/confirm-phe-duyet-ho-so.component';
+import { MatCheckbox } from '@angular/material/checkbox';
 @Component({
   selector: 'app-chi-tiet-ho-so',
   templateUrl: './chi-tiet-ho-so.component.html',
@@ -111,52 +114,35 @@ export class ChiTietHoSoComponent implements OnInit {
     this.isShowUpdate = isShow;
   }
 
-  onTelesale(statusId: string, title: string = null, message: string = null): void {
-    const status = ListStatusProfile.find(x => x.value === statusId);
-    this.alertService.confirmMessage(message ?? `Bạn có chắn chắn muốn thay đổi hồ sơ sang trạng thái <b> ${status.name}</b> không?`,
-      title ?? 'Thay đổi trạng thái hồ sơ')
+  // onTelesale(statusId: string, title: string = null, message: string = null): void {
+  //   const status = ListStatusProfile.find(x => x.value === statusId);
+  //   this.alertService.confirmMessage(message ?? `Bạn có chắn chắn muốn thay đổi hồ sơ sang trạng thái <b> ${status.name}</b> không?`,
+  //     title ?? 'Thay đổi trạng thái hồ sơ')
+  //     .subscribe(x => {
+  //       if (x) {
+  //         this.onTelesaleAPI(new TelesaleRequest({
+  //           id_profile: this.$id,
+  //           status_profile: status.value,
+  //           note: x.message
+  //         }), title);
+  //       }
+  //     });
+  // }
+
+  approvalFinishProfile(): void {
+    const dialogRef = this.dialog.open(ConfirmPheDuyetHoSoComponent, {
+      panelClass: 'custom-dialog',
+      minWidth: '550px',
+      data: this.$id
+    });
+    dialogRef.afterClosed()
       .subscribe(x => {
         if (x) {
-          this.onTelesaleAPI(new TelesaleRequest({
-            id_profile: this.$id,
-            status_profile: status.value,
-            note: x.message
-          }), title);
-        }
-      });
-  }
-
-  approvalFinishProfile(isApproval: boolean): void {
-    if (isApproval) {
-      this.alertService.confirmMessage('Bạn có chắn chắn muốn phê duyệt hồ sơ này không?', 'Phê duyệt hồ sơ')
-        .subscribe(x => {
-          if (x) {
-            this.approvalFinishProfileAPI(StatusProfileConstant.DA_PHE_DUYET_HOAN_THIEN, x.message, 'Phê duyệt hồ sơ');
-          }
-        });
-    } else {
-      this.alertService.confirmMessage('Bạn có chắn chắn thay đổi trạng thái hồ sơ sang <b>Đang hoàn thiện</b> không?', 'Thay đổi trạng thái')
-        .subscribe(x => {
-          if (x) {
-            this.approvalFinishProfileAPI(StatusProfileConstant.DANG_HOAN_THIEN, x.message,
-              'Thay đổi trạng thái về Đang hoàn thiện');
-          }
-        });
-    }
-  }
-  private approvalFinishProfileAPI(status: string, message: string, titleAlert: string): void {
-    this.spinner.show();
-    this.profileClient.approvalFinishProfile(this.$id, status, message)
-      .pipe(finalize(() => this.spinner.hide()))
-      .subscribe(x => {
-        if (x.errorCode !== 'OK') {
-          return this.alertService.error(x.errorMessage ?? '', titleAlert);
-        } else {
-          this.alertService.success(titleAlert + ' thành công', titleAlert);
           this.$closeAndReload.emit(this.$id);
         }
       });
   }
+
   onChotHoSo(): void {
     const dialogRef = this.dialog.open(ConfirmChotHoSoComponent, {
       panelClass: 'custom-dialog',
@@ -167,12 +153,69 @@ export class ChiTietHoSoComponent implements OnInit {
         if (x) {
           const request = TelesaleRequest.fromJS(x);
           request.id_profile = this.$id;
-          request.status_profile = StatusProfileConstant.CHOT;
-          request.list_parameter = this._formInputHoSo.getListParameter();
+          if (request.status_profile === StatusProfileConstant.CHOT) {
+            request.list_parameter = this._formInputHoSo.getListParameter();
+          }
           this.onTelesaleAPI(request);
         }
       });
   }
+  verifyGroupField(block_id: string, el: MatCheckbox): void {
+    this.spinner.show();
+    this.profileClient.verifyGroupField(this.$id, block_id)
+      .pipe(finalize(() => this.spinner.hide()),
+        map(x => GenericResponse.fromJS(x)))
+      .subscribe(x => {
+        if (x.errorCode !== 'OK') {
+          el.checked = false;
+          return this.alertService.error(x.errorMessage, 'Xác minh nhóm trường thông tin');
+        } else {
+          this.alertService.success('Xác minh nhóm trường thông tin thành công', 'Xác minh nhóm trường thông tin');
+          const idx = this.lstBlock.findIndex(z => z.block_id === block_id);
+          this.lstBlock[idx].verified = 'Y';
+          const lstfieldName = ListMappingProfileValue.filter(z => z.block_id === block_id).map(z => z.name);
+          this.lstField.forEach(z => {
+            if (lstfieldName.includes(z.name)) {
+              z.verified = 'Y';
+            }
+          });
+        }
+      });
+  }
+  verifyFieldProfile(field_name: string, el: MatCheckbox): void {
+    console.log(el);
+    this.spinner.show();
+    this.profileClient.verifyFieldProfile(this.$id, field_name)
+      .pipe(finalize(() => this.spinner.hide()),
+        map(x => GenericResponse.fromJS(x)))
+      .subscribe(x => {
+        if (x.errorCode !== 'OK') {
+          el.checked = false;
+          return this.alertService.error(x.errorMessage, 'Xác minh trường thông tin');
+        } else {
+          this.alertService.success('Xác minh trường thông tin thành công', 'Xác minh trường thông tin');
+          const idx = this.lstField.findIndex(z => z.name === field_name);
+          this.lstField[idx].verified = 'Y';
+          const blockId = ListMappingProfileValue.find(z => z.name === field_name)?.block_id;
+          const lstfieldName = ListMappingProfileValue.filter(z => z.block_id === blockId).map(z => z.name);
+          // tslint:disable-next-line: prefer-for-of
+          let verifiedBlock = true;
+          for (const element of lstfieldName) {
+            const idx1 = this.lstField.findIndex(z => z.name === element);
+            if (this.lstField[idx1].verified !== 'Y') {
+              verifiedBlock = false;
+              break;
+            }
+          }
+          if (verifiedBlock) {
+            const idxBlock = this.lstBlock.findIndex(z => z.block_id === blockId);
+            this.lstBlock[idxBlock].verified = 'Y';
+          }
+        }
+      });
+  }
+
+
   onTelesaleAPI(request: TelesaleRequest, title = null): void {
     this.spinner.show();
     this.profileClient.telesale(request)
@@ -181,53 +224,31 @@ export class ChiTietHoSoComponent implements OnInit {
       .subscribe(x => {
 
         if (x.errorCode !== 'OK') {
-          return this.alertService.error(x.errorMessage, title ?? 'Thay đổi trạng thái hồ sơ');
+          return this.alertService.error(x.errorMessage, title ?? 'Chốt hồ sơ');
         } else {
-          this.alertService.success('Thay đổi trạng thái hồ sơ thành công', title ?? 'Thay đổi trạng thái hồ sơ');
+          this.alertService.success('Chốt hồ sơ thành công', title ?? 'Chốt hồ sơ');
           this.$closeAndReload.emit(this.$id);
         }
 
       });
   }
   verifyFinishProfile(status: string): void {
-    let titleAlert = '';
-    let messageAlert = '';
-    let title = '';
-    switch (status) {
-      case (StatusProfileConstant.DA_THAM_DINH_DAT):
-        titleAlert = 'Thẩm định hồ sơ';
-        messageAlert = 'Bạn có chắn chắn muốn thẩm định hồ sơ này đạt không?';
-        title = 'Thẩm định hồ sơ';
-        break;
-      case (StatusProfileConstant.THAM_DINH_KHONG_DAT):
-        titleAlert = 'Thẩm định hồ sơ';
-        messageAlert = 'Bạn có chắn chắn muốn thẩm định hồ sơ này không đạt không?';
-        title = 'Thẩm định hồ sơ';
-        break;
-      case (StatusProfileConstant.DA_PHE_DUYET_HOAN_THIEN):
-        titleAlert = 'Chuyển trạng thái về <b>đã phê duyệt hoàn thiện</b> ';
-        messageAlert = 'Bạn có chắn chắn muốn chuyển trạng thái về <b>đã phê duyệt hoàn thiện</b> không?';
-        title = 'Thay đổi trạng thái hồ sơ';
-        break;
-    }
-    this.alertService.confirmMessage(messageAlert, titleAlert).subscribe(z => {
-      if (z) {
-        this.spinner.show();
-        this.profileClient.verifyFinishProfile(this.$id, status, z.message)
-          .pipe(finalize(() => this.spinner.hide()),
-            map(x => GenericResponse.fromJS(x)))
-          .subscribe(x => {
 
-            if (x.errorCode !== 'OK') {
-              return this.alertService.error(x.errorMessage, title);
-            } else {
-              this.alertService.success(title + ' thành công', title);
-              this.$closeAndReload.emit(this.$id);
-            }
-
-          });
-      }
+    const dialogRef = this.dialog.open(ConfirmThamDinhHoSoComponent, {
+      panelClass: 'custom-dialog',
+      minWidth: '550px',
+      data: this.$id
     });
+    dialogRef.afterClosed()
+      .subscribe(x => {
+        if (x) {
+          this.$closeAndReload.emit(this.$id);
+        }
+      });
+  }
+  showCheckBox(): void {
+    this.isShowCheckbox = !this.isShowCheckbox;
+    this.isShowChecked = !this.isShowCheckbox;
   }
   openDialogConfirm(): void {
     this.alertService.confirmMessage('Xác nhận bỏ qua hồ sơ', 'Bạn có chắc chắn muốn bỏ hồ sơ không?');

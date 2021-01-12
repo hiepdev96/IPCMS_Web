@@ -1,0 +1,36 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <span class="modal-title">Phê duyệt hồ sơ khách hàng</span>
+    <span type="button" class="close" mat-dialog-close>
+      <span aria-hidden="true">×</span>
+    </span>
+  </div>
+  <div mat-dialog-content>
+    <div class="modal-body">
+      <form [formGroup]="myForm">
+        <div class="pt-20">
+          <input-select
+            [items]="listStatusProfile"
+            label="Loại phê duyệt"
+            required="true"
+            keyDisplay="name"
+            formControlName="statusControl"
+          ></input-select>
+        </div>
+        <div>
+          <input-text
+            label="Ghi chú"
+            textarea="true"
+            formControlName="noteCtrl"
+          ></input-text>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-flat-button color="primary" (click)="onClose()">
+      Phê duyệt hồ sơ
+    </button>
+    <button mat-button mat-dialog-close>Bỏ qua</button>
+  </div>
+</div>

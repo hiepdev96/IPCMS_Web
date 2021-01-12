@@ -56,6 +56,17 @@ export function validateMaximumNumber(max: number): ValidatorFn {
         };
     };
 }
+export function validateBiggerDate(max: Date): ValidatorFn {
+    return (c: FormControl): ValidationErrors | null => {
+        const v = c.value;
+        if (!v) { return null; }
+        return (v <= max) ? null : {
+            biggerDate: {
+                valid: false
+            }
+        };
+    };
+}
 
 export function validateNotPositiveInteger(c: FormControl): any {
     if (!c.value) { return null; }

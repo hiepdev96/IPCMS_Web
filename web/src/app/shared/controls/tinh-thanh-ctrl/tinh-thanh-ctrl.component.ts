@@ -28,7 +28,11 @@ export class TinhThanhCtrlComponent implements OnInit, OnDestroy, ControlValueAc
   control = new FormControl('');
   @Input() label: string;
   @Input() placeholder: string;
-  @Input() required: boolean;
+  @Input() set required(value: boolean){
+    if (value) {
+      this.control.setValidators(Validators.required);
+    }
+  }
   @Input() isHiddenDefault: boolean;
   @Input() submitted: boolean;
   defaultValue = null;
@@ -44,10 +48,6 @@ export class TinhThanhCtrlComponent implements OnInit, OnDestroy, ControlValueAc
           this.lst = x.provincial;
         }
       });
-
-    if (this.required) {
-      this.control.setValidators(Validators.required);
-    }
   }
 
   ngOnInit(): void {

@@ -25,7 +25,7 @@ export class InputSelectComponent implements OnInit, OnDestroy {
 
   @Input() placeholder: string;
   @Input() label: string;
-
+  @Input() submitted: boolean;
   @Input() required: boolean;
   @Input() isNormalCharacters: boolean;
   @Input() isEmail: boolean;
@@ -61,6 +61,7 @@ export class InputSelectComponent implements OnInit, OnDestroy {
     this.onDestroy$.next();
   }
   outputValue(): void {
+    console.log(this.control);
     this.onChange(this.control.value);
     this.onTouched();
     this.valid.emit(this.control.valid);

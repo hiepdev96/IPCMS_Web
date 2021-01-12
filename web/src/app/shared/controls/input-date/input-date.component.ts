@@ -1,7 +1,9 @@
 import { Component, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validators } from '@angular/forms';
+import * as moment from 'moment';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { validateBiggerDate } from 'src/app/common/validators';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -29,6 +31,12 @@ export class InputDateComponent implements OnInit, OnDestroy {
   @Input() length: number;
   @Input() readonly: boolean;
   @Input() max: number;
+  _biggerDate: Date;
+  @Input() set biggerDate(value: Date) {
+    this._biggerDate = value;
+    this.setValidator();
+  }
+  @Input() submitted: boolean;
   control = new FormControl('');
   @Output() valid = new EventEmitter<boolean>();
 
@@ -41,11 +49,23 @@ export class InputDateComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    if (this.required) {
-      this.control.setValidators(Validators.required);
-    }
+    this.setValidator();
     this.control.valueChanges.pipe(takeUntil(this.onDestroy$)).subscribe(() => this.outputValue());
   }
+  private setValidator(): void {
+    const lstValidator = [];
+    if (this.required) {
+      lstValidator.push(Validators.required);
+    }
+    if (this._biggerDate) {
+      lstValidator.push(validateBiggerDate(this._biggerDate));
+    }
+    if (lstValidator.length > 0) {
+      this.control.setValidators(lstValidator);
+    }
+    this.control.updateValueAndValidity();
+  }
+
   ngOnDestroy(): void {
     this.onDestroy$.next();
   }

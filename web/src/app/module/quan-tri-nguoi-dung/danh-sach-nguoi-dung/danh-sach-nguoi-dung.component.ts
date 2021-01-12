@@ -43,12 +43,7 @@ export class DanhSachNguoiDungComponent implements OnInit, AfterViewInit {
   showDetail(): void {
     this.isShowDetail = true;
   }
-  openDialogUpdateScope(): void {
-    this.dialog.open(CapNhatPhamViNguoiDungComponent,{
-      panelClass: 'custom-dialog',
-      minWidth: '88%'
-    });
-  }
+ 
 }
 export const datas = [
   {

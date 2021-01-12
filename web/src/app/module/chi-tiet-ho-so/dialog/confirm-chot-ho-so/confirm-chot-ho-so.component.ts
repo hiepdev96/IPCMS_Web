@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { StatusProfileConstant } from 'src/app/common/constants/status-profile-constant';
+import { ListStatusProfile } from 'src/app/common/data';
 import { TelesaleRequest } from 'src/app/common/model/generic-model';
 
 @Component({
@@ -10,21 +12,46 @@ import { TelesaleRequest } from 'src/app/common/model/generic-model';
 })
 export class ConfirmChotHoSoComponent implements OnInit {
   myForm = new FormGroup({
+    statusControl: new FormControl('', [Validators.required]),
     tinhThanhCtrl: new FormControl(),
     quanHuyenCtrl: new FormControl(),
     phuongXaCtrl: new FormControl(),
     noteCtrl: new FormControl(),
   });
+  isSubbmit = false;
+  isShowScope: boolean;
   ctrls = this.myForm.controls;
+  listStatusProfile: any;
+  lstStatusUse = [
+    StatusProfileConstant.MOI,
+    StatusProfileConstant.CHOT,
+    StatusProfileConstant.KHACH_HANG_TU_CHOI,
+    StatusProfileConstant.HUY
+  ];
   constructor(
     public dialogRef: MatDialogRef<ConfirmChotHoSoComponent>
-  ) { }
+  ) {
+    this.listStatusProfile = ListStatusProfile.filter(x => this.lstStatusUse.includes(x.value));
+  }
 
   ngOnInit(): void {
-    this.ctrls.quanHuyenCtrl.valueChanges
-      .subscribe(x => console.log('Quận Huyện', x));
-    this.ctrls.phuongXaCtrl.valueChanges
-      .subscribe(x => console.log('Phường xã', x));
+    this.ctrls.statusControl.valueChanges
+      .subscribe(x => {
+        if (x && x.value === StatusProfileConstant.CHOT) {
+          this.isShowScope = true;
+          this.ctrls.tinhThanhCtrl.setValidators(Validators.required);
+          this.ctrls.quanHuyenCtrl.setValidators(Validators.required);
+          this.ctrls.phuongXaCtrl.setValidators(Validators.required);
+        } else {
+          this.isShowScope = false;
+          this.ctrls.tinhThanhCtrl.clearValidators();
+          this.ctrls.quanHuyenCtrl.clearValidators();
+          this.ctrls.phuongXaCtrl.clearValidators();
+          this.ctrls.tinhThanhCtrl.updateValueAndValidity();
+          this.ctrls.quanHuyenCtrl.updateValueAndValidity();
+          this.ctrls.phuongXaCtrl.updateValueAndValidity();
+        }
+      });
   }
   onClose(): void {
     let scope = '';
@@ -37,9 +64,14 @@ export class ConfirmChotHoSoComponent implements OnInit {
         }
       }
     }
-    this.dialogRef.close(new TelesaleRequest({
-      note: this.ctrls.noteCtrl.value,
-      scope
-    }));
+    this.myForm.markAllAsTouched();
+    this.isSubbmit = true;
+    if (this.myForm.valid) {
+      this.dialogRef.close(new TelesaleRequest({
+        note: this.ctrls.noteCtrl.value,
+        status_profile: this.ctrls.statusControl.value.value,
+        scope
+      }));
+    }
   }
 }

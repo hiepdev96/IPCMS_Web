@@ -9,6 +9,16 @@
     <div class="modal-body">
       <form [formGroup]="myForm">
         <div class="pt-20">
+          <input-select
+            [items]="listStatusProfile"
+            label="Loại trạng thái chốt"
+            required="true"
+            keyDisplay="name"
+            formControlName="statusControl"
+          ></input-select>
+        </div>
+       <ng-container *ngIf="isShowScope">
+        <div class="pt-20">
           <div class="card card-default">
             <div class="card-header">
               <span class="card-title" style="color: blue"
@@ -27,23 +37,30 @@
                   formControlName="tinhThanhCtrl"
                   label="Tỉnh thành"
                   fxFlex="33%"
+                  [required]="isShowScope"
+                  [submitted]="isSubbmit"
                 ></tinh-thanh-ctrl>
                 <quan-huyen-ctrl
                   formControlName="quanHuyenCtrl"
                   [tinhThanh]="ctrls.tinhThanhCtrl.value"
                   label="Quận huyện"
                   fxFlex="33%"
+                  [required]="isShowScope"
+                  [submitted]="isSubbmit"
                 ></quan-huyen-ctrl>
                 <phuong-xa-ctrl
                   formControlName="phuongXaCtrl"
                   [quanHuyen]="ctrls.quanHuyenCtrl.value"
                   label="Phường xã"
                   fxFlex="33%"
+                  [required]="isShowScope"
+                  [submitted]="isSubbmit"
                 ></phuong-xa-ctrl>
               </div>
             </div>
           </div>
         </div>
+       </ng-container>
         <div>
           <input-text label="Ghi chú" textarea="true" formControlName="noteCtrl"></input-text>
         </div>
@@ -52,7 +69,7 @@
   </div>
   <div mat-dialog-actions>
     <button mat-button mat-flat-button color="primary" (click)="onClose()">
-     Đã chốt
+    Chốt hồ sơ
     </button>
     <button mat-button mat-dialog-close>Bỏ qua</button>
   </div>

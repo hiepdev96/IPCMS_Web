@@ -46,9 +46,7 @@
 <div class="modal-content">
   <div mat-dialog-title>
     <div class="modal-header" style="background-color: #f1f1f1">
-      <span class="modal-title"
-        >Cập nhật phạm vi của người dùng: Tạ Đức Hiệp</span
-      >
+      <span class="modal-title">Thêm phạm vi người dùng</span>
       <span type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">×</span>
       </span>
@@ -56,48 +54,70 @@
   </div>
   <div mat-dialog-content>
     <div class="modal-body">
-      <ng-container *ngFor="let item of lstScope; let idx = index">
-        <div class="pt-20">
-          <div class="card card-default">
-            <div class="card-header">
-              <span class="card-title" style="color: blue"
-                >Phạm vi {{ idx + 1 }}</span
-              >
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool">
-                  <i class="fa fa-times"></i>
-                </button>
-              </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
+      <div class="pt-20">
+        <div class="card card-default">
+          <div class="card-header">
+            <span class="card-title" style="color: blue">Phạm vi</span>
+            <!-- <div class="card-tools">
+              <button type="button" class="btn btn-tool">
+                <i class="fa fa-times"></i>
+              </button>
+            </div> -->
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <form [formGroup]="myForm">
               <div fxLayout="row" fxLayoutGap="2%" fxLayout.xs="column">
-                <input-select label="Tỉnh thành" fxFlex="20%"></input-select>
-                <input-select label="Quận huyện" fxFlex="20%"></input-select>
-                <input-select label="Phường xã" fxFlex="20%"></input-select>
-                <input-date label="Hiệu lực từ ngày" fxFlex="20%"></input-date>
-                <input-date label="Hiệu lực đến ngày" fxFlex="20%"></input-date>
+                <tinh-thanh-ctrl
+                  formControlName="tinhThanhCtrl"
+                  label="Tỉnh thành"
+                  fxFlex="20%"
+                ></tinh-thanh-ctrl>
+                <quan-huyen-ctrl
+                  [tinhThanh]="ctrls.tinhThanhCtrl.value"
+                  formControlName="quanHuyenCtrl"
+                  label="Quận huyện"
+                  fxFlex="20%"
+                ></quan-huyen-ctrl>
+                <phuong-xa-ctrl
+                  [quanHuyen]="ctrls.quanHuyenCtrl.value"
+                  formControlName="phuongXaCtrl"
+                  label="Phường xã"
+                  fxFlex="20%"
+                ></phuong-xa-ctrl>
+                <input-date
+                  formControlName="fromDateCtrl"
+                  label="Hiệu lực từ ngày"
+                  [submitted]="submitted"
+                  readonly="true"
+                  [biggerDate]="ctrls.toDateCtrl.value"
+                  required="true"
+                  fxFlex="20%"
+                ></input-date>
+                <input-date
+                  formControlName="toDateCtrl"
+                  label="Hiệu lực đến ngày"
+                  required="true"
+                  readonly="true"
+                  [submitted]="submitted"
+                  fxFlex="20%"
+                ></input-date>
               </div>
-            </div>
+            </form>
           </div>
         </div>
-      </ng-container>
-      <div>
-        <button
-          mat-button
-          class="full-width"
-          style="font-size: 20px; color: blue"
-          title="Thêm phạm vi"
-          (click)="addScope()"
-        >
-          +
-        </button>
       </div>
     </div>
   </div>
   <div mat-dialog-actions>
-    <button mat-button mat-flat-button color="primary" cdkFocusInitial>
-      Cập nhật
+    <button
+      mat-button
+      mat-flat-button
+      color="primary"
+      cdkFocusInitial
+      (click)="onAdd()"
+    >
+      Thêm phạm vi
     </button>
     <button mat-button mat-dialog-close>Bỏ qua</button>
   </div>

@@ -3,7 +3,7 @@ import * as moment from 'moment';
 import { Field } from './generic-model';
 
 export class MappingProfileValue implements IMappingProfileValue {
-    public block_id?: number;
+    public block_id?: string;
     public name?: string;
     public value?: string;
     public nameCtrl?: string;
@@ -34,10 +34,25 @@ export class MappingProfileValue implements IMappingProfileValue {
         const res = formGroup.get(this.nameCtrl).value;
         switch (this.type) {
             case 'date':
-                return moment(res).format('YYYY-MM-DD');
+                if (res) {
+                    const d = moment(res);
+                    console.log(d);
+                    console.log(d.toString());
+                    if (d.toString() !== 'Invalid date') {
+                        return d.format('YYYY-MM-DD');
+                    }
+                }
+                return '';
             case 'select':
-                return res[this.keySelect];
+                const r = res[this.keySelect];
+                if (r === null || r === undefined) {
+                    return '';
+                }
+                return r;
             default:
+                if (res === null || res === undefined) {
+                    return '';
+                }
                 return res;
 
         }
@@ -60,7 +75,7 @@ export class MappingProfileValue implements IMappingProfileValue {
 
 export interface IMappingProfileValue {
     keySelect?: string;
-    block_id?: number;
+    block_id?: string;
     name?: string;
     value?: string;
     nameCtrl?: string;

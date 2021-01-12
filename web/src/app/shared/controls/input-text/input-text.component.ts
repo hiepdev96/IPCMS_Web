@@ -43,6 +43,7 @@ export class InputTextComponent implements OnInit, OnDestroy, ControlValueAccess
   @Input() pattern: string;
   @Input() textarea: boolean;
   @Input() readonly: boolean;
+  @Input() submitted: boolean;
   control = new FormControl('');
   @Output() valid = new EventEmitter<boolean>();
 

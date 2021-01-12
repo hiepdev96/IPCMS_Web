@@ -15,7 +15,7 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angula
 import { environment } from '../../environments/environment';
 import { AuthService } from '../services/auth.service';
 import { SHA256 } from '../common/functions';
-import { FilterProfileRequest, ProfileViewDetailRequest, SwaggerException, TelesaleRequest, UserUpdateRequest } from '../common/model/generic-model';
+import { FilterProfileRequest, ProfileViewDetailRequest, SwaggerException, TelesaleRequest, UserCreateRequest, UserUpdateRequest } from '../common/model/generic-model';
 
 
 export const API_BASE_URL = new InjectionToken<string>
@@ -54,7 +54,7 @@ export class UserClient {
         url_ = url_.replace(/[?&]$/, "");
         return this.callAPI(url_);
     }
-    public update(request: UserUpdateRequest, fid: string = 'F66'){
+    public update(request: UserUpdateRequest, fid: string = 'F66') {
         let params: string[] = [];
         let url_ = this.baseUrl + "/ipcms/user/update?";
         const userId = this.authService.getUserId();
@@ -84,6 +84,47 @@ export class UserClient {
             params.push(v);
         }
         url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params));
+        url_ = url_.replace(/[?&]$/, "");
+        return this.callAPI(url_);
+    }
+    public new(request: UserCreateRequest, fid: string = 'F61') {
+        let params: string[] = [];
+        let url_ = this.baseUrl + "/ipcms/user/new?";
+        const userId = this.authService.getUserId();
+        url_ += "user_id=" + encodeURIComponent("" + userId) + "&";
+        params.push(userId);
+        params.push(this.authService.getSecretKey());
+        url_ += "fid=" + encodeURIComponent("" + fid) + "&";
+        params.push(fid);
+        const keyParams: string[] = [
+            'new_user_id',
+            'full_name',
+            'origanization',
+            'position',
+            'phone_number',
+            'email',
+            'address',
+            'role',
+            'scope',
+            'note'
+
+        ];
+        for (const key of keyParams) {
+            const v = request[key] ?? '';
+            if (v !== '') {
+                if (typeof v === 'object') {
+                    url_ += `${key}=` + encodeURIComponent("" + JSON.stringify(v)) + "&";
+                    params.push(JSON.stringify(v));
+                } else {
+                    url_ += `${key}=` + encodeURIComponent("" + v) + "&";
+                    params.push(v);
+                }
+            } else {
+                url_ += `${key}&`;
+                params.push(v);
+            }
+        }
+        url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params)) + "&";
         url_ = url_.replace(/[?&]$/, "");
         return this.callAPI(url_);
     }

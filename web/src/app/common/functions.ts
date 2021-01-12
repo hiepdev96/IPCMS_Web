@@ -55,3 +55,14 @@ export function dateToString(time: Date): string {
     }
     return moment(formatDateTimeZone(time)).format('YYYY-MM-DD');
 }
+
+export function convertToDate(value: string): Date {
+    if (!value) {
+        return null;
+    };
+    const res = new Date(value + 'Z');
+    if (res.toString() !== 'Invalid Date') {
+        return res;
+    }
+    return null;
+}

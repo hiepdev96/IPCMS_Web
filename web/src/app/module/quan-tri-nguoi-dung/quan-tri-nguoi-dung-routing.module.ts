@@ -41,7 +41,14 @@ const routes: Routes = [
         data: {
           title: 'Lịch sử hoạt động'
         }
-      }
+      },
+      {
+        path: 'quan-ly-nguoi-dung',
+        data: {
+          title: 'Quản lý người dùng'
+        },
+        component: QuanTriNguoiDungComponent
+      },
     ]
   }
 ];

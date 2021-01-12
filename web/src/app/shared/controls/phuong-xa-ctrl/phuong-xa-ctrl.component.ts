@@ -28,7 +28,11 @@ export class PhuongXaCtrlComponent implements OnInit, OnDestroy, ControlValueAcc
   control = new FormControl('');
   @Input() label: string;
   @Input() placeholder: string;
-  @Input() required: boolean;
+  @Input() set required(value: boolean){
+    if (value) {
+      this.control.setValidators(Validators.required);
+    }
+  }
   @Input() isHiddenDefault: boolean;
   @Input() submitted: boolean;
   _quanHuyen: string | District | any;
@@ -47,9 +51,6 @@ export class PhuongXaCtrlComponent implements OnInit, OnDestroy, ControlValueAcc
   constructor(
     private profileClient: ProfileClient
   ) {
-    if (this.required) {
-      this.control.setValidators(Validators.required);
-    }
   }
 
   ngOnInit(): void {
@@ -76,7 +77,7 @@ export class PhuongXaCtrlComponent implements OnInit, OnDestroy, ControlValueAcc
                 this.control.setValue(this.defaultValue);
               }
             } else {
-              if (this.lst.findIndex(x => x.code === value) === -1) {
+              if (this.lst.findIndex(z => z.code === value) === -1) {
                 this.control.setValue(this.defaultValue);
               }
             }

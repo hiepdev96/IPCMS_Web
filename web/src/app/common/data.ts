@@ -326,7 +326,7 @@ export const ListNhaO: SelectionInput[] = [
 
 export const ListMappingProfileValue: MappingProfileValue[] = [
     new MappingProfileValue({
-        block_id: 1,
+        block_id: '1',
         name: 'LOAI_DINH_DANH',
         nameCtrl: 'loaiDinhDanhCtrl',
         keySelect: 'value',
@@ -334,28 +334,28 @@ export const ListMappingProfileValue: MappingProfileValue[] = [
         lstSelect: ListLoaiDinhDanh
     }),
     new MappingProfileValue({
-        block_id: 1,
+        block_id: '1',
         name: 'SO_DINH_DANH',
         nameCtrl: 'soDinhDanhCtrl'
     }),
     new MappingProfileValue({
-        block_id: 1,
+        block_id: '1',
         name: 'HO_TEN',
         nameCtrl: 'hoTenCtrl'
     }),
     new MappingProfileValue({
-        block_id: 1,
+        block_id: '1',
         name: 'QUOC_TICH',
         nameCtrl: 'quocTichCtrl'
     }),
     new MappingProfileValue({
-        block_id: 1,
+        block_id: '1',
         name: 'NGAY_SINH',
         nameCtrl: 'ngaySinhCtrl',
         type: 'date'
     }),
     new MappingProfileValue({
-        block_id: 1,
+        block_id: '1',
         name: 'GIOI_TINH',
         nameCtrl: 'gioiTinhCtrl',
         type: 'select',
@@ -363,59 +363,59 @@ export const ListMappingProfileValue: MappingProfileValue[] = [
         lstSelect: ListGioiTinh
     }),
     new MappingProfileValue({
-        block_id: 1,
+        block_id: '1',
         name: 'HO_KHAU_THUONG_TRU',
         nameCtrl: 'hoKhauThuongTruCtrl'
     }),
     new MappingProfileValue({
-        block_id: 1,
+        block_id: '1',
         name: 'NGAY_CAP',
         nameCtrl: 'ngayCapCtrl',
         type: 'date'
     }),
     new MappingProfileValue({
-        block_id: 1,
+        block_id: '1',
         name: 'NOI_CAP',
         nameCtrl: 'noiCapCtrl'
     }),
     new MappingProfileValue({
-        block_id: 1,
+        block_id: '1',
         name: 'HIEU_LUC_DEN',
         nameCtrl: 'hieuLucDenCtrl',
         type: 'date'
     }),
     new MappingProfileValue({
-        block_id: 2,
+        block_id: '2',
         name: 'SO_DIEN_THOAI',
         nameCtrl: 'soDienThoaiCtrl',
     }),
     new MappingProfileValue({
-        block_id: 2,
+        block_id: '2',
         name: 'SDT_THAM_CHIEU_1',
         nameCtrl: 'soDienThoaiThamChieu1Ctrl',
     }),
     new MappingProfileValue({
-        block_id: 2,
+        block_id: '2',
         name: 'SDT_THAM_CHIEU_2',
         nameCtrl: 'soDienThoaiThamChieu2Ctrl',
     }),
     new MappingProfileValue({
-        block_id: 2,
+        block_id: '2',
         name: 'DIA_CHI',
         nameCtrl: 'diaChiCtrl',
     }),
     new MappingProfileValue({
-        block_id: 2,
+        block_id: '2',
         name: 'EMAIL',
         nameCtrl: 'emailCtrl',
     }),
     new MappingProfileValue({
-        block_id: 3,
+        block_id: '3',
         name: 'THU_NHAP_THANG',
         nameCtrl: 'thuNhapThangCtrl',
     }),
     new MappingProfileValue({
-        block_id: 4,
+        block_id: '4',
         name: 'NHA_O',
         nameCtrl: 'nhaOCtrl',
         type: 'select',
@@ -423,17 +423,17 @@ export const ListMappingProfileValue: MappingProfileValue[] = [
         lstSelect: ListNhaO
     }),
     new MappingProfileValue({
-        block_id: 4,
+        block_id: '4',
         name: 'SO_HOP_DONG_BAO_HIEM',
         nameCtrl: 'soHopDongBaoHiemCtrl',
     }),
     new MappingProfileValue({
-        block_id: 4,
+        block_id: '4',
         name: 'SO_NGUOI_PHU_THUOC',
         nameCtrl: 'soNguoiPhuThuocCtrl',
     }),
     new MappingProfileValue({
-        block_id: 5,
+        block_id: '5',
         name: 'TINH_TRANG_HON_NHAN',
         nameCtrl: 'tinhTrangHonNhanCtrl',
         type: 'select',
@@ -441,12 +441,12 @@ export const ListMappingProfileValue: MappingProfileValue[] = [
         lstSelect: ListTinhTrangHonNhan
     }),
     new MappingProfileValue({
-        block_id: 5,
+        block_id: '5',
         name: 'TUOI',
         nameCtrl: 'tuoiCtrl',
     }),
     new MappingProfileValue({
-        block_id: 5,
+        block_id: '5',
         name: 'GIOI_TINH_HIEN_TAI',
         nameCtrl: 'gioiTinhHienTaiCtrl',
         type: 'select',
@@ -454,7 +454,7 @@ export const ListMappingProfileValue: MappingProfileValue[] = [
         lstSelect: ListGioiTinh
     }),
     new MappingProfileValue({
-        block_id: 6,
+        block_id: '6',
         name: 'TRINH_DO_HOC_VAN',
         nameCtrl: 'trinhDoHocVanCtrl',
         type: 'select',
@@ -462,12 +462,12 @@ export const ListMappingProfileValue: MappingProfileValue[] = [
         lstSelect: ListTrinhDoHocVan
     }),
     new MappingProfileValue({
-        block_id: 7,
+        block_id: '7',
         name: 'DANH_HIEU',
         nameCtrl: 'danhHieuCtrl',
     }),
     new MappingProfileValue({
-        block_id: 7,
+        block_id: '7',
         name: 'LOAI_DON_VI_CONG_TAC',
         nameCtrl: 'loaiDonViCongTacCtrl',
         type: 'select',
@@ -475,7 +475,7 @@ export const ListMappingProfileValue: MappingProfileValue[] = [
         lstSelect: ListLoaiDonViCongTac
     }),
     new MappingProfileValue({
-        block_id: 7,
+        block_id: '7',
         name: 'CAP_QUAN_LY',
         nameCtrl: 'capQuanLyCtrl',
         type: 'select',
@@ -483,17 +483,17 @@ export const ListMappingProfileValue: MappingProfileValue[] = [
         lstSelect: ListCapQuanLy
     }),
     new MappingProfileValue({
-        block_id: 8,
+        block_id: '8',
         name: 'SO_THE_TIN_DUNG',
         nameCtrl: 'soTheTinDungCtrl'
     }),
     new MappingProfileValue({
-        block_id: 9,
+        block_id: '9',
         name: 'TONG_DU_NO_TIN_DUNG',
         nameCtrl: 'tongDuNoTinDungCtrl'
     }),
     new MappingProfileValue({
-        block_id: 9,
+        block_id: '9',
         name: 'LICH_SU_TIN_DUNG',
         nameCtrl: 'lichSuTinDungCtrl',
         type: 'select',
@@ -501,7 +501,7 @@ export const ListMappingProfileValue: MappingProfileValue[] = [
         lstSelect: ListLichSuTinDung
     }),
     new MappingProfileValue({
-        block_id: 9,
+        block_id: '9',
         name: 'NO_XAU',
         nameCtrl: 'noXauCtrl',
         type: 'select',
@@ -509,12 +509,12 @@ export const ListMappingProfileValue: MappingProfileValue[] = [
         lstSelect: ListNoXau
     }),
     new MappingProfileValue({
-        block_id: 10,
+        block_id: '10',
         name: 'TONG_GIA_TRI_TAI_SAN_DAM_BAO',
         nameCtrl: 'tongGiaTriDamBaoCtrl',
     }),
     new MappingProfileValue({
-        block_id: 10,
+        block_id: '10',
         name: 'TINH_THANH_KHOAN',
         nameCtrl: 'tinhThanhKhoanCtrl',
         type: 'select',
@@ -522,7 +522,7 @@ export const ListMappingProfileValue: MappingProfileValue[] = [
         lstSelect: ListTinhThanhKhoan
     }),
     new MappingProfileValue({
-        block_id: 11,
+        block_id: '11',
         name: 'LOAI_KHOAN_VAY',
         nameCtrl: 'loaiKhoanVayCtrl',
         type: 'select',
@@ -530,32 +530,32 @@ export const ListMappingProfileValue: MappingProfileValue[] = [
         lstSelect: ListLoaiKhoanVay
     }),
     new MappingProfileValue({
-        block_id: 11,
+        block_id: '11',
         name: 'SAN_PHAM_VAY',
         nameCtrl: 'sanPhamChoVayCtrl'
     }),
     new MappingProfileValue({
-        block_id: 11,
+        block_id: '11',
         name: 'SO_TIEN_VAY',
         nameCtrl: 'soTienVayCtrl'
     }),
     new MappingProfileValue({
-        block_id: 11,
+        block_id: '11',
         name: 'KY_HAN',
         nameCtrl: 'kyHanCtrl'
     }),
     new MappingProfileValue({
-        block_id: 11,
+        block_id: '11',
         name: 'LAI_XUAT',
         nameCtrl: 'laiSuatCtrl'
     }),
     new MappingProfileValue({
-        block_id: 11,
+        block_id: '11',
         name: 'MUC_DICH_VAY',
         nameCtrl: 'mucDichVayCtrl'
     }),
     new MappingProfileValue({
-        block_id: 11,
+        block_id: '11',
         name: 'HINH_THUC_VAY',
         nameCtrl: 'hinhThucVayCtrl',
         type: 'select',
@@ -563,7 +563,7 @@ export const ListMappingProfileValue: MappingProfileValue[] = [
         lstSelect: ListHinhThucVay
     }),
     new MappingProfileValue({
-        block_id: 11,
+        block_id: '11',
         name: 'HINH_THUC_THANH_TOAN',
         nameCtrl: 'hinhThucThanhToanCtrl',
         type: 'select',
