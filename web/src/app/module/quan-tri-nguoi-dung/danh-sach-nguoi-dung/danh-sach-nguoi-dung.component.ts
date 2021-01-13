@@ -1,8 +1,10 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ListRoleUser } from 'src/app/common/data';
 import { CapNhatPhamViNguoiDungComponent } from '../dialog/cap-nhat-pham-vi-nguoi-dung/cap-nhat-pham-vi-nguoi-dung.component';
 
 @Component({
@@ -12,7 +14,14 @@ import { CapNhatPhamViNguoiDungComponent } from '../dialog/cap-nhat-pham-vi-nguo
 })
 export class DanhSachNguoiDungComponent implements OnInit, AfterViewInit {
 
-
+  myForm = new FormGroup({
+    fullNameCtrl: new FormControl(),
+    phoneNumberCtrl: new FormControl(),
+    origanizationCtrl: new FormControl(),
+    postionCtrl: new FormControl(),
+    emailCtrl: new FormControl(),
+  });
+  lstRole = ListRoleUser;
   displayedColumns: string[] = ['postion', 'hoTen', 'soDienThoai', 'email', 'vaiTro', 'trangThai', 'action'];
   dataSource: MatTableDataSource<any>;
 
@@ -43,7 +52,7 @@ export class DanhSachNguoiDungComponent implements OnInit, AfterViewInit {
   showDetail(): void {
     this.isShowDetail = true;
   }
- 
+
 }
 export const datas = [
   {

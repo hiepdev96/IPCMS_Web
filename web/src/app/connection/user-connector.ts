@@ -15,7 +15,7 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angula
 import { environment } from '../../environments/environment';
 import { AuthService } from '../services/auth.service';
 import { SHA256 } from '../common/functions';
-import { FilterProfileRequest, ProfileViewDetailRequest, SwaggerException, TelesaleRequest, UserCreateRequest, UserUpdateRequest } from '../common/model/generic-model';
+import { FilterProfileRequest, ProfileViewDetailRequest, SwaggerException, TelesaleRequest, UserCreateRequest, UserListRequest, UserUpdateRequest } from '../common/model/generic-model';
 
 
 export const API_BASE_URL = new InjectionToken<string>
@@ -128,7 +128,45 @@ export class UserClient {
         url_ = url_.replace(/[?&]$/, "");
         return this.callAPI(url_);
     }
+    public list(page: number, request: UserListRequest, fid: string = 'F64') {
+        let params: string[] = [];
+        let url_ = this.baseUrl + "/ipcms/user/list/{page}?";
+        url_ = url_.replace("{page}", encodeURIComponent("" + page));
+        const userId = this.authService.getUserId();
+        url_ += "user_id=" + encodeURIComponent("" + userId) + "&";
+        params.push(userId);
+        params.push(this.authService.getSecretKey());
+        url_ += "fid=" + encodeURIComponent("" + fid) + "&";
+        params.push(fid);
+        const keyParams: string[] = [
+            'search_user_id',
+            'full_name',
+            'origanization',
+            'position',
+            'phone_number',
+            'email',
+            'address',
+            'role',
+            'scope',
+            'status',
+            'from_date',
+            'to_date'
+        ];
+        for (const key of keyParams) {
+            const v = request[key] ?? '';
+            if (v !== '') {
+                url_ += `${key}=` + encodeURIComponent("" + v) + "&";
 
+            } else {
+                url_ += `${key}&`;
+            }
+            params.push(v);
+        }
+        params.push(String(page));
+        url_ += "secret_token=" + encodeURIComponent("" + SHA256(...params)) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+        return this.callAPI(url_);
+    }
 
     private callAPI(url_: string) {
         let options_: any = {

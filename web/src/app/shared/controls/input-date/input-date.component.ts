@@ -3,7 +3,7 @@ import { FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Valida
 import * as moment from 'moment';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { validateBiggerDate } from 'src/app/common/validators';
+import { validateBiggerDate, validateLessPresent } from 'src/app/common/validators';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -27,6 +27,7 @@ export class InputDateComponent implements OnInit, OnDestroy {
 
   @Input() placeholder: string;
   @Input() label: string;
+  @Input() isFromPresent: boolean;
   @Input() required: boolean;
   @Input() length: number;
   @Input() readonly: boolean;
@@ -59,6 +60,9 @@ export class InputDateComponent implements OnInit, OnDestroy {
     }
     if (this._biggerDate) {
       lstValidator.push(validateBiggerDate(this._biggerDate));
+    }
+    if (this.isFromPresent) {
+      lstValidator.push(validateLessPresent());
     }
     if (lstValidator.length > 0) {
       this.control.setValidators(lstValidator);

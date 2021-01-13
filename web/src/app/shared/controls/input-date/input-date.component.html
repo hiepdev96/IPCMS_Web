@@ -41,6 +41,9 @@
       <ng-container *ngIf="control.errors.biggerDate">
         <span class="error invalid-feedback"> {{ label }} không được lớn hơn {{_biggerDate | date:'dd/MM/yyyy'}} </span>
       </ng-container>
+      <ng-container *ngIf="control.errors.lessPresent">
+        <span class="error invalid-feedback"> {{ label }} không được nhỏ hơn ngày hiện tại </span>
+      </ng-container>
     </ng-container>
   </div>
   <mat-datepicker #picker></mat-datepicker>

@@ -15,10 +15,11 @@ export class CapNhatPhamViNguoiDungComponent implements OnInit {
     tinhThanhCtrl: new FormControl(),
     quanHuyenCtrl: new FormControl(),
     phuongXaCtrl: new FormControl(),
-    fromDateCtrl: new FormControl('', [Validators.required]),
+    fromDateCtrl: new FormControl(new Date(), [Validators.required]),
     toDateCtrl: new FormControl('', [Validators.required])
   });
   ctrls = this.myForm.controls;
+  date = new Date();
   submitted: boolean;
   constructor(
     public dialogRef: MatDialogRef<CapNhatPhamViNguoiDungComponent>

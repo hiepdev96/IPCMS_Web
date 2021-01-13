@@ -89,6 +89,7 @@ export class GenericModel implements IGenericModel {
     userDisableScopeRequest?: UserDisableScopeRequest | undefined;
     userUpdateRequest?: UserUpdateRequest | undefined;
     userCreateRequest?: UserCreateRequest | undefined;
+    userListRequest?: UserListRequest | undefined;
 
     constructor(data?: IGenericModel) {
         if (data) {
@@ -115,6 +116,7 @@ export class GenericModel implements IGenericModel {
             this.userDisableScopeRequest = _data["UserDisableScopeRequest"] ? UserDisableScopeRequest.fromJS(_data["UserDisableScopeRequest"]) : <any>undefined;
             this.userUpdateRequest = _data["UserUpdateRequest"] ? UserUpdateRequest.fromJS(_data["UserUpdateRequest"]) : <any>undefined;
             this.userCreateRequest = _data["UserCreateRequest"] ? UserCreateRequest.fromJS(_data["UserCreateRequest"]) : <any>undefined;
+            this.userListRequest = _data["UserListRequest"] ? UserListRequest.fromJS(_data["UserListRequest"]) : <any>undefined;
         }
     }
 
@@ -141,6 +143,7 @@ export class GenericModel implements IGenericModel {
         data["UserDisableScopeRequest"] = this.userDisableScopeRequest ? this.userDisableScopeRequest.toJSON() : <any>undefined;
         data["UserUpdateRequest"] = this.userUpdateRequest ? this.userUpdateRequest.toJSON() : <any>undefined;
         data["UserCreateRequest"] = this.userCreateRequest ? this.userCreateRequest.toJSON() : <any>undefined;
+        data["UserListRequest"] = this.userListRequest ? this.userListRequest.toJSON() : <any>undefined;
         return data; 
     }
 }
@@ -160,6 +163,7 @@ export interface IGenericModel {
     userDisableScopeRequest?: UserDisableScopeRequest | undefined;
     userUpdateRequest?: UserUpdateRequest | undefined;
     userCreateRequest?: UserCreateRequest | undefined;
+    userListRequest?: UserListRequest | undefined;
 }
 
 export class FilterProfileRequest implements IFilterProfileRequest {
@@ -1587,6 +1591,86 @@ export interface IUserScopeRequest {
     scope?: string | undefined;
     start_date?: string | undefined;
     exp_date?: string | undefined;
+}
+
+export class UserListRequest implements IUserListRequest {
+    search_user_id?: string | undefined;
+    full_name?: string | undefined;
+    origanization?: string | undefined;
+    position?: string | undefined;
+    phone_number?: string | undefined;
+    email?: string | undefined;
+    address?: string | undefined;
+    role?: string | undefined;
+    scope?: string | undefined;
+    status?: string | undefined;
+    from_date?: string | undefined;
+    to_date?: string | undefined;
+
+    constructor(data?: IUserListRequest) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.search_user_id = _data["search_user_id"];
+            this.full_name = _data["full_name"];
+            this.origanization = _data["origanization"];
+            this.position = _data["position"];
+            this.phone_number = _data["phone_number"];
+            this.email = _data["email"];
+            this.address = _data["address"];
+            this.role = _data["role"];
+            this.scope = _data["scope"];
+            this.status = _data["status"];
+            this.from_date = _data["from_date"];
+            this.to_date = _data["to_date"];
+        }
+    }
+
+    static fromJS(data: any): UserListRequest {
+        data = typeof data === 'object' ? data : {};
+        let result = new UserListRequest();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["search_user_id"] = this.search_user_id;
+        data["full_name"] = this.full_name;
+        data["origanization"] = this.origanization;
+        data["position"] = this.position;
+        data["phone_number"] = this.phone_number;
+        data["email"] = this.email;
+        data["address"] = this.address;
+        data["role"] = this.role;
+        data["scope"] = this.scope;
+        data["status"] = this.status;
+        data["from_date"] = this.from_date;
+        data["to_date"] = this.to_date;
+        return data; 
+    }
+}
+
+export interface IUserListRequest {
+    search_user_id?: string | undefined;
+    full_name?: string | undefined;
+    origanization?: string | undefined;
+    position?: string | undefined;
+    phone_number?: string | undefined;
+    email?: string | undefined;
+    address?: string | undefined;
+    role?: string | undefined;
+    scope?: string | undefined;
+    status?: string | undefined;
+    from_date?: string | undefined;
+    to_date?: string | undefined;
 }
 
 export class SwaggerException extends Error {

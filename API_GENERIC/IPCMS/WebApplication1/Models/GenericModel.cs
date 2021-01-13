@@ -23,5 +23,6 @@ namespace WebApplication1.Models
         public UserDisableScopeRequest UserDisableScopeRequest { set; get; }
         public UserUpdateRequest UserUpdateRequest { set; get; }
         public UserCreateRequest UserCreateRequest { set; get; }
+        public UserListRequest UserListRequest { set; get; }
     }
 }

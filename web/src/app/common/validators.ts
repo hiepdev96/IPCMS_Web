@@ -76,6 +76,19 @@ export function validateNotPositiveInteger(c: FormControl): any {
         }
     };
 }
+export function validateLessPresent(): ValidatorFn {
+    return (c: FormControl): ValidationErrors | null => {
+        const v = c.value;
+        if (!v) { return null; }
+        const d = new Date();
+        d.setHours(0, 0, 0, 0);
+        return (v >= d) ? null : {
+            lessPresent: {
+                valid: false
+            }
+        };
+    };
+}
 
 export function requiredIf(required: { value: boolean }): ValidatorFn {
     return (control: FormControl): ValidationErrors | null => {
